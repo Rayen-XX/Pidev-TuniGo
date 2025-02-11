@@ -43,6 +43,7 @@ public class PublicationService implements Crud<Publication> {
         pstmt.setString(5, obj.getTitle());
         pstmt.setInt(6, obj.getId());
         pstmt.executeUpdate();
+        pstmt.close();
 
     }
 
@@ -53,6 +54,7 @@ public class PublicationService implements Crud<Publication> {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1, obj.getId()); // Extracting the ID from the object
         pstmt.executeUpdate();
+        pstmt.close();
     }
 
     @Override
