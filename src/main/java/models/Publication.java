@@ -6,25 +6,33 @@ import java.util.List;
 public class Publication {
 
     private int id , userId ;
-    private String contenu , date , description , title , type_pub ;
+    private String contenu , description , title , type_pub , date_pub ;
 
     public Publication() {}
 
-    public Publication(int id, String contenu, String date, String description, String title, String type_pub) {
+    public Publication(int id, int userId, String contenu, String description, String title, String type_pub) {
         this.id = id;
+        this.userId = userId;
         this.contenu = contenu;
-        this.date = date;
         this.description = description;
         this.title = title;
         this.type_pub = type_pub;
     }
 
-    public Publication(String contenu, String date, String description, String title , String type_pub) {
+    public Publication(int userId,String contenu, String description, String title , String type_pub) {
+        this.userId = userId;
         this.contenu = contenu;
-        this.date = date;
         this.description = description;
         this.title = title;
         this.type_pub = type_pub;
+    }
+
+    public String getDate_pub() {
+        return date_pub;
+    }
+
+    public void setDate_pub(String date_pub) {
+        this.date_pub = date_pub;
     }
 
     public int getId() {
@@ -49,14 +57,6 @@ public class Publication {
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getDescription() {
@@ -88,8 +88,8 @@ public class Publication {
         return "Publication{" +
                 "id=" + id +
                 ", userId=" + userId +
+                ", date_pub=" + date_pub +
                 ", contenu='" + contenu + '\'' +
-                ", date='" + date + '\'' +
                 ", description='" + description + '\'' +
                 ", title='" + title + '\'' +
                 ", type_pub='" + type_pub + '\'' +
