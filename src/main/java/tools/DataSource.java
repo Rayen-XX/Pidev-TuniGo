@@ -6,10 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author abdelazizmezri
- */
+
 public class DataSource {
     private Connection cnx;
     private static DataSource instance;
