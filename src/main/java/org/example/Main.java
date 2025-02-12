@@ -1,35 +1,69 @@
 package org.example;
-import models.Equipement;
-import services.EquipementService;
+
+import models.Commentaire;
+import models.Likes;
+import models.Publication;
+import services.CommentaireService;
+import services.LikesService;
+import services.PublicationService;
 import utils.MyDB;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
-        //MyDB.getInstance();
-        EquipementService equipement1 = new EquipementService();
+ /*
+        //Test Publication
+        PublicationService ps = new PublicationService();
         try {
-            Equipement equip1 = new Equipement(20, 10, "lunette", 120.50, "image.jpg");
-            //Equipement equip2 = new Equipement(1, 10, "tente", 120.50, "image.jpg");
-            //System.out.println(equip.toString());
-            //equipement1.create(equip1);
-            //equipement1.create(equip2);
-            System.out.println("ajout avec succes");
-            //equipement1.update(equip1);
-            //System.out.println("update avec succes");
-            //System.out.println(equipement1.getAll());
-
-
-            equipement1.delete(equip1);
-            System.out.println("equipement supprimé");
-
+            Publication publication = new Publication(1, "contenu 3", "description 3 ", "title 3", "image");
+            ps.create(publication);
+            System.out.println("Publication created");
+            //ps.update(publication);
+            //System.out.println("Publication updated");
+            //System.out.println(ps.getAll());
+            //ps.delete(publication);
+            //System.out.println("Publication deleted");
+            //System.out.println(ps.getAll());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+ */
+
+        //Test Commentaire
+        CommentaireService cs = new CommentaireService();
+        try {
+            Commentaire commentaire = new Commentaire(1,1, 3, "commentaire 1 modifie","");
+            //cs.create(commentaire);
+            //System.out.println("Commentaire created");
+            //cs.update(commentaire);
+            //System.out.println("Commentaire updated");
+            //System.out.println(cs.getAll());
+            cs.delete(commentaire);
+            System.out.println("Commentaire deleted");
+            System.out.println(cs.getAll());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
+/*
+        //Test Likes
+        LikesService ls = new LikesService();
+        try {
+            Likes l = new Likes(1,3,1,"");
+            //ls.create(l);
+            //System.out.println("Like ajoute");
+            //ls.update(l);
+            //System.out.println("Like modifie");
+            ls.delete(l);
+            System.out.println(ls.getAll());
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+*/
+
+
     }
-
-
-
 }
