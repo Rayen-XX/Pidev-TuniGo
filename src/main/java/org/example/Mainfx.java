@@ -16,7 +16,7 @@ public class Mainfx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("")); // Nom de la premiere interface
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Exemple.fxml")); // Nom de la premiere interface
         Parent root = loader.load();
         Scene sc = new Scene(root);
         stage.setScene(sc);
