@@ -1,0 +1,4 @@
+Controllers\deleteEquipement.class
+Controllers\showEquipement.class
+Controllers\updateEquipement.class
+Controllers\AddEquipement.class
