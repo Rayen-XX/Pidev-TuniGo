@@ -29,7 +29,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
  */
-
+/*
         //Test Commentaire
         CommentaireService cs = new CommentaireService();
         try {
@@ -46,7 +46,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-
+*/
 /*
         //Test Likes
         LikesService ls = new LikesService();
