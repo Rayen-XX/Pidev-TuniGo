@@ -1,4 +1,2 @@
-Controllers\deleteEquipement.class
-Controllers\showEquipement.class
-Controllers\updateEquipement.class
-Controllers\AddEquipement.class
+org\example\Mainfx.class
+Controllers\ExempleController.class
