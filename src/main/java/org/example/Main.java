@@ -22,6 +22,8 @@ public class Main {
             panier1.delete(panier);
             System.out.println(panier1.getAll());
 
+            //////h
+
 
 
 
