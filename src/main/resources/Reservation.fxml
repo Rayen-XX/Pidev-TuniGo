@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/javafx/8"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.ReservationController">
+
+    <VBox spacing="10" padding="20">
+        <Label text="Gestion des Réservations" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10">
+            <Label text="ID Utilisateur:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfIdUser" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="ID Trajet:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfIdTrajet" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Date Début:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfDateDebut" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Date Fin:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfDateFin" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Montant:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfMontant" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Statut:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfStatut" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="10">
+            <Button text="Ajouter" onAction="#ajouterReservation"/>
+            <Button text="Modifier" onAction="#modifierReservation"/>
+            <Button text="Supprimer" onAction="#supprimerReservation"/>
+            <Button text="Actualiser" onAction="#chargerReservations"/>
+        </HBox>
+
+        <TableView fx:id="tableReservations">
+
+            <columns>
+                <TableColumn text="ID" fx:id="colId"/>
+                <TableColumn text="ID Utilisateur" fx:id="colIdUser"/>
+                <TableColumn text="ID Trajet" fx:id="colIdTrajet"/>
+                <TableColumn text="Date Début" fx:id="colDateDebut"/>
+                <TableColumn text="Date Fin" fx:id="colDateFin"/>
+                <TableColumn text="Montant" fx:id="colMontant"/>
+                <TableColumn text="Statut" fx:id="colStatut"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+</AnchorPane>
