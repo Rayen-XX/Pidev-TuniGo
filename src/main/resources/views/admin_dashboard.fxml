@@ -17,7 +17,7 @@
                 <Label fx:id="welcomeLabel"
                        style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
                 <Label text="Admin Dashboard"
-                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22225;"/>
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
                 <Hyperlink fx:id="logoutLink" text="Déconnecter"
                            style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
             </children>
