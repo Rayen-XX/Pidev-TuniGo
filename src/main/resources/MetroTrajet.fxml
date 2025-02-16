@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="482.0" prefWidth="754.0" styleClass="forum_container" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MetroTrajet">
+   <children>
+      <VBox layoutX="30.0" layoutY="74.0" prefHeight="318.0" prefWidth="215.0" spacing="25.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="74.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gare de Depart" wrappingWidth="214.6950569152832" />
+            <TextField fx:id="tfGdepart" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gare d'arrivée" wrappingWidth="192.38306999206543" />
+            <TextField fx:id="tfGarrive" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Heure de départ " wrappingWidth="153.98307609558105" />
+            <TextField fx:id="tfHdepart" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Heure d'arrivée" wrappingWidth="154.78309440612793" />
+            <TextField fx:id="tfHarive" />
+         </children>
+      </VBox>
+      <TableView fx:id="table" layoutX="300.0" layoutY="66.0" prefHeight="308.0" prefWidth="399.0" AnchorPane.rightAnchor="54.799999999999955" AnchorPane.topAnchor="66.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Text fill="#cc1212" layoutX="284.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trajet Metro" textAlignment="CENTER" wrappingWidth="185.98305702209473">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <ButtonBar layoutX="349.0" layoutY="417.0" prefHeight="40.0" prefWidth="363.0">
+        <buttons>
+          <Button fx:id="btnAjouter" mnemonicParsing="false" onAction="#ajouterTrajetmetro" text="Ajouter" />
+            <Button fx:id="btnModifier" layoutX="221.0" layoutY="15.0" mnemonicParsing="false" onAction="#modifierTrajetmetro" text="Modifier" />
+            <Button fx:id="btnSupprimer" layoutX="136.0" layoutY="15.0" mnemonicParsing="false" onAction="#supprimerTrajetmetro" prefHeight="30.0" prefWidth="90.0" text="Supprimer" />
+            <Button fx:id="btnAnnuler" layoutX="50.0" layoutY="15.0" mnemonicParsing="false" onAction="#annulerTrajetmetro" text="Annuler" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
