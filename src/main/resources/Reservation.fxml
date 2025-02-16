@@ -2,55 +2,66 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/javafx/8"
-            xmlns="http://javafx.com/javafx/8"
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.ReservationController">
 
-    <VBox spacing="10" padding="20">
-        <Label text="Gestion des Réservations" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <!-- MenuBar en haut -->
+    <top>
+        <MenuBar>
+            <Menu text="Opérations">
+                <MenuItem text="Ajouter Réservation" onAction="#showAddSection" />
+                <MenuItem text="Afficher, Modifier et Supprimer" onAction="#showListSection" />
+            </Menu>
+        </MenuBar>
+    </top>
 
-        <GridPane hgap="10" vgap="10">
-            <Label text="ID Utilisateur:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="tfIdUser" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <!-- Section principale -->
+    <center>
+        <StackPane fx:id="mainContainer">
+            <!-- Section Ajout -->
+            <VBox fx:id="addSection" spacing="10" alignment="CENTER" visible="true">
+                <Label text="Ajouter une Réservation" style="-fx-font-size: 18px;" />
+                <GridPane hgap="10" vgap="10">
+                    <Label text="ID User:" />
+                    <TextField fx:id="idUserField" promptText="Entrez ID utilisateur" />
+                    <Label text="ID Trajet:" GridPane.rowIndex="1" />
+                    <TextField fx:id="idTrajetField" GridPane.rowIndex="1" promptText="Entrez ID trajet" />
+                    <Label text="Date Début:" GridPane.rowIndex="2" />
+                    <TextField fx:id="dateDebutField" GridPane.rowIndex="2" promptText="YYYY-MM-DD" />
+                    <Label text="Date Fin:" GridPane.rowIndex="3" />
+                    <TextField fx:id="dateFinField" GridPane.rowIndex="3" promptText="YYYY-MM-DD" />
+                    <Label text="Montant:" GridPane.rowIndex="4" />
+                    <TextField fx:id="montantField" GridPane.rowIndex="4" promptText="Entrez le montant" />
+                    <Label text="Statut:" GridPane.rowIndex="5" />
+                    <TextField fx:id="statutField" GridPane.rowIndex="5" promptText="Entrez le statut" />
+                </GridPane>
+                <Button text="Ajouter Réservation" onAction="#ajouterReservation" />
+            </VBox>
 
-            <Label text="ID Trajet:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="tfIdTrajet" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <!-- Section Affichage, Modification, Suppression -->
+            <VBox fx:id="listSection" spacing="10" alignment="CENTER" visible="false">
+                <Label text="Liste des Réservations" style="-fx-font-size: 18px;" />
+                <ListView fx:id="reservationListView" prefHeight="200" onMouseClicked="#handleReservationSelection" />
+                <Button text="Supprimer Sélection" onAction="#supprimerReservation" />
 
-            <Label text="Date Début:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="tfDateDebut" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Modification : Sélectionnez une réservation" style="-fx-font-size: 14px;" />
+                    <Label text="ID:" />
+                    <TextField fx:id="editIdField" editable="false" promptText="ID sélectionné" />
+                    <Label text="Date Début:" GridPane.rowIndex="1" />
+                    <TextField fx:id="editDateDebutField" GridPane.rowIndex="1" promptText="YYYY-MM-DD" />
+                    <Label text="Date Fin:" GridPane.rowIndex="2" />
+                    <TextField fx:id="editDateFinField" GridPane.rowIndex="2" promptText="YYYY-MM-DD" />
+                    <Label text="Montant:" GridPane.rowIndex="3" />
+                    <TextField fx:id="editMontantField" GridPane.rowIndex="3" promptText="Montant" />
+                    <Label text="Statut:" GridPane.rowIndex="4" />
+                    <TextField fx:id="editStatutField" GridPane.rowIndex="4" promptText="Statut" />
+                </GridPane>
+                <Button text="Modifier Réservation" onAction="#modifierReservation" />
+            </VBox>
+        </StackPane>
+    </center>
 
-            <Label text="Date Fin:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="tfDateFin" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-
-            <Label text="Montant:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="tfMontant" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-
-            <Label text="Statut:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <TextField fx:id="tfStatut" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-        </GridPane>
-
-        <HBox spacing="10">
-            <Button text="Ajouter" onAction="#ajouterReservation"/>
-            <Button text="Modifier" onAction="#modifierReservation"/>
-            <Button text="Supprimer" onAction="#supprimerReservation"/>
-            <Button text="Actualiser" onAction="#chargerReservations"/>
-        </HBox>
-
-        <TableView fx:id="tableReservations">
-
-            <columns>
-                <TableColumn text="ID" fx:id="colId"/>
-                <TableColumn text="ID Utilisateur" fx:id="colIdUser"/>
-                <TableColumn text="ID Trajet" fx:id="colIdTrajet"/>
-                <TableColumn text="Date Début" fx:id="colDateDebut"/>
-                <TableColumn text="Date Fin" fx:id="colDateFin"/>
-                <TableColumn text="Montant" fx:id="colMontant"/>
-                <TableColumn text="Statut" fx:id="colStatut"/>
-            </columns>
-        </TableView>
-    </VBox>
-
-</AnchorPane>
+</BorderPane>
