@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.collections.FXCollections?>
+
+<?import java.lang.String?>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.gu.controller.UpdateUserController"
+            minWidth="800" minHeight="600">
+    <children>
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label text="Update User" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                <TextField fx:id="nomField" promptText="Nom" maxWidth="300"/>
+                <TextField fx:id="prenomField" promptText="Prenom" maxWidth="300"/>
+                <TextField fx:id="emailField" promptText="Email" maxWidth="300"/>
+                <PasswordField fx:id="motdepasseField" promptText="Password" maxWidth="300"/>
+                <TextField fx:id="telephoneField" promptText="Phone Number" maxWidth="300"/>
+                <ComboBox fx:id="roleComboBox" prefWidth="300">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="utilisateur"/>
+                            <String fx:value="admin"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <Button text="Update" onAction="#handleUpdate"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
