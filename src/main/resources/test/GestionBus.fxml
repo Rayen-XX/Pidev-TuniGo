@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GestionBus">
+
+    <children>
+        <fx:include source="SideBar.fxml" />
+        <!-- Titre -->
+        <Text layoutX="179.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Bus">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Text>
+
+        <!-- Champs de saisie pour les informations du bus -->
+        <TextField fx:id="numeroBusField" layoutX="190.0" layoutY="169.0" prefHeight="40.0" prefWidth="522.0" promptText="Numéro Bus" />
+
+        <!-- Bouton d'ajout -->
+        <Button fx:id="ajouterButton" layoutX="749.0" layoutY="170.0" mnemonicParsing="false" onAction="#ajouterBus" prefHeight="33.0" prefWidth="186.0" text="Ajouter  Bus">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+
+        <!-- Séparation -->
+        <Line endX="581.3999633789062" layoutX="334.0" layoutY="248.0" startX="-122.80000305175781" />
+
+        <!-- TableView affichant la liste des bus -->
+        <TableView fx:id="tableBus" layoutX="190.0" layoutY="273.0" prefHeight="258.0" prefWidth="746.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="109" text="ID" />
+                <TableColumn fx:id="numeroBusColumn" prefWidth="257" text="Numéro Bus" />
+                <TableColumn fx:id="actionColumn" prefWidth="100" text="Action" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+
+        <!-- Labels pour les champs -->
+        <Label layoutX="190.0" layoutY="142.0" text="Numéro Bus">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+
+    </children>
+</AnchorPane>

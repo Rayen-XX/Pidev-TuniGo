@@ -1,23 +1,39 @@
 package entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reclamation {
     private int idReclamation;
+    private String nom_utilisateur;
+    private String prenom_utilisateur;
     private String typeReclamation;
     private String descriptionReclamation;
     private String statutReclamation;
     private Date dateReclamation;
     private Utilisateur utilisateur;
 
+
     public Reclamation() {}
 
-    public Reclamation(int idReclamation,String type, String description, String statut, Date date, Utilisateur utilisateur) {
+    public Reclamation(int idReclamation,String nom_utilisateur,String prenom_utilisateur,String type, String description, String statut, Date date) {
         this.idReclamation = idReclamation;
+        this.nom_utilisateur = nom_utilisateur;
+        this.prenom_utilisateur = prenom_utilisateur;
         this.typeReclamation = type;
         this.descriptionReclamation = description;
         this.statutReclamation = statut;
         this.dateReclamation = date;
+    }
+
+    public Reclamation(int idReclamation, String nom_utilisateur, String prenom_utilisateur, String typeReclamation, String descriptionReclamation, String statutReclamation, Date dateReclamation, Utilisateur utilisateur) {
+        this.idReclamation = idReclamation;
+        this.nom_utilisateur = nom_utilisateur;
+        this.prenom_utilisateur = prenom_utilisateur;
+        this.typeReclamation = typeReclamation;
+        this.descriptionReclamation = descriptionReclamation;
+        this.statutReclamation = statutReclamation;
+        this.dateReclamation = dateReclamation;
         this.utilisateur = utilisateur;
     }
 
@@ -27,6 +43,22 @@ public class Reclamation {
 
     public void setIdReclamation(int idReclamation) {
         this.idReclamation = idReclamation;
+    }
+
+    public String getNom_utilisateur() {
+        return nom_utilisateur;
+    }
+
+    public void setNom_utilisateur(String nom_utilisateur) {
+        this.nom_utilisateur = nom_utilisateur;
+    }
+
+    public String getPrenom_utilisateur( ) {
+        return prenom_utilisateur;
+    }
+
+    public void setPrenom_utilisateur(String prenom_utilisateur) {
+        this.prenom_utilisateur = prenom_utilisateur;
     }
 
     public String getTypeReclamation() {

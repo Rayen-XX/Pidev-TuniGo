@@ -11,27 +11,27 @@ public class DataSource {
     private Connection cnx;
     private static DataSource instance;
 
-    private String url = "jdbc:mysql://localhost:3306/tunigo_copy";
-    private String user = "root";
-    private String password = "";
+    private final String url = "jdbc:mysql://localhost:3306/tunigo_copy";
+    private final String user = "root";
+    private final String password = "";
 
-    private DataSource(){
+    private DataSource() {
         try {
             cnx = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to DB !");
+            System.out.println("Connexion à la base de données réussie !");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("Erreur de connexion à la base de données : " + ex.getMessage());
         }
     }
 
-    public static DataSource getInstance(){
-        if(instance == null){
+    public static synchronized DataSource getInstance() {
+        if (instance == null) {
             instance = new DataSource();
         }
         return instance;
     }
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         return this.cnx;
     }
 }
