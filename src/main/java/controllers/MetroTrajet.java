@@ -96,38 +96,13 @@ public class MetroTrajet implements ObservableArray<MetroTrajet> {
         // Création d'une instance du service
         ServiceMetro serviceMetro = new ServiceMetro();
         // Ajout du trajet dans la base de données
-        serviceMetro.ajouter(trajet);
+        serviceMetro.ajouter((entities.MetroTrajet) trajet);
         // Récupération de la liste complète des trajets et conversion en ObservableList
         ObservableList<MetroTrajet> list = FXCollections.observableArrayList(serviceMetro.getAll());
         return list;
     }
 
-    /*public ObservableArray<MetroTrajet> getMetroTrajet() {
-        MetroTrajet metrotrajet = new MetroTrajet(tfGdepart.getText().tfGarrive.getText());
-        ServiceMetro serviceMetro = new ServiceMetro();
-            serviceMetro.ajouter(metrotrajet);*/
 
-
-
-        /*ObservableList<Object> MetroTrajet = FXCollections.observableArrayList();
-        String query = "select * from trajet_metro ";
-        connection = JdbcConnection.getCon();
-        try {
-            statment = connection.prepareStatement(query);
-            resultSet = statment.executeQuery();
-            while (resultSet.next()) {
-                MetroTrajet metroTrajet = new MetroTrajet();
-                statment.setGareDepart(resultSet.getString());
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-        return null;
-    }*/
 
 
     @FXML
