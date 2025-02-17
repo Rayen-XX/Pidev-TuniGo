@@ -11,25 +11,25 @@
               AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label text="Register" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                <Label text="S'inscrire" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
                 <TextField fx:id="nomField" promptText="Nom" maxWidth="300"
                            style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="nomErrorLabel" text="Name is required" textFill="red" visible="false"/>
-                <TextField fx:id="prenomField" promptText="Prenom" maxWidth="300"
+                <Label fx:id="nomErrorLabel" text="Le nom est obligatoire" textFill="red" visible="false"/>
+                <TextField fx:id="prenomField" promptText="Prénom" maxWidth="300"
                            style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="prenomErrorLabel" text="Prenom is required" textFill="red" visible="false"/>
-                <TextField fx:id="emailField" promptText="Email" maxWidth="300"
+                <Label fx:id="prenomErrorLabel" text="Le prénom est obligatoire" textFill="red" visible="false"/>
+                <TextField fx:id="emailField" promptText="E-mail" maxWidth="300"
                            style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="emailErrorLabel" text="Invalid email address" textFill="red" visible="false"/>
-                <PasswordField fx:id="motdepasseField" promptText="Password" maxWidth="300"
+                <Label fx:id="emailErrorLabel" text="Adresse e-mail invalide" textFill="red" visible="false"/>
+                <PasswordField fx:id="motdepasseField" promptText="Mot de passe" maxWidth="300"
                                style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="motdepasseErrorLabel" text="Password must be at least 6 characters" textFill="red" visible="false"/>
-                <TextField fx:id="telephoneField" promptText="Phone Number" maxWidth="300"
+                <Label fx:id="motdepasseErrorLabel" text="Le mot de passe doit contenir au moins 6 caractères" textFill="red" visible="false"/>
+                <TextField fx:id="telephoneField" promptText="Numéro de télephone" maxWidth="300"
                            style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="telephoneErrorLabel" text="Invalid phone number" textFill="red" visible="false"/>
-                <Button text="Register" onAction="#handleRegister"
+                <Label fx:id="telephoneErrorLabel" text="Numéro de téléphone invalide" textFill="red" visible="false"/>
+                <Button text="se connecter" onAction="#handleRegister"
                         style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
-                <Hyperlink text="Already have an account? Login" onAction="#goToLogin"
+                <Hyperlink text="Vous avez déjà un compte ? Connectez-vous" onAction="#goToLogin"
                            style="-fx-text-fill: #B22222; -fx-font-size: 14px;"/>
             </children>
         </VBox>

@@ -54,10 +54,10 @@ public class RegisterController {
 
         Utilisateur newUtilisateur = new Utilisateur(nom, prenom, email, motdepasse, telephone, "utilisateur");
         if (utilisateurService.register(newUtilisateur)) {
-            showAlert(Alert.AlertType.INFORMATION, "Registration Successful", "User " + email + " registered successfully!");
+            showAlert(Alert.AlertType.INFORMATION, "Inscription réussie", "L'utilisateur " + email + " a été inscrit avec succès !");
             goToLogin();
         } else {
-            showAlert(Alert.AlertType.ERROR, "Registration Failed", "Email already exists or registration failed.");
+            showAlert(Alert.AlertType.ERROR, "Échec de l'inscription", "L'e-mail existe déjà ou l'inscription a échoué.");
         }
     }
 
@@ -72,7 +72,7 @@ public class RegisterController {
 
         // Validate Nom
         if (nom == null || nom.isEmpty()) {
-            nomErrorLabel.setText("Name is required.");
+            nomErrorLabel.setText("Le nom est obligatoire");
             nomErrorLabel.setVisible(true);
             valid = false;
         } else {
@@ -81,7 +81,7 @@ public class RegisterController {
 
         // Validate Prenom
         if (prenom == null || prenom.isEmpty()) {
-            prenomErrorLabel.setText("Prenom is required.");
+            prenomErrorLabel.setText("Le prénom est obligatoire");
             prenomErrorLabel.setVisible(true);
             valid = false;
         } else {
@@ -90,7 +90,7 @@ public class RegisterController {
 
         // Validate Email
         if (email == null || email.isEmpty() || !isValidEmail(email)) {
-            emailErrorLabel.setText("Please enter a valid email.");
+            emailErrorLabel.setText("Veuillez entrer une adresse e-mail valide");
             emailErrorLabel.setVisible(true);
             valid = false;
         } else {
@@ -99,7 +99,7 @@ public class RegisterController {
 
         // Validate Password (at least 6 characters)
         if (password == null || password.isEmpty() || password.length() < 6) {
-            motdepasseErrorLabel.setText("Password must be at least 6 characters.");
+            motdepasseErrorLabel.setText("Le mot de passe doit contenir au moins 6 caractères");
             motdepasseErrorLabel.setVisible(true);
             valid = false;
         } else {
@@ -108,7 +108,7 @@ public class RegisterController {
 
         // Validate Telephone (digits only; adjust regex as needed)
         if (telephone == null || telephone.isEmpty() || !isValidPhone(telephone)) {
-            telephoneErrorLabel.setText("Please enter a valid phone number.");
+            telephoneErrorLabel.setText("Veuillez entrer un numéro de téléphone valide");
             telephoneErrorLabel.setVisible(true);
             valid = false;
         } else {

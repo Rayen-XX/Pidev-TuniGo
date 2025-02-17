@@ -2,6 +2,8 @@ package com.esprit.gu.repository;
 
 import com.esprit.gu.entity.Utilisateur;
 import com.esprit.gu.util.DBUtil;
+import com.esprit.gu.util.DBUtil;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +15,7 @@ import java.util.List;
 
 public class UtilisateurRepository {
 
-    // Method to insert a new user (registration)
+    //registration houni
     public boolean registerUtilisateur(Utilisateur utilisateur) {
         String sql = "INSERT INTO utilisateur (nomUtilisateur, prenomUtilisateur, emailUtilisateur, motDePasseUtilisateur, numeroTelephoneUtilisateur, roleUtilisateur) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -40,7 +42,7 @@ public class UtilisateurRepository {
         }
     }
 
-    // Method to retrieve a user by email (for login)
+   // login bel email
     public Utilisateur getUtilisateurByEmail(String email) {
         String sql = "SELECT * FROM utilisateur WHERE emailUtilisateur = ?";
         try (Connection conn = DBUtil.getConnection();
@@ -63,12 +65,14 @@ public class UtilisateurRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            // For any errors from DBUtil.getConnection()
+            
             e.printStackTrace();
         }
-        return null; // If no user is found or an error occurs, return null.
+        return null; 
     }
 
+
+    // nekhou users lkol
     public List<Utilisateur> getAllUsers() {
         List<Utilisateur> users = new ArrayList<>();
         String sql = "SELECT * FROM utilisateur";
@@ -96,9 +100,7 @@ public class UtilisateurRepository {
         return users;
     }
 
-    // (Optional) You can add more CRUD methods here, like updateUtilisateur or deleteUtilisateur,
-    // which the admin dashboard might use.
-    // Update an existing user by ID
+    // modifier user
     public boolean updateUtilisateur(Utilisateur utilisateur) {
         String sql = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, emailUtilisateur = ?, motDePasseUtilisateur = ?, numeroTelephoneUtilisateur = ?, roleUtilisateur = ? WHERE idUtilisateur = ?";
 
@@ -114,7 +116,7 @@ public class UtilisateurRepository {
             stmt.setInt(7, utilisateur.getIdUtilisateur());
 
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; // Returns true if at least one row was updated.
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,7 +126,7 @@ public class UtilisateurRepository {
         }
     }
 
-    // Delete a user by ID
+    //supprimer user
     public boolean deleteUtilisateur(int idUtilisateur) {
         String sql = "DELETE FROM utilisateur WHERE idUtilisateur = ?";
 
@@ -134,7 +136,7 @@ public class UtilisateurRepository {
             stmt.setInt(1, idUtilisateur);
 
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; // Returns true if a row was deleted.
+            return rowsAffected > 0; 
 
         } catch (SQLException e) {
             e.printStackTrace();

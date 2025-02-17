@@ -7,12 +7,10 @@ public class Utilisateur {
     private String emailUtilisateur;
     private String motDePasseUtilisateur;
     private String numeroTelephoneUtilisateur;
-    private String roleUtilisateur; // Could be "admin" or "utilisateur"
+    private String roleUtilisateur;
 
-    // Constructors
     public Utilisateur(String nom, String prenom, String email, String motdepasse, String telephone) { }
 
-    // Constructor without id (for registration where id is auto-generated)
     public Utilisateur(String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur,
                        String motDePasseUtilisateur, String numeroTelephoneUtilisateur,
                        String roleUtilisateur) {
@@ -24,7 +22,7 @@ public class Utilisateur {
         this.roleUtilisateur = roleUtilisateur;
     }
 
-    // Full constructor (useful when retrieving data from DB)
+
     public Utilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur,
                        String motDePasseUtilisateur, String numeroTelephoneUtilisateur, String roleUtilisateur) {
         this.idUtilisateur = idUtilisateur;
@@ -36,7 +34,6 @@ public class Utilisateur {
         this.roleUtilisateur = roleUtilisateur;
     }
 
-    // Getters and Setters
 
     public int getIdUtilisateur() {
         return idUtilisateur;
