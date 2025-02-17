@@ -11,16 +11,16 @@
               AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label text="Login" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                <Label text="Se connecter" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
                 <TextField fx:id="emailField" promptText="Email" maxWidth="300"
                            style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
                 <Label fx:id="emailErrorLabel" text="Invalid email address" textFill="red" visible="false"/>
-                <PasswordField fx:id="passwordField" promptText="Password" maxWidth="300"
+                <PasswordField fx:id="passwordField" promptText="mot de passe" maxWidth="300"
                                style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
                 <Label fx:id="passwordErrorLabel" text="Password is required" textFill="red" visible="false"/>
-                <Button text="Login" onAction="#handleLogin"
+                <Button text="se connecter" onAction="#handleLogin"
                         style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
-                <Hyperlink text="Don't have an account? Register" onAction="#goToRegister"
+                <Hyperlink text="Vous n'avez pas de compte ? Inscrivez-vous" onAction="#goToRegister"
                            style="-fx-text-fill: #B22222; -fx-font-size: 14px;"/>
             </children>
         </VBox>

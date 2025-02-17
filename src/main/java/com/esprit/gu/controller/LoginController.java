@@ -31,7 +31,7 @@ public class LoginController {
 
     @FXML
     private void handleLogin() {
-        // Validate inputs before attempting login
+        
         if (!validateLoginInputs()) {
             return;
         }
@@ -51,7 +51,7 @@ public class LoginController {
                 showAlert(Alert.AlertType.ERROR, "Login Failed", "Unknown user role.");
             }
         } else {
-            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid email or password.");
+            showAlert(Alert.AlertType.ERROR, "Échec de la connexion", "E-mail ou mot de passe invalide.");
         }
     }
 
@@ -66,18 +66,18 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        // Validate Email
+        // validation mtaa email
         if (email == null || email.isEmpty() || !isValidEmail(email)) {
-            emailErrorLabel.setText("Please enter a valid email.");
+            emailErrorLabel.setText("Veuillez entrer une adresse e-mail valide");
             emailErrorLabel.setVisible(true);
             valid = false;
         } else {
             emailErrorLabel.setVisible(false);
         }
 
-        // Validate Password
+        // validation mtaa mot de passe
         if (password == null || password.isEmpty()) {
-            passwordErrorLabel.setText("Password is required.");
+            passwordErrorLabel.setText("Le mot de passe est obligatoire");
             passwordErrorLabel.setVisible(true);
             valid = false;
         } else {
