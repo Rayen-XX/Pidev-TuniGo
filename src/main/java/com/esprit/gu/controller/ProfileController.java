@@ -47,4 +47,25 @@ public class ProfileController implements Initializable {
             }
         });
     }
+
+    @FXML
+    private void handleUpdateProfile() {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/views/updateProfile.fxml"));
+            stage.setScene(new Scene(root));
+            stage.setTitle("Update Profile");
+            stage.showAndWait();
+
+            // Optionally, refresh the welcome label with updated info:
+            Utilisateur currentUser = Session.getCurrentUser();
+            if (currentUser != null) {
+                welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur() + " "
+                        + currentUser.getPrenomUtilisateur());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

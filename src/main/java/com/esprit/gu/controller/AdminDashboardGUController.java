@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminDashboardController implements Initializable {
+public class AdminDashboardGUController implements Initializable {
 
     @FXML
     private ListView<Utilisateur> usersList;

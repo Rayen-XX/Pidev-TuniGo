@@ -13,7 +13,7 @@
               AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label text="Update User" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                <Label text="Modifier Utilisateur" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
                 <TextField fx:id="nomField" promptText="Nom" maxWidth="300"/>
                 <TextField fx:id="prenomField" promptText="Prenom" maxWidth="300"/>
                 <TextField fx:id="emailField" promptText="Email" maxWidth="300"/>
@@ -27,7 +27,7 @@
                         </FXCollections>
                     </items>
                 </ComboBox>
-                <Button text="Update" onAction="#handleUpdate"/>
+                <Button text="Modifier" onAction="#handleUpdate"/>
             </children>
         </VBox>
     </children>
