@@ -1,4 +1,4 @@
-package Controllers;
+/*package Controllers;
 
 import entities.Reclamation;
 import Services.ServiceReclamation;
@@ -220,6 +220,7 @@ public class GestionReclamation {
             showAlert(AlertType.ERROR, "Erreur", "Veuillez sélectionner une réclamation à modifier !");
         }
     }*/
+/*
 private void modifierReclamation(Reclamation rec) {
     if (rec != null) {
         Dialog<Reclamation> dialog = new Dialog<>();
@@ -338,6 +339,262 @@ private void modifierReclamation(Reclamation rec) {
     private void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
+*/
+
+package Controllers;
+
+import entities.Reclamation;
+import Services.ServiceReclamation;
+import entities.Taxi;
+import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
+
+import java.sql.Date;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.List;
+
+public class GestionReclamation {
+
+    @FXML
+    private ListView<Reclamation> listViewReclamation;
+
+    private ServiceReclamation serviceReclamation;
+    private ObservableList<Reclamation> reclamationList;
+
+    public GestionReclamation() {
+        serviceReclamation = new ServiceReclamation();
+        reclamationList = FXCollections.observableArrayList();
+    }
+
+    @FXML
+    public void initialize() {
+        loadData();
+
+        // Bind the ListView to the list of reclamations
+        listViewReclamation.setItems(reclamationList);
+
+        // Set the ListView cell factory for custom view and action buttons
+        listViewReclamation.setCellFactory(new Callback<ListView<Reclamation>, ListCell<Reclamation>>() {
+            @Override
+            public ListCell<Reclamation> call(ListView<Reclamation> param) {
+                return new ListCell<Reclamation>() {
+                    private final Button editButton = new Button("Modifier");
+                    private final Button deleteButton = new Button("Supprimer");
+                    private final Button viewButton = new Button("Voir Détails");
+                    private final Text ReclamationInfo = new Text();
+                    private final Region spacer = new Region();
+
+                    private final Text typeText = new Text();
+                    private final Text descriptionText = new Text();
+                    private final Text statutText = new Text();
+                    private final Text dateText = new Text();
+                    private final HBox hbox = new HBox(ReclamationInfo, spacer, editButton, deleteButton, viewButton);
+
+/*
+
+                    @Override
+                    protected void updateItem(Reclamation rec, boolean empty) {
+                        super.updateItem(rec, empty);
+
+                        if (empty || rec == null) {
+                            setGraphic(null);
+                        } else {
+                            // Set information text
+                            typeText.setText("Type: " + rec.getTypeReclamation());
+                            descriptionText.setText("Description: " + rec.getDescriptionReclamation());
+                            statutText.setText("Statut: " + rec.getStatutReclamation());
+                            dateText.setText("Date: " + rec.getDateReclamation().toString());
+
+                            // Create HBox to display information horizontally on the left
+                            HBox infoHBox = new HBox(10, typeText, descriptionText, statutText, dateText);
+                            infoHBox.setSpacing(10); // Set spacing between elements horizontally
+
+                            // Create a VBox to vertically align the buttons (edit, delete, view details)
+                            VBox buttonVBox = new VBox(10, editButton, deleteButton, viewButton);
+                            buttonVBox.setSpacing(10); // Set spacing between the buttons vertically
+                            buttonVBox.setAlignment(Pos.CENTER_RIGHT); // Align buttons to the right
+
+                            // Create a parent HBox to contain the information on the left and the buttons on the right
+                            HBox rechbox = new HBox(20, infoHBox, buttonVBox);
+                            HBox.setHgrow(infoHBox, Priority.ALWAYS); // Ensure infoHBox takes available space
+
+                            // Set the HBox as the graphic
+                            setGraphic(rechbox);
+
+                            // Set actions for the buttons
+                            editButton.setOnAction(event -> modifierReclamation(rec));
+                            deleteButton.setOnAction(event -> supprimerReclamation(rec));
+                            viewButton.setOnAction(event -> voirDetailsReclamation(rec));
+                        }
+                    }
+
+*/
+@Override
+protected void updateItem(Reclamation rec, boolean empty) {
+    super.updateItem(rec, empty);
+
+    if (empty || rec == null) {
+        setGraphic(null);
+    } else {
+        // Set information text
+        typeText.setText("Type: " + rec.getTypeReclamation());
+        descriptionText.setText("Description: " + rec.getDescriptionReclamation());
+        statutText.setText("Statut: " + rec.getStatutReclamation());
+        dateText.setText("Date: " + rec.getDateReclamation().toString());
+
+        // Create HBox to display information horizontally on the left
+        HBox infoHBox = new HBox(10, typeText, descriptionText, statutText, dateText);
+        infoHBox.setSpacing(10); // Set spacing between elements horizontally
+
+        // Create ImageView for each icon (edit, delete, view)
+        ImageView editIcon = new ImageView(new Image("/Images/update_icon.png"));
+        ImageView deleteIcon = new ImageView(new Image("/Images/delete_icon.png"));
+        ImageView viewIcon = new ImageView(new Image("/Images/detail_icon.png"));
+
+        // Resize the icons if necessary
+        editIcon.setFitWidth(24);
+        editIcon.setFitHeight(24);
+        deleteIcon.setFitWidth(24);
+        deleteIcon.setFitHeight(24);
+        viewIcon.setFitWidth(24);
+        viewIcon.setFitHeight(24);
+
+        HBox iconHBox = new HBox(10, editIcon, deleteIcon, viewIcon);
+        iconHBox.setSpacing(20);
+        iconHBox.setAlignment(Pos.CENTER_RIGHT);
+
+        // Create a parent HBox to contain the information on the left and the icons on the right
+        HBox rechbox = new HBox(20, infoHBox, iconHBox);
+        HBox.setHgrow(infoHBox, Priority.ALWAYS); // Ensure infoHBox takes available space
+
+        // Set the HBox as the graphic
+        setGraphic(rechbox);
+
+        // Set actions for the icons
+        editIcon.setOnMouseClicked(event -> modifierReclamation(rec));
+        deleteIcon.setOnMouseClicked(event -> supprimerReclamation(rec));
+        viewIcon.setOnMouseClicked(event -> voirDetailsReclamation(rec));
+    }
+}
+
+
+                };
+            }
+        });
+    }
+
+
+    // Load data into the ListView
+    private void loadData() {
+        List<Reclamation> list = serviceReclamation.getAll();
+        reclamationList.clear();
+        reclamationList.addAll(list);
+    }
+
+    // Method to delete a reclamation
+    private void supprimerReclamation(Reclamation rec) {
+        if (rec != null) {
+            serviceReclamation.supprimer(rec.getIdReclamation());
+            loadData();
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Réclamation supprimée avec succès !");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner une réclamation à supprimer !");
+        }
+    }
+
+    // Method to modify a reclamation (dialog)
+    private void modifierReclamation(Reclamation rec) {
+        Date sqlDate = new Date(System.currentTimeMillis());
+
+        // Convertir java.sql.Date en Instant
+        Instant instant = sqlDate.toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant();
+
+        if (rec != null) {
+            Dialog<Reclamation> dialog = new Dialog<>();
+            dialog.setTitle("Modifier la Réclamation");
+            dialog.setHeaderText("Modifiez les informations de la réclamation");
+
+            // Buttons for dialog actions
+            ButtonType saveButtonType = new ButtonType("Enregistrer", ButtonType.OK.getButtonData());
+            dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
+
+            // Form to modify the reclamation
+            TextField typeField = new TextField();
+            typeField.setText(rec.getTypeReclamation());
+            TextField descriptionField = new TextField();
+            descriptionField.setText(rec.getDescriptionReclamation());
+            TextField statutField = new TextField();
+            statutField.setText(rec.getStatutReclamation());
+            TextField nomField = new TextField();
+            nomField.setText(rec.getNom_utilisateur());
+            TextField prenomField = new TextField();
+            prenomField.setText(rec.getPrenom_utilisateur());
+            DatePicker datePicker = new DatePicker();
+
+            // Set form elements in dialog
+            dialog.getDialogPane().setContent(new VBox(10, typeField, descriptionField, statutField, nomField, prenomField, datePicker));
+
+            // Process the result when "Save" is clicked
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == saveButtonType) {
+                    rec.setTypeReclamation(typeField.getText());
+                    rec.setDescriptionReclamation(descriptionField.getText());
+                    rec.setStatutReclamation(statutField.getText());
+                    rec.setNom_utilisateur(nomField.getText());
+                    rec.setPrenom_utilisateur(prenomField.getText());
+                    if (datePicker.getValue() != null) {
+                        rec.setDateReclamation(Date.valueOf(datePicker.getValue()));
+                    }
+                    return rec;
+                }
+                return null;
+            });
+
+            dialog.showAndWait().ifPresent(updatedRec -> {
+                serviceReclamation.modifier(updatedRec);
+                loadData();
+                showAlert(Alert.AlertType.INFORMATION, "Succès", "Réclamation modifiée avec succès !");
+            });
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner une réclamation à modifier !");
+        }
+    }
+
+    // Method to view details of a reclamation
+    private void voirDetailsReclamation(Reclamation rec) {
+        if (rec != null) {
+            String details = "ID: " + rec.getIdReclamation() + "\n"
+                    + "Type: " + rec.getTypeReclamation() + "\n"
+                    + "Description: " + rec.getDescriptionReclamation() + "\n"
+                    + "Statut: " + rec.getStatutReclamation() + "\n"
+                    + "Date: " + rec.getDateReclamation();
+            showAlert(Alert.AlertType.INFORMATION, "Détails de la Réclamation", details);
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner une réclamation à afficher !");
+        }
+    }
+
+    // Helper to show alerts
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }

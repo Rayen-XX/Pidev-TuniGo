@@ -1,4 +1,4 @@
-package Controllers;
+/*package Controllers;
 
 import Services.ServiceMetro;
 import entities.Metro;
@@ -148,6 +148,150 @@ public class GestionMetro {
 
     // Afficher une alerte
     private void showAlert(AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
+*/
+
+package Controllers;
+
+import Services.ServiceMetro;
+import entities.Metro;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.util.Callback;
+
+import java.util.List;
+
+public class GestionMetro {
+
+    @FXML
+    private TextField numeroMetroField;
+
+    @FXML
+    private Button ajouterButton;
+
+    @FXML
+    private ListView<Metro> listViewMetro;
+
+    private ServiceMetro serviceMetro;
+
+    public GestionMetro() {
+        serviceMetro = new ServiceMetro();
+    }
+
+    @FXML
+    public void initialize() {
+        // Charger les données dans la liste
+        loadData();
+
+        // Définir le rendu des éléments dans la ListView
+        listViewMetro.setCellFactory(param -> new ListCell<Metro>() {
+            private final Label numeroLabel = new Label();
+            //private final Button modifierButton = new Button("Modifier");
+            private final Button supprimerButton = new Button("Supprimer");
+            private final Region spacer = new Region();
+            private final HBox hbox = new HBox(numeroLabel, spacer,/* modifierButton, */supprimerButton);
+
+            {
+                HBox.setHgrow(spacer, Priority.ALWAYS); // Espacement dynamique
+/*
+                modifierButton.setOnAction(event -> {
+                    Metro metro = getItem();
+                    if (metro != null) {
+                        modifierMetro(metro);
+                    }
+                });
+*/
+                supprimerButton.setOnAction(event -> {
+                    Metro metro = getItem();
+                    if (metro != null) {
+                        supprimerMetro(metro);
+                    }
+                });
+
+                hbox.setSpacing(10);
+                supprimerButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
+
+            }
+
+            @Override
+            protected void updateItem(Metro metro, boolean empty) {
+                super.updateItem(metro, empty);
+                if (empty || metro == null) {
+                    setGraphic(null);
+                } else {
+                    numeroLabel.setText("Metro : " + metro.getNumeroMetro());
+                    setGraphic(hbox);
+                }
+            }
+        });
+
+        // Action pour le bouton "Ajouter"
+        ajouterButton.setOnAction(this::ajouterMetro);
+    }
+
+    // Charger les données
+    private void loadData() {
+        List<Metro> metros = serviceMetro.getAll();
+        listViewMetro.getItems().setAll(metros);
+    }
+
+    // Ajouter un métro
+    @FXML
+    private void ajouterMetro(ActionEvent event) {
+        String numeroMetro = numeroMetroField.getText();
+
+        if (numeroMetro.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Le numéro du métro ne peut pas être vide !");
+        } else {
+            Metro metro = new Metro();
+            metro.setNumeroMetro(numeroMetro);
+            serviceMetro.ajouter(metro);
+            loadData();
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Métro ajouté avec succès !");
+            numeroMetroField.clear();
+        }
+    }
+
+    // Supprimer un métro
+    private void supprimerMetro(Metro metro) {
+        if (metro != null) {
+            serviceMetro.supprimer(metro.getIdMetro());
+            loadData();
+            showAlert(Alert.AlertType.INFORMATION, "Succès", "Métro supprimé avec succès !");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner un métro à supprimer !");
+        }
+    }
+
+    // Modifier un métro
+    private void modifierMetro(Metro metro) {
+        if (metro != null) {
+            String numeroMetro = numeroMetroField.getText();
+            if (numeroMetro.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Le numéro du métro ne peut pas être vide !");
+            } else {
+                metro.setNumeroMetro(numeroMetro);
+                serviceMetro.modifier(metro);
+                loadData();
+                showAlert(Alert.AlertType.INFORMATION, "Succès", "Métro modifié avec succès !");
+                numeroMetroField.clear();
+            }
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez sélectionner un métro à modifier !");
+        }
+    }
+
+    // Afficher une alerte
+    private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setContentText(message);

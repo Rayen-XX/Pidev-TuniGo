@@ -1,4 +1,4 @@
-package Controllers;
+/*package Controllers;
 
 import entities.Train;
 import Services.ServiceTrain;
@@ -124,6 +124,110 @@ public class GestionTrain {
                 serviceTrain.supprimer(selectedTrain.getIdTrain());  // Utiliser la méthode ServiceTrain pour supprimer le train
                 chargerTrains();  // Recharger la liste des trains
                 showAlert(Alert.AlertType.INFORMATION, "Succès", "Train supprimé avec succès !");
+            }
+        }
+    }
+}
+*/package Controllers;
+
+import entities.Train;
+import Services.ServiceTrain;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.HBox;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class GestionTrain {
+
+    @FXML
+    private TextField numeroTrainField;
+
+    @FXML
+    private Button ajouterButton;
+
+    @FXML
+    private ListView<Train> listViewTrain;
+
+    private ServiceTrain serviceTrain;
+    private ObservableList<Train> trainList;
+
+    public GestionTrain() {
+        serviceTrain = new ServiceTrain();
+        trainList = FXCollections.observableArrayList();
+    }
+
+    @FXML
+    public void initialize() {
+        chargerTrains();
+        listViewTrain.setCellFactory(param -> new TrainListCell());
+        ajouterButton.setOnAction(this::ajouterTrain);
+    }
+
+    private void chargerTrains() {
+        trainList.clear();
+        trainList.addAll(serviceTrain.getAll());
+        listViewTrain.setItems(trainList);
+    }
+
+    @FXML
+    private void ajouterTrain(ActionEvent event) {
+        String numeroTrain = numeroTrainField.getText();
+        if (numeroTrain.isEmpty()) {
+            showAlert(AlertType.ERROR, "Erreur", "Le numéro de train ne peut pas être vide !");
+            return;
+        }
+        Train train = new Train(0, numeroTrain);
+        serviceTrain.ajouter(train);
+        chargerTrains();
+        showAlert(AlertType.INFORMATION, "Succès", "Train ajouté avec succès !");
+    }
+
+    private void showAlert(AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Classe personnalisée pour afficher chaque élément de la ListView avec des boutons
+    private class TrainListCell extends ListCell<Train> {
+        private final HBox hbox = new HBox();
+        private final Text trainInfo = new Text();
+        private final Button deleteButton = new Button("Supprimer");
+        private final Region spacer = new Region();
+
+        public TrainListCell() {
+            deleteButton.setOnAction(event -> supprimerTrain(getItem()));
+            hbox.setSpacing(10);
+            deleteButton.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white;");
+            hbox.getChildren().addAll(trainInfo, spacer, deleteButton);
+            HBox.setHgrow(spacer, Priority.ALWAYS); // Espacement dynamique
+        }
+
+        @Override
+        protected void updateItem(Train train, boolean empty) {
+            super.updateItem(train, empty);
+            if (empty || train == null) {
+                setGraphic(null);
+            } else {
+                trainInfo.setText("Train N°: " + train.getNumeroTrain());
+                setGraphic(hbox);
+            }
+        }
+
+        private void supprimerTrain(Train train) {
+            if (train != null) {
+                serviceTrain.supprimer(train.getIdTrain());
+                chargerTrains();
+                showAlert(AlertType.INFORMATION, "Succès", "Train supprimé avec succès !");
             }
         }
     }
