@@ -44,7 +44,7 @@ public class LoginController {
             Session.setCurrentUser(user);
 
             if ("admin".equalsIgnoreCase(user.getRoleUtilisateur())) {
-                loadStage("/views/admin_dashboard.fxml");
+                loadStage("/views/admin_dashboard_all.fxml");
             } else if ("utilisateur".equalsIgnoreCase(user.getRoleUtilisateur())) {
                 loadStage("/views/profile.fxml");
             } else {

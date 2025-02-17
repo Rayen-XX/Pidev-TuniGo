@@ -29,6 +29,9 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private Hyperlink logoutLink;
 
+    @FXML
+    private Button retour;
+
     private UtilisateurService utilisateurService = new UtilisateurService();
 
     @Override
@@ -145,6 +148,19 @@ public class AdminDashboardController implements Initializable {
             showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a user to update.");
         }
     }
+
+    @FXML
+    private void handleRetour() {
+        try {
+            // Load the admin_dashboard_gu.fxml file
+            Parent root = FXMLLoader.load(getClass().getResource("/views/admin_dashboard_all.fxml"));
+            Stage stage = (Stage) retour.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

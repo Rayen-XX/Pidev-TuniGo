@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.esprit.gu.controller.AdminDashboardAllControlle"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane minHeight="600" minWidth="800" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.AdminDashboardAllController">
+    <children>
+          <HBox alignment="CENTER" prefHeight="62.0" prefWidth="800.0" spacing="50">
+              <children>
+                  <Label fx:id="welcomeLabel" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+                  <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;" text="Admin Dashboard" BorderPane.alignment="CENTER" />
+                  <Hyperlink fx:id="logoutLink" style="-fx-font-size: 13px; -fx-font-weight: bold;" text="Déconnecter" />
+              </children>
+          </HBox>
+      <VBox alignment="CENTER" layoutX="230.0" layoutY="105.0" prefHeight="434.0" prefWidth="340.0" spacing="30">
+         <children>
+             <Button fx:id="gestionUtilisateurButton" prefHeight="30.0" prefWidth="223.0"
+                     style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"
+                     text="Gestion Utilisateur"
+                     onAction="#handleGestionUtilisateurButtonClick" />
+             <Button prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Réclamation" />
+             <Button prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Moyen de transport" />
+             <Button prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Trajets" />
+             <Button prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Parking" />
+             <Button prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Réservation" />
+         </children>
+      </VBox>
+    </children>
 
 </AnchorPane>
