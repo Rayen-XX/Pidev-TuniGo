@@ -10,17 +10,24 @@ import java.io.IOException;
 
 public class Mainfx extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
+    public Mainfx() {
+        // Constructeur vide requis par JavaFX
+        System.out.println("MainFx instance created");
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Exemple.fxml")); // Nom de la premiere interface
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Parking.fxml"));
         Parent root = loader.load();
         Scene sc = new Scene(root);
         stage.setScene(sc);
-        stage.setTitle("Premiere interface");
+        stage.setTitle("TuniGo");
         stage.show();
+
+
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
