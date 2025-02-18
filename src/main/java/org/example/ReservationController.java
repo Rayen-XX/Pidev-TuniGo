@@ -11,7 +11,7 @@ import org.example.DatabaseConnection;
 import java.sql.*;
 
 public class ReservationController {
-
+    public TextField searchField;
     // Sections de l'interface
     @FXML
     private VBox addSection; // Section d'ajout
@@ -241,5 +241,20 @@ public class ReservationController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // Méthode pour filtrer les réservations
+    public void filterReservations() {
+        String searchTerm = searchField.getText().toLowerCase(); // Récupère la valeur entrée, insensible à la casse
+        ObservableList<String> filteredReservations = FXCollections.observableArrayList();
+
+        for (String reservation : reservations) {
+            if (reservation.toLowerCase().contains(searchTerm)) {
+                filteredReservations.add(reservation);
+            }
+        }
+
+        // Mettre à jour la ListView avec les résultats filtrés
+        reservationListView.setItems(filteredReservations);
     }
 }

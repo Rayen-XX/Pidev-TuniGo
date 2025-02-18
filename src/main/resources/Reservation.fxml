@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.ReservationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@form.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ReservationController">
 
     <!-- MenuBar en haut -->
     <top>
         <MenuBar>
-            <Menu text="Opérations">
-                <MenuItem text="Ajouter Réservation" onAction="#showAddSection" />
-                <MenuItem text="Afficher, Modifier et Supprimer" onAction="#showListSection" />
+            <Menu text="Menu ">
+                <MenuItem onAction="#showAddSection" text="Ajouter Réservation" />
+                <MenuItem onAction="#showListSection" text="Afficher, Modifier et Supprimer" />
             </Menu>
         </MenuBar>
     </top>
@@ -21,45 +30,67 @@
     <center>
         <StackPane fx:id="mainContainer">
             <!-- Section Ajout -->
-            <VBox fx:id="addSection" spacing="10" alignment="CENTER" visible="true">
-                <Label text="Ajouter une Réservation" style="-fx-font-size: 18px;" />
-                <GridPane hgap="10" vgap="10">
+            <VBox fx:id="addSection" alignment="CENTER" spacing="10" visible="true">
+                <Label style="-fx-font-size: 18px;" text="Ajouter une Réservation" />
+                <GridPane alignment="CENTER" hgap="10" vgap="10">
                     <Label text="ID User:" />
                     <TextField fx:id="idUserField" promptText="Entrez ID utilisateur" />
                     <Label text="ID Trajet:" GridPane.rowIndex="1" />
-                    <TextField fx:id="idTrajetField" GridPane.rowIndex="1" promptText="Entrez ID trajet" />
+                    <TextField fx:id="idTrajetField" promptText="Entrez ID trajet" GridPane.rowIndex="1" />
                     <Label text="Date Début:" GridPane.rowIndex="2" />
-                    <TextField fx:id="dateDebutField" GridPane.rowIndex="2" promptText="YYYY-MM-DD" />
+                    <TextField fx:id="dateDebutField" promptText="YYYY-MM-DD" GridPane.rowIndex="2" />
                     <Label text="Date Fin:" GridPane.rowIndex="3" />
-                    <TextField fx:id="dateFinField" GridPane.rowIndex="3" promptText="YYYY-MM-DD" />
+                    <TextField fx:id="dateFinField" promptText="YYYY-MM-DD" GridPane.rowIndex="3" />
                     <Label text="Montant:" GridPane.rowIndex="4" />
-                    <TextField fx:id="montantField" GridPane.rowIndex="4" promptText="Entrez le montant" />
+                    <TextField fx:id="montantField" promptText="Entrez le montant" GridPane.rowIndex="4" />
                     <Label text="Statut:" GridPane.rowIndex="5" />
-                    <TextField fx:id="statutField" GridPane.rowIndex="5" promptText="Entrez le statut" />
+                    <TextField fx:id="statutField" promptText="Entrez le statut" GridPane.rowIndex="5" />
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
-                <Button text="Ajouter Réservation" onAction="#ajouterReservation" />
+                <Button onAction="#ajouterReservation" text="Ajouter Réservation" />
             </VBox>
 
             <!-- Section Affichage, Modification, Suppression -->
-            <VBox fx:id="listSection" spacing="10" alignment="CENTER" visible="false">
-                <Label text="Liste des Réservations" style="-fx-font-size: 18px;" />
-                <ListView fx:id="reservationListView" prefHeight="200" onMouseClicked="#handleReservationSelection" />
-                <Button text="Supprimer Sélection" onAction="#supprimerReservation" />
+            <VBox fx:id="listSection" alignment="CENTER" spacing="10" visible="false">
+                <Label style="-fx-font-size: 18px;" text="Liste des Réservations" />
+
+                <ListView fx:id="reservationListView" onMouseClicked="#handleReservationSelection" prefHeight="200" />
+                <Button onAction="#supprimerReservation" text="Supprimer Sélection" />
 
                 <GridPane hgap="10" vgap="10">
-                    <Label text="Modification : Sélectionnez une réservation" style="-fx-font-size: 14px;" />
+                    <Label style="-fx-font-size: 14px;" text="Modification : Sélectionnez une réservation" />
                     <Label text="ID:" />
                     <TextField fx:id="editIdField" editable="false" promptText="ID sélectionné" />
                     <Label text="Date Début:" GridPane.rowIndex="1" />
-                    <TextField fx:id="editDateDebutField" GridPane.rowIndex="1" promptText="YYYY-MM-DD" />
+                    <TextField fx:id="editDateDebutField" promptText="YYYY-MM-DD" GridPane.rowIndex="1" />
                     <Label text="Date Fin:" GridPane.rowIndex="2" />
-                    <TextField fx:id="editDateFinField" GridPane.rowIndex="2" promptText="YYYY-MM-DD" />
+                    <TextField fx:id="editDateFinField" promptText="YYYY-MM-DD" GridPane.rowIndex="2" />
                     <Label text="Montant:" GridPane.rowIndex="3" />
-                    <TextField fx:id="editMontantField" GridPane.rowIndex="3" promptText="Montant" />
+                    <TextField fx:id="editMontantField" promptText="Montant" GridPane.rowIndex="3" />
                     <Label text="Statut:" GridPane.rowIndex="4" />
-                    <TextField fx:id="editStatutField" GridPane.rowIndex="4" promptText="Statut" />
+                    <TextField fx:id="editStatutField" promptText="Statut" GridPane.rowIndex="4" />
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
                 </GridPane>
-                <Button text="Modifier Réservation" onAction="#modifierReservation" />
+                <Button onAction="#modifierReservation" text="Modifier Réservation" />
             </VBox>
         </StackPane>
     </center>
