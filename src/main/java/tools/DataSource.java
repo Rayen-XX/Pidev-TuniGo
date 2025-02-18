@@ -23,5 +23,7 @@ public class DataSource {
     }
 
 
-
+    public static Object getInstance() {
+        return null;
+    }
 }

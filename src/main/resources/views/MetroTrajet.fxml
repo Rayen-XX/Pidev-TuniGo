@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MetroTrajetController" spacing="10" padding="10">
+   <Label text="Gestion des Trajets Métro" font="Arial 24" />
 
-<AnchorPane prefHeight="492.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MetroTrajet">
-   <children>
-      <ListView layoutX="308.0" layoutY="84.0" prefHeight="268.0" prefWidth="337.0" />
-      <VBox layoutX="21.0" layoutY="30.0" prefHeight="318.0" prefWidth="215.0" spacing="25.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gare de Depart" wrappingWidth="214.6950569152832" />
-            <TextField fx:id="tfGdepart" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gare d'arrivée" wrappingWidth="192.38306999206543" />
-            <TextField fx:id="tfGarrive" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Heure de départ " wrappingWidth="153.98307609558105" />
-            <TextField fx:id="tfHdepart" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Heure d'arrivée" wrappingWidth="154.78309440612793" />
-            <TextField fx:id="tfHarive" />
-         </children>
+   <TableView fx:id="table">
+      <columns>
+         <TableColumn text="ID" fx:id="colId" />
+         <TableColumn text="Gare Départ" fx:id="colGdepart" />
+         <TableColumn text="Gare Arrivée" fx:id="colGarrive" />
+         <TableColumn text="Heure Départ" fx:id="colHdepart" />
+         <TableColumn text="Heure Arrivée" fx:id="colHarive" />
+      </columns>
+   </TableView>
+
+   <HBox spacing="10">
+      <VBox spacing="10">
+         <Label text="Gare Départ:" />
+         <TextField fx:id="tfGdepart" />
+         <Label text="Gare Arrivée:" />
+         <TextField fx:id="tfGarrive" />
       </VBox>
-      <ButtonBar layoutX="273.0" layoutY="419.0" prefHeight="40.0" prefWidth="363.0">
-         <buttons>
-            <Button fx:id="btnAjouter" mnemonicParsing="false" onAction="#ajouterTrajetmetro" text="Ajouter" />
-            <Button fx:id="btnModifier" layoutX="221.0" layoutY="15.0" mnemonicParsing="false" onAction="#modifierTrajetmetro" text="Modifier" />
-            <Button fx:id="btnSupprimer" layoutX="136.0" layoutY="15.0" mnemonicParsing="false" onAction="#supprimerTrajetmetro" prefHeight="30.0" prefWidth="90.0" text="Supprimer" />
-            <Button fx:id="btnAnnuler" layoutX="50.0" layoutY="15.0" mnemonicParsing="false" onAction="#annulerTrajetmetro" text="Annuler" />
-         </buttons>
-      </ButtonBar>
-   </children>
-</AnchorPane>
+      <VBox spacing="10">
+         <Label text="Heure Départ (HH:MM):" />
+         <TextField fx:id="tfHdepart" />
+         <Label text="Heure Arrivée (HH:MM):" />
+         <TextField fx:id="tfHarive" />
+      </VBox>
+   </HBox>
+
+   <HBox spacing="10">
+      <Button text="Ajouter" fx:id="btnAjouter" onAction="#ajouterTrajetmetro" />
+      <Button text="Modifier" fx:id="btnModifier" onAction="#modifierTrajetmetro" />
+      <Button text="Supprimer" fx:id="btnSupprimer" onAction="#supprimerTrajetmetro" />
+      <Button text="Annuler" fx:id="btnAnnuler" onAction="#annulerTrajetmetro" />
+   </HBox>
+</VBox>
