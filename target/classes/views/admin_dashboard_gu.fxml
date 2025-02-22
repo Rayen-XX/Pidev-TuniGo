@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.gu.controller.AdminDashboardGUController"
+            minWidth="800" minHeight="600">
+    <children>
+        <!-- Top HBox with welcome message and logout link -->
+        <HBox fx:id="topHBox" spacing="50" alignment="CENTER"
+              AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <children>
+                <Label fx:id="welcomeLabel"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
+                <VBox alignment="CENTER">
+                    <Label text="Admin Dashboard"
+                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                    <Label text="Gestion Utilisateur"
+                           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                </VBox>
+
+                <Hyperlink fx:id="logoutLink" text="Déconnecter"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+            </children>
+        </HBox>
+
+        <!-- Center ListView to display users -->
+        <ListView fx:id="usersList" prefHeight="300.0" prefWidth="600.0"
+                  style="-fx-font-size: 15px; -fx-text-fill: #333333;"
+                  AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="10.0"
+                  AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="80.0"/>
+
+        <!-- Bottom HBox with CRUD buttons -->
+        <HBox fx:id="bottomHBox" spacing="10" alignment="CENTER"
+              AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <children>
+                <Button text="Créer un utilisateur" onAction="#handleCreateUser"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+                <Button text="Mettre à jour la sélection" onAction="#handleUpdateUser"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+                <Button text="Supprimer la sélection" onAction="#handleDeleteUser"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+                <Button text="Actualiser" onAction="#handleRefresh"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+                <Button text="Retour" onAction="#handleRetour" fx:id="retour"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

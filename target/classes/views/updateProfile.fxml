@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.gu.controller.UpdateProfileController"
+            prefHeight="400.0" prefWidth="600.0" minWidth="800" minHeight="600">
+    <children>
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label text="Modifier votre profil"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                <TextField fx:id="nomField" promptText="Nom" maxWidth="300"/>
+                <TextField fx:id="prenomField" promptText="Prenom" maxWidth="300"/>
+                <TextField fx:id="emailField" promptText="Email" maxWidth="300"/>
+                <TextField fx:id="numeroField" promptText="Numéro de telephone" maxWidth="300"/>
+                <PasswordField fx:id="motdepasseField" promptText="Password" maxWidth="300"/>
+                <Button fx:id="updateButton" text="Update" onAction="#handleUpdate"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
