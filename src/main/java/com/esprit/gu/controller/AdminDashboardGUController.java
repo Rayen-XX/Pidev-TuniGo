@@ -103,6 +103,8 @@ public class AdminDashboardGUController implements Initializable {
         } else {
             showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a user to delete.");
         }
+
+        
     }
 
     @FXML
