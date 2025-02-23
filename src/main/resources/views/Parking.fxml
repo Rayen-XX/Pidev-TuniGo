@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.ParkingController">
+
+    <!-- Barre de Navigation à gauche -->
+    <VBox layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="179.0" style="-fx-background-color: #ffcccc; padding: 20px;">
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ff0000;" text="Welcome to TuniGo" />
+
+        <Button fx:id="parkingButton" onAction="#handleParking" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #ff6666; -fx-text-fill: white; margin-top: 20px;" text="Parking" />
+
+        <!-- Ajout d'un espace (spacer) entre les boutons -->
+        <Region style="-fx-min-height: 10px;" />
+
+        <Button fx:id="reservationButton" onAction="#handleReservationParking" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Reservation Parking" />
+        <!-- Ajout d'un espace (spacer) entre les boutons -->
+        <Region style="-fx-min-height: 10px;" />
+
+        <Button fx:id="ListereservationButton" onAction="#handleListeReservationParking" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Liste Reservations" />
+    </VBox>
+
+    <!-- Liste des Parkings -->
+    <ListView fx:id="parkingListView" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #ffcccc; -fx-border-color: #ff0000;" />
+
+    <!-- Section de Formulaire à droite -->
+    <VBox alignment="CENTER" layoutX="470.0" layoutY="10.0" spacing="10" style="-fx-background-color: white; padding: 10px; border-color: #ff0000; border-width: 2;">
+        <TextField fx:id="nomParkingField" promptText="Nom du Parking" style="-fx-background-color: #ffe6e6; -fx-border-color: #ff0000;" />
+        <TextField fx:id="localisationField" promptText="Localisation" style="-fx-background-color: #ffe6e6; -fx-border-color: #ff0000;" />
+        <TextField fx:id="nbPlaceField" promptText="Nombre de places" style="-fx-background-color: #ffe6e6; -fx-border-color: #ff0000;" />
+        <Label fx:id="errorLabel" style="-fx-font-size: 14px;" textFill="red" />
+
+        <Button fx:id="saveButton" onAction="#handleSave" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Ajouter Parking" />
+        <Button fx:id="updateButton" disable="true" onAction="#handleUpdate" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Mettre à jour" />
+        <Button fx:id="deleteButton" disable="true" onAction="#handleDelete" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Supprimer" />
+    </VBox>
+
+</AnchorPane>

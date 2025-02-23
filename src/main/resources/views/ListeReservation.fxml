@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.ListeReservation">
+    <!-- Sidebar with buttons -->
+    <VBox layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="179.0" style="-fx-background-color: #ffcccc; padding: 20px;">
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ff0000;" text="Welcome to TuniGo" />
+
+        <Button fx:id="parkingButton" onAction="#handleParking" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #ff6666; -fx-text-fill: white; margin-top: 20px;" text="Parking" />
+
+        <!-- Spacer between buttons -->
+        <Region style="-fx-min-height: 10px;" />
+
+        <Button fx:id="reservationButton" onAction="#handleReservationParking" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Reservation Parking" />
+        <!-- Ajout d'un espace (spacer) entre les boutons -->
+        <Region style="-fx-min-height: 10px;" />
+
+        <Button fx:id="ListereservationButton"  prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Liste Reservations" />
+    </VBox>
+
+    <!-- Main content area -->
+    <VBox layoutX="200.0" layoutY="70.0" prefHeight="300.0" prefWidth="380.0">
+        <Label layoutX="331.0" layoutY="22.0" style="-fx-font-size: 16px; -fx-text-fill: #000000;" text="Reservation List" />
+
+        <!-- ListView to display reservations -->
+        <ListView fx:id="reservationListView" layoutX="0.0" layoutY="50.0" prefHeight="200.0" prefWidth="347.0">
+            <!-- Custom cells can be added here -->
+        </ListView>
+        <!-- Spacer between buttons -->
+        <Region style="-fx-min-height: 10px;" />
+        <!-- HBox for buttons -->
+        <HBox spacing="10" layoutX="0.0" layoutY="260.0">
+            <Button fx:id="updateButton" onAction="#handleUpdateReservation" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Modifier" />
+            <Button fx:id="deleteButton" onAction="#handleDelete" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #ff6666; -fx-text-fill: white;" text="Supprimer" />
+        </HBox>
+    </VBox>
+</AnchorPane>

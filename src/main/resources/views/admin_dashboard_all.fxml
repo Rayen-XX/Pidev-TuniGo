@@ -31,7 +31,10 @@
                      text="Gestion Moyen de transport"
                      onAction="#handleGestionMoyenTransportButtonClick"/>
              <Button prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Trajets" />
-             <Button prefWidth="230.0" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="Gestion Parking" />
+             <Button fx:id="gestionParkingButton"  prefWidth="230.0"
+                     style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"
+                     text="Gestion Parking"
+                     onAction="#handleGestionParkingButtonClick" />
              <Button fx:id="gestionReservationButton"  prefWidth="230.0"
                      style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"
                      text="Gestion Réservation"
