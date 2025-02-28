@@ -70,7 +70,7 @@ public class AdminDashboardGUController implements Initializable {
             try {
                 // Load the login view and set it as the current scene.
                 Stage stage = (Stage) logoutLink.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/login.fxml"));
                 stage.setScene(new Scene(root));
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -111,7 +111,7 @@ public class AdminDashboardGUController implements Initializable {
     private void handleCreateUser() {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/views/createUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/createUser.fxml"));
             stage.setScene(new Scene(root));
             stage.setTitle("Create User");
             stage.showAndWait();
@@ -129,7 +129,7 @@ public class AdminDashboardGUController implements Initializable {
         Utilisateur selectedUser = usersList.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/updateUser.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/gestion_utilisateur_views/updateUser.fxml"));
                 Parent root = loader.load();
 
                 // Pass the selected user to the update controller.
@@ -155,7 +155,7 @@ public class AdminDashboardGUController implements Initializable {
     private void handleRetour() {
         try {
             // Load the admin_dashboard_gu.fxml file
-            Parent root = FXMLLoader.load(getClass().getResource("/views/admin_dashboard_all.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/admin_dashboard_all.fxml"));
             Stage stage = (Stage) retour.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

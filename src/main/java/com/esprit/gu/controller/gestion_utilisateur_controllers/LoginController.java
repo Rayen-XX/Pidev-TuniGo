@@ -44,9 +44,9 @@ public class LoginController {
             Session.setCurrentUser(user);
 
             if ("admin".equalsIgnoreCase(user.getRoleUtilisateur())) {
-                loadStage("/views/admin_dashboard_all.fxml");
+                loadStage("/views/gestion_utilisateur_views/admin_dashboard_all.fxml");
             } else if ("utilisateur".equalsIgnoreCase(user.getRoleUtilisateur())) {
-                loadStage("/views/profile.fxml");
+                loadStage("/views/gestion_utilisateur_views/profile.fxml");
             } else {
                 showAlert(Alert.AlertType.ERROR, "Login Failed", "Unknown user role.");
             }
@@ -90,7 +90,7 @@ public class LoginController {
     @FXML
     private void goToRegister() throws IOException {
         Stage stage = (Stage) emailField.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/register.fxml"));
         stage.setScene(new Scene(root));
     }
 
