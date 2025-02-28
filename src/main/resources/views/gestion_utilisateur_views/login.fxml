@@ -1,28 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.LoginController"
-            minWidth="800" minHeight="600">
+<AnchorPane minHeight="600" minWidth="800"
+            xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.LoginController">
     <children>
-        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"
-              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+        <!-- Split the screen horizontally into two equal parts -->
+        <HBox prefHeight="600" prefWidth="800" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <children>
-                <Label text="Se connecter" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
-                <TextField fx:id="emailField" promptText="Email" maxWidth="300"
-                           style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="emailErrorLabel" text="Invalid email address" textFill="red" visible="false"/>
-                <PasswordField fx:id="passwordField" promptText="mot de passe" maxWidth="300"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
-                <Label fx:id="passwordErrorLabel" text="Password is required" textFill="red" visible="false"/>
-                <Button text="se connecter" onAction="#handleLogin"
-                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
-                <Hyperlink text="Vous n'avez pas de compte ? Inscrivez-vous" onAction="#goToRegister"
-                           style="-fx-text-fill: #B22222; -fx-font-size: 14px;"/>
-            </children>
-        </VBox>
+            <!-- Left side: Login Form -->
+            <VBox alignment="CENTER" spacing="10" prefWidth="400"
+                  style="-fx-background-color: white; -fx-padding: 40;" HBox.hgrow="ALWAYS">
+                <children>
+                    <!-- Header Label with custom font family; change -fx-font-family here if needed -->
+                    <Label text="Se connecter" style="-fx-font-family: 'Montserrat'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;" />
+
+                    <TextField fx:id="emailField" promptText="Email" maxWidth="300"
+                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;" />
+
+                    <!-- Password Field with Toggle -->
+                    <StackPane maxWidth="300">
+                        <!-- Hidden password input -->
+                        <PasswordField fx:id="passwordField" promptText="Mot de passe"
+                                       style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;" />
+                        <!-- Visible text field (initially hidden) -->
+                        <TextField fx:id="passwordVisibleField" promptText="Mot de passe"
+                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;"
+                                   visible="false" managed="false" />
+                        <!-- Toggle button -->
+                        <Button fx:id="togglePasswordButton" text="👁" onAction="#togglePasswordVisibility"
+                                style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;"
+                                StackPane.alignment="CENTER_RIGHT"/>
+                    </StackPane>
+
+                    <!-- Global error label for login validation -->
+                    <Label fx:id="globalErrorLabel" maxWidth="300" textFill="red" visible="false"
+                           style="-fx-font-size: 14px;" />
+
+                    <Button text="se connecter" onAction="#handleLogin"
+                            style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" />
+
+                    <Hyperlink text="Vous n'avez pas de compte ? Inscrivez-vous" onAction="#goToRegister"
+                               style="-fx-text-fill: #565656; -fx-font-size: 14px;" />
+                </children>
+            </VBox>
+
+            <!-- Right side: Full-height background image -->
+            <AnchorPane prefWidth="400" style="-fx-background-size: cover; -fx-background-position: center;" HBox.hgrow="ALWAYS">
+                <children>
+                    <ImageView fitHeight="600.0" fitWidth="400.0">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/signup.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </AnchorPane>
+        </HBox>
     </children>
 </AnchorPane>
