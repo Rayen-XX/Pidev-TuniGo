@@ -16,33 +16,35 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+
     @FXML
     private TextField emailField;
+
+    // For the password input, we use two fields
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private TextField passwordVisibleField;
 
-    // Error Labels for validation feedback
+    // Global error label for login validation
     @FXML
-    private Label emailErrorLabel;
-    @FXML
-    private Label passwordErrorLabel;
+    private Label globalErrorLabel;
 
     private UtilisateurService utilisateurService = new UtilisateurService();
 
     @FXML
     private void handleLogin() {
-        
         if (!validateLoginInputs()) {
             return;
         }
 
+        // Always read from the visible field if it's showing, else from the hidden field
+        String password = passwordField.isVisible() ? passwordField.getText() : passwordVisibleField.getText();
         String email = emailField.getText();
-        String password = passwordField.getText();
 
         Utilisateur user = utilisateurService.login(email, password);
         if (user != null) {
             Session.setCurrentUser(user);
-
             if ("admin".equalsIgnoreCase(user.getRoleUtilisateur())) {
                 loadStage("/views/gestion_utilisateur_views/admin_dashboard_all.fxml");
             } else if ("utilisateur".equalsIgnoreCase(user.getRoleUtilisateur())) {
@@ -55,7 +57,6 @@ public class LoginController {
         }
     }
 
-    // Basic email pattern for demonstration purposes
     private boolean isValidEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email.matches(regex);
@@ -63,27 +64,26 @@ public class LoginController {
 
     private boolean validateLoginInputs() {
         boolean valid = true;
+        StringBuilder errorMessages = new StringBuilder();
+
         String email = emailField.getText();
-        String password = passwordField.getText();
+        String password = passwordField.isVisible() ? passwordField.getText() : passwordVisibleField.getText();
 
-        // validation mtaa email
-        if (email == null || email.isEmpty() || !isValidEmail(email)) {
-            emailErrorLabel.setText("Veuillez entrer une adresse e-mail valide");
-            emailErrorLabel.setVisible(true);
+        if (email == null || email.trim().isEmpty() || !isValidEmail(email)) {
+            errorMessages.append("Veuillez entrer une adresse e-mail valide. ");
             valid = false;
-        } else {
-            emailErrorLabel.setVisible(false);
+        }
+        if (password == null || password.trim().isEmpty()) {
+            errorMessages.append("Le mot de passe est obligatoire. ");
+            valid = false;
         }
 
-        // validation mtaa mot de passe
-        if (password == null || password.isEmpty()) {
-            passwordErrorLabel.setText("Le mot de passe est obligatoire");
-            passwordErrorLabel.setVisible(true);
-            valid = false;
+        if (!valid) {
+            globalErrorLabel.setText(errorMessages.toString());
+            globalErrorLabel.setVisible(true);
         } else {
-            passwordErrorLabel.setVisible(false);
+            globalErrorLabel.setVisible(false);
         }
-
         return valid;
     }
 
@@ -111,5 +111,25 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // Toggle password visibility in the login form
+    @FXML
+    private void togglePasswordVisibility() {
+        if (passwordVisibleField.isVisible()) {
+            // Hide the visible field and show the PasswordField
+            passwordField.setText(passwordVisibleField.getText());
+            passwordVisibleField.setVisible(false);
+            passwordVisibleField.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+        } else {
+            // Show the visible field and hide the PasswordField
+            passwordVisibleField.setText(passwordField.getText());
+            passwordVisibleField.setVisible(true);
+            passwordVisibleField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+        }
     }
 }
