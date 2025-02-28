@@ -1,4 +1,4 @@
-package com.esprit.gu.entity;
+package com.esprit.gu.entity.gestion_utilisateur_entity;
 
 public class Utilisateur {
     private int idUtilisateur;

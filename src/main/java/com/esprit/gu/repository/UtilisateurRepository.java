@@ -1,7 +1,6 @@
 package com.esprit.gu.repository;
 
-import com.esprit.gu.entity.Utilisateur;
-import com.esprit.gu.util.DBUtil;
+import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
 import com.esprit.gu.util.DBUtil;
 
 

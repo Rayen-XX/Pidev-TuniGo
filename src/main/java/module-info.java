@@ -13,4 +13,7 @@ module com.esprit {
     exports com.esprit.gu.controller;
     exports com.esprit.gu.repository;
     exports com.esprit.gu.util;
+    exports com.esprit.gu.controller.gestion_utilisateur_controllers;
+    opens com.esprit.gu.controller.gestion_utilisateur_controllers to javafx.fxml;
+    opens com.esprit.gu.entity.gestion_utilisateur_entity to javafx.base, javafx.fxml;
 }

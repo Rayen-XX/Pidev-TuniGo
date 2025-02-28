@@ -1,6 +1,6 @@
-package com.esprit.gu.service;
+package com.esprit.gu.service.gestion_utilisateur_service;
 
-import com.esprit.gu.entity.Utilisateur;
+import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
 import com.esprit.gu.repository.UtilisateurRepository;
 
 import java.util.List;

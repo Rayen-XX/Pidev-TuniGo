@@ -6,7 +6,7 @@
 
 <?import java.lang.String?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.esprit.gu.controller.UpdateUserController"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.UpdateUserController"
             minWidth="800" minHeight="600">
     <children>
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"
