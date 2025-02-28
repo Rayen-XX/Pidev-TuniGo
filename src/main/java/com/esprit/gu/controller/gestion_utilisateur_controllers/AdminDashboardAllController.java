@@ -56,7 +56,7 @@ public class AdminDashboardAllController implements Initializable {
             try {
                 // Load the login view and set it as the current scene.
                 Stage stage = (Stage) logoutLink.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/login.fxml"));
                 stage.setScene(new Scene(root));
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -67,7 +67,7 @@ public class AdminDashboardAllController implements Initializable {
     private void handleGestionUtilisateurButtonClick() {
         try {
             // Load the admin_dashboard_gu.fxml file
-            Parent root = FXMLLoader.load(getClass().getResource("/views/admin_dashboard_gu.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/admin_dashboard_gu.fxml"));
             Stage stage = (Stage) gestionUtilisateurButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

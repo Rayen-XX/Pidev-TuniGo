@@ -15,7 +15,6 @@ import com.esprit.gu.entity.Reclamation;
 import com.esprit.gu.service.ServiceReclamation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -205,7 +204,7 @@ public class GestionReclamation {
     @FXML
     private void routourButton() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/views/admin_dashboard_all.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/admin_dashboard_all.fxml"));
             Stage stage = (Stage) routourButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

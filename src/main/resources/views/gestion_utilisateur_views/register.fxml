@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.RegisterController"
+            minWidth="800" minHeight="600">
+    <children>
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label text="S'inscrire" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+
+                <TextField fx:id="nomField" promptText="Nom" maxWidth="300"
+                           style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
+
+                <TextField fx:id="prenomField" promptText="Prénom" maxWidth="300"
+                           style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
+
+                <TextField fx:id="emailField" promptText="E-mail" maxWidth="300"
+                           style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
+
+                <!-- Password Field with toggle -->
+                <StackPane maxWidth="300">
+                    <!-- Hidden password input -->
+                    <PasswordField fx:id="motdepasseField" promptText="Mot de passe"
+                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;"/>
+                    <!-- Visible text field (initially hidden) -->
+                    <TextField fx:id="motdepasseVisibleField" promptText="Mot de passe"
+                               style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;"
+                               visible="false" managed="false"/>
+                    <!-- Toggle button (positioned to the right) -->
+                    <Button fx:id="togglePasswordButton" text="👁" onAction="#togglePasswordVisibility"
+                            style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;"
+                            StackPane.alignment="CENTER_RIGHT"/>
+                </StackPane>
+
+                <!-- Confirm Password Field with toggle -->
+                <StackPane maxWidth="300">
+                    <!-- Hidden confirm password input -->
+                    <PasswordField fx:id="confirmPasswordField" promptText="Confirmer votre mot de passe"
+                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;"/>
+                    <!-- Visible text field (initially hidden) -->
+                    <TextField fx:id="confirmPasswordVisibleField" promptText="Confirmer votre mot de passe"
+                               style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;"
+                               visible="false" managed="false"/>
+                    <!-- Toggle button (positioned to the right) -->
+                    <Button fx:id="toggleConfirmPasswordButton" text="👁" onAction="#toggleConfirmPasswordVisibility"
+                            style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;"
+                            StackPane.alignment="CENTER_RIGHT"/>
+                </StackPane>
+
+                <TextField fx:id="telephoneField" promptText="Numéro de téléphone" maxWidth="300"
+                           style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;"/>
+
+                <!-- Global error label -->
+                <Label fx:id="globalErrorLabel" textFill="red" visible="false" style="-fx-font-size: 14px;"/>
+
+                <Button text="se connecter" onAction="#handleRegister"
+                        style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
+
+                <Hyperlink text="Vous avez déjà un compte ? Connectez-vous" onAction="#goToLogin"
+                           style="-fx-text-fill: #B22222; -fx-font-size: 14px;"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

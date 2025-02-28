@@ -44,7 +44,7 @@ public class ProfileController implements Initializable {
             try {
                 // Load the login view and set it as the current scene.
                 Stage stage = (Stage) logoutLink.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/login.fxml"));
                 stage.setScene(new Scene(root));
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -56,7 +56,7 @@ public class ProfileController implements Initializable {
     private void handleUpdateProfile() {
         try {
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/views/updateProfile.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/updateProfile.fxml"));
             stage.setScene(new Scene(root));
             stage.setTitle("Update Profile");
             stage.showAndWait();

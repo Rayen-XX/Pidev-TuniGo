@@ -6,7 +6,6 @@ package com.esprit.gu.controller;//
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -59,7 +58,7 @@ public class GestionMenuController {
         this.changerScene(event, "/views/AjouterReclamation.fxml");
     }
     public void handleRetour(ActionEvent event) {
-        this.changerScene(event, "/views/admin_dashboard_all.fxml");
+        this.changerScene(event, "/views/gestion_utilisateur_views/admin_dashboard_all.fxml");
     }
 
 

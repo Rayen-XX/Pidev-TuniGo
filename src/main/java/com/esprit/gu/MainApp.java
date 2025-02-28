@@ -13,7 +13,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the FXML file
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/views/register.fxml"));
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/views/gestion_utilisateur_views/register.fxml"));
             Parent root = loader.load();
 
             // Set up the scene

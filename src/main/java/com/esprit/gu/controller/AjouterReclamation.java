@@ -97,7 +97,7 @@ public class AjouterReclamation {
     private void handleRetour() {
         try {
             // Load the admin_dashboard_gu.fxml file
-            Parent root = FXMLLoader.load(getClass().getResource("/views/profile.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/profile.fxml"));
             Stage stage = (Stage) retour.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
