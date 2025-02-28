@@ -1,7 +1,7 @@
-package com.esprit.gu.controller;
+package com.esprit.gu.controller.gestion_utilisateur_controllers;
 
-import com.esprit.gu.entity.Utilisateur;
-import com.esprit.gu.service.UtilisateurService;
+import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
+import com.esprit.gu.service.gestion_utilisateur_service.UtilisateurService;
 import com.esprit.gu.util.Session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,6 +103,8 @@ public class AdminDashboardGUController implements Initializable {
         } else {
             showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a user to delete.");
         }
+
+        
     }
 
     @FXML

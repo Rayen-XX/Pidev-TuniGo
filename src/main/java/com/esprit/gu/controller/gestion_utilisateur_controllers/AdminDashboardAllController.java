@@ -1,12 +1,10 @@
-package com.esprit.gu.controller;
+package com.esprit.gu.controller.gestion_utilisateur_controllers;
 
-import com.esprit.gu.entity.Utilisateur;
+import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
 import com.esprit.gu.util.Session;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

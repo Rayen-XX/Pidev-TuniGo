@@ -9,7 +9,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.esprit.gu.controller.UpdateProfileController"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.UpdateProfileController"
             prefHeight="400.0" prefWidth="600.0" minWidth="800" minHeight="600">
     <children>
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"

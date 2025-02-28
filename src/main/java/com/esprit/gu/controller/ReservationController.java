@@ -1,9 +1,8 @@
 package com.esprit.gu.controller;
 
 import com.esprit.gu.DataBaseConnection;
-import com.esprit.gu.entity.Utilisateur;
+import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
 import com.esprit.gu.util.Session;
-import com.esprit.gu.service.ServiceAuthentification;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

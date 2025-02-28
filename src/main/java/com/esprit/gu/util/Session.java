@@ -1,7 +1,7 @@
 // In com.esprit.gu.util.Session.java
 package com.esprit.gu.util;
 
-import com.esprit.gu.entity.Utilisateur;
+import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
 
 public class Session {
     private static Utilisateur currentUser;
