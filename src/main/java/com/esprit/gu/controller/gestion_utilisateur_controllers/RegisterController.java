@@ -128,10 +128,8 @@ public class RegisterController implements Initializable {
         String questionSecurite = securityQuestionChoiceBox.getValue();
         String reponseSecurite = securityAnswerField.getText();
 
-        // NOTE: You will need to update your Utilisateur entity and database schema
-        // to store questionSecurite and reponseSecurite. For now, assume these values are stored.
-        Utilisateur newUtilisateur = new Utilisateur(nom, prenom, email, motdepasse, telephone, "utilisateur");
-        // (If updated, you could call newUtilisateur.setQuestionSecurite(questionSecurite) etc.)
+        // Create a new user with all fields including security question and answer
+        Utilisateur newUtilisateur = new Utilisateur(nom, prenom, email, motdepasse, telephone, "utilisateur", questionSecurite, reponseSecurite);
 
         if (utilisateurService.register(newUtilisateur)) {
             showAlert(Alert.AlertType.INFORMATION, "Inscription réussie", "L'utilisateur " + email + " a été inscrit avec succès !");
