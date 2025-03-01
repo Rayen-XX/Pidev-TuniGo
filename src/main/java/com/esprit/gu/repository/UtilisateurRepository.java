@@ -3,21 +3,19 @@ package com.esprit.gu.repository;
 import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
 import com.esprit.gu.util.DBUtil;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UtilisateurRepository {
 
-    //registration houni
+    // Register a new user (including security question and answer)
     public boolean registerUtilisateur(Utilisateur utilisateur) {
-        String sql = "INSERT INTO utilisateur (nomUtilisateur, prenomUtilisateur, emailUtilisateur, motDePasseUtilisateur, numeroTelephoneUtilisateur, roleUtilisateur) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO utilisateur (nomUtilisateur, prenomUtilisateur, emailUtilisateur, motDePasseUtilisateur, numeroTelephoneUtilisateur, roleUtilisateur, questionSecurite, reponseSecurite) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -27,21 +25,22 @@ public class UtilisateurRepository {
             stmt.setString(4, utilisateur.getMotDePasseUtilisateur());
             stmt.setString(5, utilisateur.getNumeroTelephoneUtilisateur());
             stmt.setString(6, utilisateur.getRoleUtilisateur());
+            stmt.setString(7, utilisateur.getQuestionSecurite());
+            stmt.setString(8, utilisateur.getReponseSecurite());
 
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; // if at least one row is inserted, registration succeeded
+            return rowsAffected > 0; // Registration succeeded if at least one row was inserted.
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         } catch (Exception e) {
-            // For any errors from DBUtil.getConnection()
             e.printStackTrace();
             return false;
         }
     }
 
-   // login bel email
+    // Retrieve a user by email, including security question/answer
     public Utilisateur getUtilisateurByEmail(String email) {
         String sql = "SELECT * FROM utilisateur WHERE emailUtilisateur = ?";
         try (Connection conn = DBUtil.getConnection();
@@ -57,21 +56,21 @@ public class UtilisateurRepository {
                     String motDePasse = rs.getString("motDePasseUtilisateur");
                     String numeroTel = rs.getString("numeroTelephoneUtilisateur");
                     String role = rs.getString("roleUtilisateur");
+                    String question = rs.getString("questionSecurite");
+                    String reponse = rs.getString("reponseSecurite");
 
-                    return new Utilisateur(id, nom, prenom, emailUtilisateur, motDePasse, numeroTel, role);
+                    return new Utilisateur(id, nom, prenom, emailUtilisateur, motDePasse, numeroTel, role, question, reponse);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            
             e.printStackTrace();
         }
-        return null; 
+        return null;
     }
 
-
-    // nekhou users lkol
+    // Retrieve all users
     public List<Utilisateur> getAllUsers() {
         List<Utilisateur> users = new ArrayList<>();
         String sql = "SELECT * FROM utilisateur";
@@ -87,8 +86,10 @@ public class UtilisateurRepository {
                 String motDePasse = rs.getString("motDePasseUtilisateur");
                 String numeroTel = rs.getString("numeroTelephoneUtilisateur");
                 String role = rs.getString("roleUtilisateur");
+                String question = rs.getString("questionSecurite");
+                String reponse = rs.getString("reponseSecurite");
 
-                Utilisateur user = new Utilisateur(id, nom, prenom, email, motDePasse, numeroTel, role);
+                Utilisateur user = new Utilisateur(id, nom, prenom, email, motDePasse, numeroTel, role, question, reponse);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -99,10 +100,9 @@ public class UtilisateurRepository {
         return users;
     }
 
-    // modifier user
+    // Update user (including security question and answer)
     public boolean updateUtilisateur(Utilisateur utilisateur) {
-        String sql = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, emailUtilisateur = ?, motDePasseUtilisateur = ?, numeroTelephoneUtilisateur = ?, roleUtilisateur = ? WHERE idUtilisateur = ?";
-
+        String sql = "UPDATE utilisateur SET nomUtilisateur = ?, prenomUtilisateur = ?, emailUtilisateur = ?, motDePasseUtilisateur = ?, numeroTelephoneUtilisateur = ?, roleUtilisateur = ?, questionSecurite = ?, reponseSecurite = ? WHERE idUtilisateur = ?";
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -112,7 +112,9 @@ public class UtilisateurRepository {
             stmt.setString(4, utilisateur.getMotDePasseUtilisateur());
             stmt.setString(5, utilisateur.getNumeroTelephoneUtilisateur());
             stmt.setString(6, utilisateur.getRoleUtilisateur());
-            stmt.setInt(7, utilisateur.getIdUtilisateur());
+            stmt.setString(7, utilisateur.getQuestionSecurite());
+            stmt.setString(8, utilisateur.getReponseSecurite());
+            stmt.setInt(9, utilisateur.getIdUtilisateur());
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
@@ -125,17 +127,15 @@ public class UtilisateurRepository {
         }
     }
 
-    //supprimer user
+    // Delete user by ID
     public boolean deleteUtilisateur(int idUtilisateur) {
         String sql = "DELETE FROM utilisateur WHERE idUtilisateur = ?";
-
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, idUtilisateur);
-
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; 
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -144,5 +144,4 @@ public class UtilisateurRepository {
             throw new RuntimeException(e);
         }
     }
-
 }

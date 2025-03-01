@@ -14,12 +14,10 @@ public class UtilisateurService {
 
     // Register a new user
     public boolean register(Utilisateur utilisateur) {
-        // Here you can add validation (e.g., check if username is already taken)
         if (utilisateurRepository.getUtilisateurByEmail(utilisateur.getEmailUtilisateur()) != null) {
-            System.out.println("utilisateur already exists.");
+            System.out.println("L'utilisateur existe déjà.");
             return false;
         }
-        // You might want to hash the password here before storing it
         return utilisateurRepository.registerUtilisateur(utilisateur);
     }
 
@@ -27,32 +25,34 @@ public class UtilisateurService {
     public Utilisateur login(String email, String password) {
         Utilisateur utilisateur = utilisateurRepository.getUtilisateurByEmail(email);
         if (utilisateur != null) {
-            // For simplicity, comparing plain text passwords.
             if (utilisateur.getMotDePasseUtilisateur().equals(password)) {
                 return utilisateur;
             } else {
-                System.out.println("Incorrect password.");
+                System.out.println("Mot de passe incorrect.");
             }
         } else {
-            System.out.println("User not found.");
+            System.out.println("Utilisateur non trouvé.");
         }
         return null;
     }
 
+    // New method to get a user by email.
+    public Utilisateur getUtilisateurByEmail(String email) {
+        return utilisateurRepository.getUtilisateurByEmail(email);
+    }
 
-    // Update user
+    // Update an existing user
     public boolean updateUtilisateur(Utilisateur utilisateur) {
         return utilisateurRepository.updateUtilisateur(utilisateur);
     }
 
-    // Delete user
+    // Delete a user by ID
     public boolean deleteUtilisateur(int idUtilisateur) {
         return utilisateurRepository.deleteUtilisateur(idUtilisateur);
     }
 
+    // Retrieve all users
     public List<Utilisateur> getAllUsers() {
         return utilisateurRepository.getAllUsers();
     }
-
-
 }

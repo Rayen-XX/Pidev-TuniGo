@@ -23,26 +23,29 @@
             <VBox alignment="CENTER" spacing="10" prefWidth="400"
                   style="-fx-background-color: white; -fx-padding: 40;" HBox.hgrow="ALWAYS">
                 <children>
-                    <!-- Header Label with custom font family; change -fx-font-family here if needed -->
+                    <!-- Header Label with custom font family; unchanged -->
                     <Label text="Se connecter" style="-fx-font-family: 'Montserrat'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;" />
 
+                    <!-- Reduced height for email input: padding reduced from 10 to 5 and pref-height set to 30 -->
                     <TextField fx:id="emailField" promptText="Email" maxWidth="300"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10;" />
+                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
 
                     <!-- Password Field with Toggle -->
                     <StackPane maxWidth="300">
-                        <!-- Hidden password input -->
+                        <!-- Reduced padding for password input -->
                         <PasswordField fx:id="passwordField" promptText="Mot de passe"
-                                       style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;" />
-                        <!-- Visible text field (initially hidden) -->
+                                       style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;" />
                         <TextField fx:id="passwordVisibleField" promptText="Mot de passe"
-                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 10 40 10 10;"
+                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;"
                                    visible="false" managed="false" />
-                        <!-- Toggle button -->
                         <Button fx:id="togglePasswordButton" text="👁" onAction="#togglePasswordVisibility"
                                 style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;"
                                 StackPane.alignment="CENTER_RIGHT"/>
                     </StackPane>
+                    <!-- Add this Hyperlink immediately after the StackPane for password input -->
+                    <Hyperlink text="Mot de passe oublié ?" onAction="#goToForgotPassword"
+                               style="-fx-text-fill: #565656; -fx-font-size: 12px;" />
+
 
                     <!-- Global error label for login validation -->
                     <Label fx:id="globalErrorLabel" maxWidth="300" textFill="red" visible="false"
