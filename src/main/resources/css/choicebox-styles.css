@@ -1,0 +1,33 @@
+/* Styling for the ChoiceBox */
+.choice-box {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #565656;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-focus-color: #B22222;
+    -fx-faint-focus-color: #B2222233;
+}
+
+.choice-box .arrow {
+    -fx-background-color: #565656;
+}
+
+.choice-box:hover .arrow {
+    -fx-background-color: #B22222;
+}
+
+/* Styling for the dropdown menu */
+.choice-box .context-menu {
+    -fx-background-color: white;
+    -fx-border-color: #565656;
+    -fx-border-width: 1;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #666666;
+}
+
+/* Add text color for better contrast with dark gray background */
+.choice-box .menu-item:focused .label {
+    -fx-text-fill: white;
+} 

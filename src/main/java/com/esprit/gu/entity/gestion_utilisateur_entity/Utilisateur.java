@@ -8,7 +8,11 @@ public class Utilisateur {
     private String motDePasseUtilisateur;
     private String numeroTelephoneUtilisateur;
     private String roleUtilisateur;
+    // New fields for security question and answer
+    private String questionSecurite;
+    private String reponseSecurite;
 
+    // Existing constructors...
     public Utilisateur(String nom, String prenom, String email, String motdepasse, String telephone) { }
 
     public Utilisateur(String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur,
@@ -22,9 +26,23 @@ public class Utilisateur {
         this.roleUtilisateur = roleUtilisateur;
     }
 
+    // New constructor including security question and answer
+    public Utilisateur(String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur,
+                       String motDePasseUtilisateur, String numeroTelephoneUtilisateur,
+                       String roleUtilisateur, String questionSecurite, String reponseSecurite) {
+        this.nomUtilisateur = nomUtilisateur;
+        this.prenomUtilisateur = prenomUtilisateur;
+        this.emailUtilisateur = emailUtilisateur;
+        this.motDePasseUtilisateur = motDePasseUtilisateur;
+        this.numeroTelephoneUtilisateur = numeroTelephoneUtilisateur;
+        this.roleUtilisateur = roleUtilisateur;
+        this.questionSecurite = questionSecurite;
+        this.reponseSecurite = reponseSecurite;
+    }
 
     public Utilisateur(int idUtilisateur, String nomUtilisateur, String prenomUtilisateur, String emailUtilisateur,
-                       String motDePasseUtilisateur, String numeroTelephoneUtilisateur, String roleUtilisateur) {
+                       String motDePasseUtilisateur, String numeroTelephoneUtilisateur, String roleUtilisateur,
+                       String questionSecurite, String reponseSecurite) {
         this.idUtilisateur = idUtilisateur;
         this.nomUtilisateur = nomUtilisateur;
         this.prenomUtilisateur = prenomUtilisateur;
@@ -32,9 +50,28 @@ public class Utilisateur {
         this.motDePasseUtilisateur = motDePasseUtilisateur;
         this.numeroTelephoneUtilisateur = numeroTelephoneUtilisateur;
         this.roleUtilisateur = roleUtilisateur;
+        this.questionSecurite = questionSecurite;
+        this.reponseSecurite = reponseSecurite;
     }
 
+    // Getters and setters for new fields
+    public String getQuestionSecurite() {
+        return questionSecurite;
+    }
 
+    public void setQuestionSecurite(String questionSecurite) {
+        this.questionSecurite = questionSecurite;
+    }
+
+    public String getReponseSecurite() {
+        return reponseSecurite;
+    }
+
+    public void setReponseSecurite(String reponseSecurite) {
+        this.reponseSecurite = reponseSecurite;
+    }
+
+    // Existing getters and setters...
     public int getIdUtilisateur() {
         return idUtilisateur;
     }
@@ -91,7 +128,6 @@ public class Utilisateur {
         this.roleUtilisateur = roleUtilisateur;
     }
 
-    // Optionally, override toString() for easier debugging (excluding sensitive fields like motDePasseUtilisateur)
     @Override
     public String toString() {
         return "Utilisateur{" +
@@ -101,6 +137,8 @@ public class Utilisateur {
                 ", emailUtilisateur='" + emailUtilisateur + '\'' +
                 ", numeroTelephoneUtilisateur='" + numeroTelephoneUtilisateur + '\'' +
                 ", roleUtilisateur='" + roleUtilisateur + '\'' +
+                ", questionSecurite='" + questionSecurite + '\'' +
+                ", reponseSecurite='" + reponseSecurite + '\'' +
                 '}';
     }
 }

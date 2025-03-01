@@ -132,4 +132,11 @@ public class LoginController {
             passwordField.setManaged(false);
         }
     }
+
+    @FXML
+    private void goToForgotPassword() throws IOException {
+        Stage stage = (Stage) emailField.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/forgotPassword.fxml"));
+        stage.setScene(new Scene(root));
+    }
 }
