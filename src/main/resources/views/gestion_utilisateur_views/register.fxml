@@ -18,55 +18,58 @@
 <AnchorPane minHeight="600" minWidth="800"
             xmlns="http://javafx.com/javafx/17.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.RegisterController">
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.RegisterController"
+            stylesheets="@../../css/auth_forms.css">
     <children>
         <!-- Split the screen horizontally into two equal parts -->
         <HBox prefHeight="600" prefWidth="800" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <!-- Left side: Registration Form -->
             <VBox alignment="CENTER" prefWidth="400" spacing="10"
-                  style="-fx-background-color: white; -fx-padding: 40;" HBox.hgrow="ALWAYS">
+                  styleClass="auth-container" HBox.hgrow="ALWAYS">
                 <children>
-                    <!-- Header Label with custom font family; change -fx-font-family here if needed -->
-                    <Label text="S'inscrire" style="-fx-font-family: 'Montserrat'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;" />
+                    <!-- Header Label -->
+                    <Label text="S'inscrire" styleClass="auth-title" />
 
-                    <!-- Reduced height for inputs: padding reduced to 5 and pref-height set to 30 -->
-                    <TextField fx:id="nomField" maxWidth="300" promptText="Nom"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
+                    <!-- Personal information fields -->
+                    <TextField fx:id="nomField" promptText="Nom" 
+                              styleClass="auth-input" />
 
-                    <TextField fx:id="prenomField" maxWidth="300" promptText="Prénom"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
+                    <TextField fx:id="prenomField" promptText="Prénom"
+                              styleClass="auth-input" />
 
-                    <TextField fx:id="emailField" maxWidth="300" promptText="E-mail"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
+                    <TextField fx:id="emailField" promptText="E-mail"
+                              styleClass="auth-input" />
 
-                    <TextField fx:id="telephoneField" maxWidth="300" promptText="Numéro de téléphone"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
+                    <TextField fx:id="telephoneField" promptText="Numéro de téléphone"
+                              styleClass="auth-input" />
 
                     <!-- Password Field with toggle -->
                     <StackPane maxWidth="300">
                         <PasswordField fx:id="motdepasseField" promptText="Mot de passe"
-                                       style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;" />
-                        <TextField fx:id="motdepasseVisibleField" managed="false" promptText="Mot de passe"
-                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;" visible="false" />
+                                      styleClass="auth-input, auth-password" />
+                        <TextField fx:id="motdepasseVisibleField" promptText="Mot de passe"
+                                  styleClass="auth-input, auth-password"
+                                  visible="false" managed="false" />
                         <Button fx:id="togglePasswordButton" onAction="#togglePasswordVisibility"
-                                style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;" text="👁"
-                                StackPane.alignment="CENTER_RIGHT" />
+                               text="👁" styleClass="eye-button"
+                               StackPane.alignment="CENTER_RIGHT" />
                     </StackPane>
 
                     <!-- Confirm Password Field with toggle -->
                     <StackPane maxWidth="300">
                         <PasswordField fx:id="confirmPasswordField" promptText="Confirmer votre mot de passe"
-                                       style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;" />
-                        <TextField fx:id="confirmPasswordVisibleField" managed="false" promptText="Confirmer votre mot de passe"
-                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #B22222; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;" visible="false" />
+                                      styleClass="auth-input, auth-password" />
+                        <TextField fx:id="confirmPasswordVisibleField" promptText="Confirmer votre mot de passe"
+                                  styleClass="auth-input, auth-password"
+                                  visible="false" managed="false" />
                         <Button fx:id="toggleConfirmPasswordButton" onAction="#toggleConfirmPasswordVisibility"
-                                style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;" text="👁"
-                                StackPane.alignment="CENTER_RIGHT" />
+                               text="👁" styleClass="eye-button"
+                               StackPane.alignment="CENTER_RIGHT" />
                     </StackPane>
 
-                    <!-- Security Question Selection - simplified styling as controller will handle it -->
-                    <ChoiceBox fx:id="securityQuestionChoiceBox" maxWidth="300" value="Quel est le nom de jeune fille de votre mère ?">
+                    <!-- Security Question Selection -->
+                    <ChoiceBox fx:id="securityQuestionChoiceBox" styleClass="auth-choice-box" value="Quel est le nom de jeune fille de votre mère ?">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Quel est le nom de jeune fille de votre mère ?" />
@@ -77,15 +80,19 @@
                     </ChoiceBox>
 
                     <!-- Security Answer Input -->
-                    <TextField fx:id="securityAnswerField" maxWidth="300" promptText="Réponse de sécurité"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
+                    <TextField fx:id="securityAnswerField" promptText="Réponse de sécurité"
+                              styleClass="auth-input" />
 
-                    <!-- Global error label: same width as inputs -->
-                    <Label fx:id="globalErrorLabel" maxWidth="300" style="-fx-font-size: 14px;" textFill="red" visible="false" />
+                    <!-- Global error label -->
+                    <Label fx:id="globalErrorLabel" styleClass="error-label" visible="false" />
 
-                    <Button onAction="#handleRegister" style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" text="s'inscrire" />
+                    <!-- Register button -->
+                    <Button onAction="#handleRegister" text="s'inscrire" 
+                           styleClass="auth-button" />
 
-                    <Hyperlink onAction="#goToLogin" style="-fx-text-fill: #565656; -fx-font-size: 14px;" text="Vous avez déjà un compte ? Connectez-vous" />
+                    <!-- Login link -->
+                    <Hyperlink onAction="#goToLogin" text="Vous avez déjà un compte ? Connectez-vous" 
+                              styleClass="auth-link" />
                 </children>
             </VBox>
 

@@ -37,6 +37,12 @@ public class AdminDashboardAllController implements Initializable {
     @FXML
     private Button gestionMoyenTransportButton;
 
+    @FXML
+    private Button gestionTrajetButton;
+
+    @FXML
+    private Button gestionParkingButton;
+
 
 
 
@@ -44,7 +50,7 @@ public class AdminDashboardAllController implements Initializable {
         // Get the current user from session and display his/her name.
         Utilisateur currentUser = Session.getCurrentUser();
         if (currentUser != null) {
-            welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur() + " "
+            welcomeLabel.setText(currentUser.getNomUtilisateur() + " "
                     + currentUser.getPrenomUtilisateur());
         } else {
             welcomeLabel.setText("Utilisateur non connecté");
@@ -104,6 +110,30 @@ public class AdminDashboardAllController implements Initializable {
 
             Parent root = FXMLLoader.load(getClass().getResource("/views/GestionBus.fxml"));
             Stage stage = (Stage) gestionMoyenTransportButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleGestionTrajetButtonClick() {
+        try {
+            // Update this path to the actual FXML file for trajet management when available
+            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionTrajet.fxml"));
+            Stage stage = (Stage) gestionTrajetButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleGestionParkingButtonClick() {
+        try {
+            // Update this path to the actual FXML file for parking management when available
+            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionParking.fxml"));
+            Stage stage = (Stage) gestionParkingButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();

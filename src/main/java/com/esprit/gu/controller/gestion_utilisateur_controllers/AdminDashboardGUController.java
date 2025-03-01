@@ -5,23 +5,33 @@ import com.esprit.gu.service.gestion_utilisateur_service.UtilisateurService;
 import com.esprit.gu.util.Session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class AdminDashboardGUController implements Initializable {
 
     @FXML
     private ListView<Utilisateur> usersList;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private TextField idSearchField;
 
     @FXML
     private Label welcomeLabel;
@@ -33,32 +43,80 @@ public class AdminDashboardGUController implements Initializable {
     private Button retour;
 
     private UtilisateurService utilisateurService = new UtilisateurService();
+    private ObservableList<Utilisateur> allUsers;
+    private FilteredList<Utilisateur> filteredUsers;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Load all users initially
         loadUsers();
+        
+        // Set up search functionality
+        setupSearch();
 
-
-        // Set a custom cell factory to display user details on one line.
+        // Set a custom cell factory with improved layout for user details
         usersList.setCellFactory(lv -> new ListCell<Utilisateur>() {
             @Override
             protected void updateItem(Utilisateur user, boolean empty) {
                 super.updateItem(user, empty);
+                
                 if (empty || user == null) {
                     setText(null);
+                    setGraphic(null);
                 } else {
-                    setText("ID: " + user.getIdUtilisateur() +
-                            " | Nom: " + user.getNomUtilisateur() +
-                            " | Prenom: " + user.getPrenomUtilisateur() +
-                            " | Email: " + user.getEmailUtilisateur() +
-                            " | Phone: " + user.getNumeroTelephoneUtilisateur() +
-                            " | Role: " + user.getRoleUtilisateur());
+                    // Create a structured layout for user information
+                    VBox container = new VBox(5); // 5px spacing between elements
+                    
+                    // Main user info (ID, name, contact)
+                    HBox mainInfo = new HBox(15); // 15px spacing
+                    
+                    // Create ID label with bold styling
+                    Label idLabel = new Label("ID: " + user.getIdUtilisateur());
+                    idLabel.getStyleClass().add("bold-label");
+                    
+                    // Create name label with bold styling
+                    Label nameLabel = new Label(user.getNomUtilisateur() + " " + user.getPrenomUtilisateur());
+                    nameLabel.getStyleClass().add("bold-label");
+                    
+                    // Create regular info labels
+                    Label emailLabel = new Label("Email: " + user.getEmailUtilisateur());
+                    Label phoneLabel = new Label("Tél: " + user.getNumeroTelephoneUtilisateur());
+                    
+                    // Create role label with special styling
+                    Label roleLabel = new Label("Role: " + user.getRoleUtilisateur());
+                    roleLabel.getStyleClass().add("role-label");
+                    
+                    mainInfo.getChildren().addAll(idLabel, nameLabel, emailLabel, phoneLabel, roleLabel);
+                    
+                    // Security information (question & answer)
+                    HBox securityInfo = new HBox(15);
+                    securityInfo.setStyle("-fx-padding: 0 0 0 20;"); // Add left padding
+                    
+                    // Create security question label
+                    Label questionLabel = new Label("Question de sécurité: " + 
+                            (user.getQuestionSecurite() != null ? user.getQuestionSecurite() : "N/A"));
+                    questionLabel.getStyleClass().add("security-info");
+                    
+                    // Create security answer label
+                    Label answerLabel = new Label("Réponse: " + 
+                            (user.getReponseSecurite() != null ? user.getReponseSecurite() : "N/A"));
+                    answerLabel.getStyleClass().add("security-info");
+                    
+                    securityInfo.getChildren().addAll(questionLabel, answerLabel);
+                    
+                    // Add all information to the container
+                    container.getChildren().addAll(mainInfo, securityInfo);
+                    
+                    // Use the container as the cell's graphic
+                    setGraphic(container);
+                    setText(null); // We're using graphic instead of text
                 }
             }
         });
+        
         Utilisateur currentUser = Session.getCurrentUser();
         if (currentUser != null) {
-            welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur() + " "
+            welcomeLabel.setText(currentUser.getNomUtilisateur() + " "
                     + currentUser.getPrenomUtilisateur());
         } else {
             welcomeLabel.setText("Utilisateur non connecté");
@@ -77,16 +135,95 @@ public class AdminDashboardGUController implements Initializable {
             }
         });
     }
+    
+    /**
+     * Set up the search functionality for filtering users by email and ID
+     */
+    private void setupSearch() {
+        // Initialize filtered list with all users
+        filteredUsers = new FilteredList<>(allUsers, p -> true);
+        
+        // Bind the filtered list to the ListView
+        usersList.setItems(filteredUsers);
+        
+        // Create a combined search predicate
+        Predicate<Utilisateur> combinedPredicate = createCombinedSearchPredicate();
+        
+        // Add listener to email search field
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredUsers.setPredicate(createCombinedSearchPredicate());
+        });
+        
+        // Add listener to ID search field
+        idSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredUsers.setPredicate(createCombinedSearchPredicate());
+        });
+    }
+    
+    /**
+     * Creates a combined search predicate that checks both email and ID fields
+     */
+    private Predicate<Utilisateur> createCombinedSearchPredicate() {
+        String emailFilter = searchField.getText();
+        String idFilter = idSearchField.getText();
+        
+        // If both fields are empty, show all users
+        if ((emailFilter == null || emailFilter.isEmpty()) && 
+            (idFilter == null || idFilter.isEmpty())) {
+            return user -> true;
+        }
+        
+        Predicate<Utilisateur> emailPredicate = user -> true; // Default to match all
+        Predicate<Utilisateur> idPredicate = user -> true;    // Default to match all
+        
+        // Create email filter if email search field is not empty
+        if (emailFilter != null && !emailFilter.isEmpty()) {
+            String lowerCaseEmailFilter = emailFilter.toLowerCase();
+            emailPredicate = user -> {
+                String email = user.getEmailUtilisateur().toLowerCase();
+                return email.contains(lowerCaseEmailFilter);
+            };
+        }
+        
+        // Create ID filter if ID search field is not empty
+        if (idFilter != null && !idFilter.isEmpty()) {
+            idPredicate = user -> {
+                // Convert both to strings for comparison to handle partial ID search
+                String userId = String.valueOf(user.getIdUtilisateur());
+                return userId.contains(idFilter);
+            };
+        }
+        
+        // Combine predicates with AND logic - both conditions must be satisfied
+        return emailPredicate.and(idPredicate);
+    }
 
     private void loadUsers() {
         List<Utilisateur> userList = utilisateurService.getAllUsers();
-        ObservableList<Utilisateur> usersObservable = FXCollections.observableArrayList(userList);
-        usersList.setItems(usersObservable);
+        allUsers = FXCollections.observableArrayList(userList);
+        
+        // If the filtered list already exists, update its source
+        if (filteredUsers != null) {
+            filteredUsers = new FilteredList<>(allUsers, filteredUsers.getPredicate());
+            usersList.setItems(filteredUsers);
+        } else {
+            // First load, set items directly
+            usersList.setItems(allUsers);
+        }
     }
 
     @FXML
     private void handleRefresh() {
+        // Store current search text
+        String currentSearch = searchField.getText();
+        
+        // Reload users
         loadUsers();
+        
+        // Reapply the search if needed
+        if (currentSearch != null && !currentSearch.isEmpty()) {
+            searchField.setText(currentSearch);
+        }
     }
 
     @FXML

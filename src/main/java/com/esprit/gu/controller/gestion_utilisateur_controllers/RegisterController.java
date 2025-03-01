@@ -33,7 +33,7 @@ public class RegisterController implements Initializable {
     @FXML private PasswordField confirmPasswordField;
     @FXML private TextField confirmPasswordVisibleField;
 
-    // New: Security question and answer fields
+    // Security question and answer fields
     @FXML private ChoiceBox<String> securityQuestionChoiceBox;
     @FXML private TextField securityAnswerField;
 
@@ -44,72 +44,7 @@ public class RegisterController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Add style class to ensure CSS selectors work properly
-        securityQuestionChoiceBox.getStyleClass().add("choice-box");
-        
-        // Apply basic styling to the ChoiceBox
-        securityQuestionChoiceBox.setStyle(
-            "-fx-font-size: 16px; " +
-            "-fx-pref-height: 30; "
-        );
-        
-        // Remove the hover effect that changes border to red
-        
-        // Wait for the scene to be available to add the CSS file
-        securityQuestionChoiceBox.sceneProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                try {
-                    // Get the CSS resource URL
-                    URL cssUrl = getClass().getResource("/css/choicebox-styles.css");
-                    if (cssUrl != null) {
-                        String cssExternalForm = cssUrl.toExternalForm();
-                        // Add the stylesheet if it's not already added
-                        if (!newValue.getStylesheets().contains(cssExternalForm)) {
-                            newValue.getStylesheets().add(cssExternalForm);
-                            System.out.println("Added stylesheet: " + cssExternalForm);
-                        }
-                    } else {
-                        System.err.println("CSS file not found: /css/choicebox-styles.css");
-                        
-                        // Fallback: Add inline styles for essential coloring
-                        addInlineStyles();
-                    }
-                } catch (Exception e) {
-                    System.err.println("Error loading CSS: " + e.getMessage());
-                    e.printStackTrace();
-                    
-                    // Fallback: Add inline styles for essential coloring
-                    addInlineStyles();
-                }
-            }
-        });
-    }
-    
-    // Fallback method to apply essential styles directly
-    private void addInlineStyles() {
-        securityQuestionChoiceBox.setStyle(
-            "-fx-font-size: 16px; " +
-            "-fx-pref-height: 30; " +
-            "-fx-background-color: #f5f5f5; " +
-            "-fx-border-color: #565656; " +
-            "-fx-border-width: 1; " +
-            "-fx-border-radius: 5; " +
-            "-fx-focus-color: #B22222; " +
-            "-fx-faint-focus-color: #B2222233;"
-        );
-        
-        securityQuestionChoiceBox.setOnShowing(event -> {
-            try {
-                // Try to style the dropdown items directly
-                securityQuestionChoiceBox.lookup(".context-menu").setStyle(
-                    "-fx-background-color: white; " +
-                    "-fx-border-color: #565656; " +
-                    "-fx-border-width: 1;"
-                );
-            } catch (Exception e) {
-                System.err.println("Could not style dropdown menu: " + e.getMessage());
-            }
-        });
+        // No need for styling here anymore, handled by CSS
     }
 
     @FXML
@@ -179,7 +114,7 @@ public class RegisterController implements Initializable {
             valid = false;
         }
 
-        // New: Validate that a security question is chosen and an answer provided.
+        // Validate that a security question is chosen and an answer provided.
         if (securityQuestionChoiceBox.getValue() == null || securityQuestionChoiceBox.getValue().trim().isEmpty()) {
             errorMessages.append("Veuillez sélectionner une question de sécurité. ");
             valid = false;

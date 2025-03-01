@@ -1,0 +1,294 @@
+/* User Management Dashboard Styles */
+
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Header Bar - copied from main dashboard.css */
+.header-bar {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-padding: 15px 25px;
+    -fx-alignment: center-left;
+}
+
+.title-label {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #B22222;
+    -fx-alignment: center;
+}
+
+.welcome-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-text-alignment: right;
+}
+
+.logout-link {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #727272;
+    -fx-underline: false;
+    -fx-cursor: hand;
+    -fx-text-alignment: right;
+}
+
+.logout-link:hover {
+    -fx-text-fill: #B22222;
+}
+
+.user-info-container {
+    -fx-alignment: center-right;
+    -fx-spacing: 5;
+}
+
+/* User List Styles */
+.user-list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-fixed-cell-size: 80; /* Set fixed height for cells to accommodate two rows of content */
+}
+
+.user-list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 12px 15px;
+    -fx-border-color: transparent transparent #eaeaea transparent;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true; /* Enable text wrapping for long content */
+    -fx-text-overrun: ellipsis; /* Add ellipsis for text that doesn't fit */
+}
+
+/* Set default label text color to ensure consistency */
+.user-list-view .list-cell .label {
+    -fx-text-fill: #333333;
+}
+
+.user-list-view .list-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* Preserve text colors when hovering */
+.user-list-view .list-cell:hover .label {
+    -fx-text-fill: #333333; /* Default color for most labels */
+}
+
+.user-list-view .list-cell:selected {
+    -fx-background-color: #ffe5e5;
+}
+
+/* Explicitly override selection text color to prevent changes */
+.user-list-view .list-cell:selected .label {
+    -fx-text-fill: #333333; /* Default color for most labels */
+}
+
+/* Bold label styling */
+.bold-label {
+    -fx-font-weight: bold !important;
+    -fx-text-fill: #333333 !important;
+}
+
+/* Special styling for role label that should maintain color in all states */
+.role-label {
+    -fx-text-fill: #B22222 !important;
+    -fx-font-weight: bold;
+}
+
+/* Force role label color to stay consistent on hover and selection */
+.user-list-view .list-cell:hover .role-label,
+.user-list-view .list-cell:selected .role-label {
+    -fx-text-fill: #B22222 !important;
+}
+
+/* Special styling for list items with security info */
+.security-info {
+    -fx-text-fill: #555555 !important;
+    -fx-font-style: italic;
+}
+
+/* Force security info color to stay consistent on hover and selection */
+.user-list-view .list-cell:hover .security-info,
+.user-list-view .list-cell:selected .security-info {
+    -fx-text-fill: #555555 !important;
+}
+
+/* Control Bar */
+.control-bar {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-spacing: 15px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+}
+
+/* Action Buttons */
+.action-button {
+    -fx-background-color: #B22222;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-min-width: 140px;
+}
+
+.action-button:hover {
+    -fx-background-color: #8B0000;
+}
+
+.return-button {
+    -fx-background-color: #727272;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.return-button:hover {
+    -fx-background-color: #555555;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 0 3px 0;
+}
+
+/* Content Area */
+.content-area {
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+}
+
+/* Subtitle in Header */
+.subtitle-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+    -fx-alignment: center;
+}
+
+/* Search Bar */
+.search-bar-container {
+    -fx-padding: 0 0 10px 0;
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.search-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999999;
+}
+
+.id-search-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999999;
+    -fx-pref-width: 200px;
+    -fx-max-width: 200px;
+}
+
+.search-field:focused, .id-search-field:focused {
+    -fx-border-color: #B22222;
+}
+
+/* Create User Form Styles */
+.create-user-container {
+    -fx-background-color: white;
+    -fx-padding: 20px 20px 30px 20px; /* Increased bottom padding */
+    -fx-spacing: 15;
+}
+
+.form-container {
+    -fx-background-color: white;
+    -fx-padding: 20px; /* Increased padding from 15px to 20px */
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-spacing: 12; /* Increased spacing from 10 to 12 */
+    -fx-border-color: #eeeeee;
+    -fx-border-radius: 8px;
+}
+
+.input-group {
+    -fx-spacing: 4; /* Slightly increased spacing from 3 to 4 */
+}
+
+.input-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.input-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999999;
+}
+
+.input-field:focused {
+    -fx-border-color: #B22222;
+}
+
+.eye-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-min-width: 40px;
+    -fx-min-height: 30px;
+}
+
+.eye-button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.button-container {
+    -fx-padding: 15px 0 0 0; /* Increased top padding from 10px to 15px */
+}
+
+.cancel-button {
+    -fx-background-color: #727272;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-min-width: 140px;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #555555;
+}
+
+.error-label {
+    -fx-text-fill: #B22222;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+    -fx-background-color: #ffeeee;
+    -fx-background-radius: 5px;
+    -fx-border-color: #ffcccc;
+    -fx-border-radius: 5px;
+} 
