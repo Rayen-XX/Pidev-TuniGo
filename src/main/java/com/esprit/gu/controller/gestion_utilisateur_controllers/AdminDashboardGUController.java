@@ -31,6 +31,9 @@ public class AdminDashboardGUController implements Initializable {
     private TextField searchField;
 
     @FXML
+    private TextField idSearchField;
+
+    @FXML
     private Label welcomeLabel;
 
     @FXML
@@ -134,7 +137,7 @@ public class AdminDashboardGUController implements Initializable {
     }
     
     /**
-     * Set up the search functionality for filtering users by email
+     * Set up the search functionality for filtering users by email and ID
      */
     private void setupSearch() {
         // Initialize filtered list with all users
@@ -143,21 +146,56 @@ public class AdminDashboardGUController implements Initializable {
         // Bind the filtered list to the ListView
         usersList.setItems(filteredUsers);
         
-        // Add listener to search field to update filter predicate on text change
+        // Create a combined search predicate
+        Predicate<Utilisateur> combinedPredicate = createCombinedSearchPredicate();
+        
+        // Add listener to email search field
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredUsers.setPredicate(user -> {
-                // If search field is empty, show all users
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                
-                // Compare email with filter text (case-insensitive)
-                String lowerCaseFilter = newValue.toLowerCase();
-                String email = user.getEmailUtilisateur().toLowerCase();
-                
-                return email.contains(lowerCaseFilter);
-            });
+            filteredUsers.setPredicate(createCombinedSearchPredicate());
         });
+        
+        // Add listener to ID search field
+        idSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredUsers.setPredicate(createCombinedSearchPredicate());
+        });
+    }
+    
+    /**
+     * Creates a combined search predicate that checks both email and ID fields
+     */
+    private Predicate<Utilisateur> createCombinedSearchPredicate() {
+        String emailFilter = searchField.getText();
+        String idFilter = idSearchField.getText();
+        
+        // If both fields are empty, show all users
+        if ((emailFilter == null || emailFilter.isEmpty()) && 
+            (idFilter == null || idFilter.isEmpty())) {
+            return user -> true;
+        }
+        
+        Predicate<Utilisateur> emailPredicate = user -> true; // Default to match all
+        Predicate<Utilisateur> idPredicate = user -> true;    // Default to match all
+        
+        // Create email filter if email search field is not empty
+        if (emailFilter != null && !emailFilter.isEmpty()) {
+            String lowerCaseEmailFilter = emailFilter.toLowerCase();
+            emailPredicate = user -> {
+                String email = user.getEmailUtilisateur().toLowerCase();
+                return email.contains(lowerCaseEmailFilter);
+            };
+        }
+        
+        // Create ID filter if ID search field is not empty
+        if (idFilter != null && !idFilter.isEmpty()) {
+            idPredicate = user -> {
+                // Convert both to strings for comparison to handle partial ID search
+                String userId = String.valueOf(user.getIdUtilisateur());
+                return userId.contains(idFilter);
+            };
+        }
+        
+        // Combine predicates with AND logic - both conditions must be satisfied
+        return emailPredicate.and(idPredicate);
     }
 
     private void loadUsers() {

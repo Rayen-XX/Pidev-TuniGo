@@ -47,6 +47,10 @@
             
             <!-- Search Bar -->
             <HBox styleClass="search-bar-container">
+                <!-- ID Search - Smaller width -->
+                <TextField fx:id="idSearchField" promptText="Rechercher par ID..." styleClass="id-search-field" />
+                
+                <!-- Email Search - Larger width -->
                 <TextField fx:id="searchField" promptText="Rechercher par email..." styleClass="search-field" HBox.hgrow="ALWAYS" />
             </HBox>
             
