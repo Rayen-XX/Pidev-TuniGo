@@ -14,48 +14,49 @@
 <AnchorPane minHeight="600" minWidth="800"
             xmlns="http://javafx.com/javafx/17.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.LoginController">
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.LoginController"
+            stylesheets="@../../css/auth_forms.css">
     <children>
         <!-- Split the screen horizontally into two equal parts -->
         <HBox prefHeight="600" prefWidth="800" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <!-- Left side: Login Form -->
             <VBox alignment="CENTER" spacing="10" prefWidth="400"
-                  style="-fx-background-color: white; -fx-padding: 40;" HBox.hgrow="ALWAYS">
+                  styleClass="auth-container" HBox.hgrow="ALWAYS">
                 <children>
-                    <!-- Header Label with custom font family; unchanged -->
-                    <Label text="Se connecter" style="-fx-font-family: 'Montserrat'; -fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;" />
+                    <!-- Header Label -->
+                    <Label text="Se connecter" styleClass="auth-title" />
 
-                    <!-- Reduced height for email input: padding reduced from 10 to 5 and pref-height set to 30 -->
-                    <TextField fx:id="emailField" promptText="Email" maxWidth="300"
-                               style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5; -fx-pref-height: 30;" />
+                    <!-- Email input field -->
+                    <TextField fx:id="emailField" promptText="Email" 
+                              styleClass="auth-input" />
 
                     <!-- Password Field with Toggle -->
                     <StackPane maxWidth="300">
-                        <!-- Reduced padding for password input -->
                         <PasswordField fx:id="passwordField" promptText="Mot de passe"
-                                       style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;" />
+                                      styleClass="auth-input, auth-password" />
                         <TextField fx:id="passwordVisibleField" promptText="Mot de passe"
-                                   style="-fx-background-color: #f5f5f5; -fx-border-color: #565656; -fx-border-width: 1; -fx-border-radius: 5; -fx-font-size: 16px; -fx-text-fill: #333; -fx-padding: 5 40 5 10; -fx-pref-height: 30;"
-                                   visible="false" managed="false" />
+                                  styleClass="auth-input, auth-password"
+                                  visible="false" managed="false" />
                         <Button fx:id="togglePasswordButton" text="👁" onAction="#togglePasswordVisibility"
-                                style="-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 0 10 0 0;"
-                                StackPane.alignment="CENTER_RIGHT"/>
+                               styleClass="eye-button"
+                               StackPane.alignment="CENTER_RIGHT"/>
                     </StackPane>
-                    <!-- Add this Hyperlink immediately after the StackPane for password input -->
+                    
+                    <!-- Forgot password link -->
                     <Hyperlink text="Mot de passe oublié ?" onAction="#goToForgotPassword"
-                               style="-fx-text-fill: #565656; -fx-font-size: 12px;" />
-
+                              styleClass="auth-link" />
 
                     <!-- Global error label for login validation -->
-                    <Label fx:id="globalErrorLabel" maxWidth="300" textFill="red" visible="false"
-                           style="-fx-font-size: 14px;" />
+                    <Label fx:id="globalErrorLabel" styleClass="error-label" visible="false" />
 
+                    <!-- Login button -->
                     <Button text="se connecter" onAction="#handleLogin"
-                            style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;" />
+                           styleClass="auth-button" />
 
+                    <!-- Registration link -->
                     <Hyperlink text="Vous n'avez pas de compte ? Inscrivez-vous" onAction="#goToRegister"
-                               style="-fx-text-fill: #565656; -fx-font-size: 14px;" />
+                              styleClass="auth-link" />
                 </children>
             </VBox>
 

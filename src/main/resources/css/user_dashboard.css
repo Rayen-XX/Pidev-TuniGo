@@ -160,7 +160,7 @@
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
-    -fx-padding: 0 0 5px 0;
+    -fx-padding: 0 0 3px 0;
 }
 
 /* Content Area */
@@ -208,4 +208,87 @@
 
 .search-field:focused, .id-search-field:focused {
     -fx-border-color: #B22222;
+}
+
+/* Create User Form Styles */
+.create-user-container {
+    -fx-background-color: white;
+    -fx-padding: 20px 20px 30px 20px; /* Increased bottom padding */
+    -fx-spacing: 15;
+}
+
+.form-container {
+    -fx-background-color: white;
+    -fx-padding: 20px; /* Increased padding from 15px to 20px */
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-spacing: 12; /* Increased spacing from 10 to 12 */
+    -fx-border-color: #eeeeee;
+    -fx-border-radius: 8px;
+}
+
+.input-group {
+    -fx-spacing: 4; /* Slightly increased spacing from 3 to 4 */
+}
+
+.input-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.input-field {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999999;
+}
+
+.input-field:focused {
+    -fx-border-color: #B22222;
+}
+
+.eye-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-min-width: 40px;
+    -fx-min-height: 30px;
+}
+
+.eye-button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.button-container {
+    -fx-padding: 15px 0 0 0; /* Increased top padding from 10px to 15px */
+}
+
+.cancel-button {
+    -fx-background-color: #727272;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-min-width: 140px;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #555555;
+}
+
+.error-label {
+    -fx-text-fill: #B22222;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+    -fx-background-color: #ffeeee;
+    -fx-background-radius: 5px;
+    -fx-border-color: #ffcccc;
+    -fx-border-radius: 5px;
 } 

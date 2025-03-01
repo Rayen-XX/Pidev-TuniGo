@@ -1,34 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.*?>
 <?import javafx.collections.FXCollections?>
-
+<?import javafx.geometry.Insets?>
 <?import java.lang.String?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.UpdateUserController"
-            minWidth="800" minHeight="600">
+            minWidth="800" minHeight="580" prefHeight="620.0" prefWidth="900.0" 
+            stylesheets="@../../css/user_dashboard.css">
     <children>
-        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-padding: 40;"
+        <VBox alignment="TOP_CENTER" spacing="15" styleClass="create-user-container"
               AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <children>
-                <Label text="Modifier Utilisateur" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
-                <TextField fx:id="nomField" promptText="Nom" maxWidth="300"/>
-                <TextField fx:id="prenomField" promptText="Prenom" maxWidth="300"/>
-                <TextField fx:id="emailField" promptText="Email" maxWidth="300"/>
-                <PasswordField fx:id="motdepasseField" promptText="Password" maxWidth="300"/>
-                <TextField fx:id="telephoneField" promptText="Phone Number" maxWidth="300"/>
-                <ComboBox fx:id="roleComboBox" prefWidth="300">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="utilisateur"/>
-                            <String fx:value="admin"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-                <Button text="Modifier" onAction="#handleUpdate"/>
-            </children>
+            
+            <!-- Title Section -->
+            <Label text="Modifier un Utilisateur" styleClass="title-label" />
+            
+            <!-- Global Error Message -->
+            <Label fx:id="globalErrorLabel" styleClass="error-label" visible="false" 
+                   wrapText="true" maxWidth="800" textAlignment="CENTER" />
+            
+            <!-- Form Fields Container - Now in two columns -->
+            <HBox spacing="20" alignment="CENTER" maxWidth="850">
+                <!-- Left Column -->
+                <VBox styleClass="form-container" spacing="10" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="400">
+                    <!-- Personal Information Section -->
+                    <Label text="Informations Personnelles" styleClass="section-title" />
+                    
+                    <!-- Nom Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Nom" styleClass="input-label" />
+                        <TextField fx:id="nomField" promptText="Entrez le nom" styleClass="input-field" />
+                    </VBox>
+                    
+                    <!-- Prénom Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Prénom" styleClass="input-label" />
+                        <TextField fx:id="prenomField" promptText="Entrez le prénom" styleClass="input-field" />
+                    </VBox>
+                    
+                    <!-- Email Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Email" styleClass="input-label" />
+                        <TextField fx:id="emailField" promptText="Entrez l'email" styleClass="input-field" />
+                    </VBox>
+                    
+                    <!-- Password Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Mot de passe" styleClass="input-label" />
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <PasswordField fx:id="motdepasseField" promptText="Entrez le mot de passe" 
+                                          styleClass="input-field" HBox.hgrow="ALWAYS" />
+                            <Button text="👁" onAction="#togglePasswordVisibility" styleClass="eye-button" />
+                        </HBox>
+                        <TextField fx:id="motdepasseVisibleField" promptText="Entrez le mot de passe" 
+                                  styleClass="input-field" visible="false" managed="false" />
+                    </VBox>
+                </VBox>
+                
+                <!-- Right Column -->
+                <VBox styleClass="form-container" spacing="10" HBox.hgrow="ALWAYS" maxWidth="Infinity" prefWidth="400">
+                    <!-- Additional Information -->
+                    <Label text="Informations Additionnelles" styleClass="section-title" />
+                    
+                    <!-- Phone Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Numéro de téléphone" styleClass="input-label" />
+                        <TextField fx:id="telephoneField" promptText="Entrez le numéro de téléphone" styleClass="input-field" />
+                    </VBox>
+                    
+                    <!-- Role Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Rôle" styleClass="input-label" />
+                        <ComboBox fx:id="roleComboBox" promptText="Sélectionnez un rôle" styleClass="input-field">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="utilisateur"/>
+                                    <String fx:value="admin"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+                    
+                    <!-- Security Question Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Question de sécurité" styleClass="input-label" />
+                        <ComboBox fx:id="securityQuestionComboBox" promptText="Sélectionnez une question" styleClass="input-field">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Quel est le nom de jeune fille de votre mère ?"/>
+                                    <String fx:value="Quel est le nom de votre premier animal de compagnie ?"/>
+                                    <String fx:value="Quel est le nom de votre école primaire ?"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+                    
+                    <!-- Security Answer Field -->
+                    <VBox styleClass="input-group">
+                        <Label text="Réponse" styleClass="input-label" />
+                        <TextField fx:id="securityAnswerField" promptText="Entrez votre réponse" styleClass="input-field" />
+                    </VBox>
+                </VBox>
+            </HBox>
+            
+            <!-- Action Buttons -->
+            <HBox spacing="15" alignment="CENTER" styleClass="button-container">
+                <Button text="Modifier" onAction="#handleUpdate" styleClass="action-button" />
+                <Button text="Annuler" onAction="#handleCancel" styleClass="cancel-button" />
+            </HBox>
         </VBox>
     </children>
 </AnchorPane>

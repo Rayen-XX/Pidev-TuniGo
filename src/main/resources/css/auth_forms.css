@@ -1,0 +1,101 @@
+/* Authentication Forms Styles */
+
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Form container styles */
+.auth-container {
+    -fx-background-color: white;
+    -fx-padding: 40px;
+}
+
+/* Title styling */
+.auth-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #B22222;
+    -fx-alignment: center;
+    -fx-font-family: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Input field styling */
+.auth-input {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #565656;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-padding: 5px;
+    -fx-pref-height: 30px;
+    -fx-max-width: 300px;
+    -fx-prompt-text-fill: #999999;
+}
+
+/* Focused state with red border like createUser form */
+.auth-input:focused {
+    -fx-border-color: #B22222;
+    -fx-prompt-text-fill: #999999; /* Keep placeholder visible on focus */
+}
+
+/* Password field with right padding for eye button */
+.auth-password {
+    -fx-padding: 5px 40px 5px 10px;
+}
+
+/* Eye button for password toggle */
+.eye-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 0 10px 0 0;
+}
+
+/* ChoiceBox style for security questions */
+.auth-choice-box {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #565656;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-font-size: 16px;
+    -fx-pref-height: 30px;
+    -fx-max-width: 300px;
+}
+
+.auth-choice-box:focused {
+    -fx-border-color: #B22222;
+}
+
+/* Submit button styling */
+.auth-button {
+    -fx-background-color: #B22222;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-padding: 5px 20px;
+}
+
+.auth-button:hover {
+    -fx-background-color: #8B0000;
+}
+
+/* Hyperlink styling */
+.auth-link {
+    -fx-text-fill: #565656;
+    -fx-font-size: 14px;
+    -fx-underline: false;
+}
+
+.auth-link:hover {
+    -fx-text-fill: #B22222;
+}
+
+/* Error message styling */
+.error-label {
+    -fx-text-fill: #B22222;
+    -fx-font-size: 14px;
+    -fx-max-width: 300px;
+} 
