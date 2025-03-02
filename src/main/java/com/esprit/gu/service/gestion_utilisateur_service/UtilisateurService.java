@@ -41,6 +41,11 @@ public class UtilisateurService {
         return utilisateurRepository.getUtilisateurByEmail(email);
     }
 
+    // Get a user by email - Alias for Facebook auth compatibility
+    public Utilisateur getUserByEmail(String email) {
+        return getUtilisateurByEmail(email);
+    }
+
     // Update an existing user
     public boolean updateUtilisateur(Utilisateur utilisateur) {
         return utilisateurRepository.updateUtilisateur(utilisateur);

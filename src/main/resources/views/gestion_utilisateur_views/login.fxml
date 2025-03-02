@@ -51,8 +51,18 @@
                     <Label fx:id="globalErrorLabel" styleClass="error-label" visible="false" />
 
                     <!-- Login button -->
-                    <Button text="se connecter" onAction="#handleLogin"
+                    <Button fx:id="loginButton" text="se connecter" onAction="#handleLogin"
                            styleClass="auth-button" />
+
+                    <!-- Facebook Login button -->
+                    <Button onAction="#handleFacebookLogin" styleClass="facebook-button">
+                        <graphic>
+                            <HBox spacing="10" alignment="CENTER">
+                                <Label text="f" styleClass="facebook-icon" />
+                                <Label text="Se connecter avec Facebook" styleClass="facebook-text" />
+                            </HBox>
+                        </graphic>
+                    </Button>
 
                     <!-- Registration link -->
                     <Hyperlink text="Vous n'avez pas de compte ? Inscrivez-vous" onAction="#goToRegister"
