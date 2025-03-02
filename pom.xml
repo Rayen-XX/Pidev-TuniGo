@@ -48,6 +48,27 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
+        
+        <!-- RestFB - Java Facebook Graph API Client -->
+        <dependency>
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+            <version>2023.6.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.xml.bind</groupId>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <!-- JavaFX WebView for OAuth flow -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
     </dependencies>
     <!-- Plugin to help run JavaFX applications -->
     <build>
@@ -58,6 +79,12 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.esprit.gu.MainApp</mainClass>
+                    <options>
+                        <option>--add-opens</option>
+                        <option>java.base/java.lang=ALL-UNNAMED</option>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.fxml,javafx.web,javafx.graphics</option>
+                    </options>
                 </configuration>
             </plugin>
         </plugins>

@@ -12,21 +12,21 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load the FXML file
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/views/gestion_utilisateur_views/register.fxml"));
+            // Load the login FXML file
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/views/gestion_utilisateur_views/login.fxml"));
             Parent root = loader.load();
 
             // Set up the scene
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("TuniGo");
+            primaryStage.setTitle("TuniGo - Connexion");
             primaryStage.setMinWidth(800);
             primaryStage.setMinHeight(600);
             // Show the application window
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error loading FXML file. Make sure the file path is correct.");
+            System.err.println("Error loading FXML file: " + e.getMessage());
         }
     }
 
