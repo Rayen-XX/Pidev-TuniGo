@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,15 +21,6 @@ public class ProfileController implements Initializable {
 
     @FXML
     private Label welcomeLabel;
-    
-    @FXML
-    private Label userFullNameLabel;
-    
-    @FXML
-    private Label userEmailLabel;
-    
-    @FXML
-    private Label userPhoneLabel;
 
     @FXML
     private Hyperlink logoutLink;
@@ -42,18 +34,8 @@ public class ProfileController implements Initializable {
         Utilisateur currentUser = Session.getCurrentUser();
         if (currentUser != null) {
             welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur());
-            
-            // Set the user profile information
-            userFullNameLabel.setText(currentUser.getNomUtilisateur() + " " + currentUser.getPrenomUtilisateur());
-            userEmailLabel.setText("Email: " + currentUser.getEmailUtilisateur());
-            userPhoneLabel.setText("Téléphone: " + currentUser.getNumeroTelephoneUtilisateur());
         } else {
             welcomeLabel.setText("Utilisateur non connecté");
-            
-            // Set default values if no user is logged in
-            userFullNameLabel.setText("Non connecté");
-            userEmailLabel.setText("Email: N/A");
-            userPhoneLabel.setText("Téléphone: N/A");
         }
 
         // Set up logout action.
@@ -79,14 +61,8 @@ public class ProfileController implements Initializable {
             stage.setTitle("Update Profile");
             stage.showAndWait();
 
-            // Optionally, refresh the welcome label with updated info:
-            Utilisateur currentUser = Session.getCurrentUser();
-            if (currentUser != null) {
-                welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur());
-                userFullNameLabel.setText(currentUser.getNomUtilisateur() + " " + currentUser.getPrenomUtilisateur());
-                userEmailLabel.setText("Email: " + currentUser.getEmailUtilisateur());
-                userPhoneLabel.setText("Téléphone: " + currentUser.getNumeroTelephoneUtilisateur());
-            }
+            // Refresh the welcome label with updated info
+            refreshProfileInfo();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,10 +85,48 @@ public class ProfileController implements Initializable {
         try {
             // Load the moyTransport.fxml file
             Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/moyTransport.fxml"));
-            Stage stage = (Stage) passerReclamationButton.getScene().getWindow();
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void openUpdateProfile() {
+        try {
+            // Load the update profile view
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/updateProfile.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Modifier Profil");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            
+            // Refresh the profile information after updating
+            refreshProfileInfo();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void navigateToTransport() {
+        try {
+            // Load the transport options view
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/moyTransport.fxml"));
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void refreshProfileInfo() {
+        // Refresh user information in case it was updated
+        Utilisateur currentUser = Session.getCurrentUser();
+        if (currentUser != null) {
+            welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur());
         }
     }
 }

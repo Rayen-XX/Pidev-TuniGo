@@ -48,30 +48,30 @@
                 <VBox alignment="CENTER" spacing="30" styleClass="transport-section">
                     <HBox alignment="CENTER" spacing="50">
                         <!-- Transport Public Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTransportPublic">
-                            <!-- Temporarily commenting out the transport image
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTransportPublic" alignment="CENTER">
+                           
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="true">
-                                    <Image url="/images/transport_public.png"/>
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/transportPublic.jpg"/>
                                 </ImageView>
                             </VBox>
-                            -->
-                            <Label text="Transport Public" styleClass="transport-card-title"/>
-                            <Label text="Bus, métro, train et autres moyens de transport public." styleClass="transport-card-description"/>
+                           
+                            <Label text="Transport Public" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Bus, métro, train et autres moyens de transport public." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToTransportPublic"/>
                         </VBox>
                         
                         <!-- Transport Privé Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTransportPrive">
-                            <!-- Temporarily commenting out the transport image
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTransportPrive" alignment="CENTER">
+                           
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="true">
-                                    <Image url="/images/transport_prive.png"/>
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/transportPrivé.jpeg"/>
                                 </ImageView>
                             </VBox>
-                            -->
-                            <Label text="Transport Privé" styleClass="transport-card-title"/>
-                            <Label text="Taxis, scooters et autres options de transport privé." styleClass="transport-card-description"/>
+                            
+                            <Label text="Transport Privé" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Taxis, scooters et autres options de transport privé." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToTransportPrive"/>
                         </VBox>
                     </HBox>
