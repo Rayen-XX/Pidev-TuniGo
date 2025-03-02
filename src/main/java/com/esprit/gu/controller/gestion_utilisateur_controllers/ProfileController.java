@@ -20,6 +20,15 @@ public class ProfileController implements Initializable {
 
     @FXML
     private Label welcomeLabel;
+    
+    @FXML
+    private Label userFullNameLabel;
+    
+    @FXML
+    private Label userEmailLabel;
+    
+    @FXML
+    private Label userPhoneLabel;
 
     @FXML
     private Hyperlink logoutLink;
@@ -32,10 +41,19 @@ public class ProfileController implements Initializable {
         // Get the current user from session and display his/her name.
         Utilisateur currentUser = Session.getCurrentUser();
         if (currentUser != null) {
-            welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur() + " "
-                    + currentUser.getPrenomUtilisateur());
+            welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur());
+            
+            // Set the user profile information
+            userFullNameLabel.setText(currentUser.getNomUtilisateur() + " " + currentUser.getPrenomUtilisateur());
+            userEmailLabel.setText("Email: " + currentUser.getEmailUtilisateur());
+            userPhoneLabel.setText("Téléphone: " + currentUser.getNumeroTelephoneUtilisateur());
         } else {
             welcomeLabel.setText("Utilisateur non connecté");
+            
+            // Set default values if no user is logged in
+            userFullNameLabel.setText("Non connecté");
+            userEmailLabel.setText("Email: N/A");
+            userPhoneLabel.setText("Téléphone: N/A");
         }
 
         // Set up logout action.
@@ -64,17 +82,20 @@ public class ProfileController implements Initializable {
             // Optionally, refresh the welcome label with updated info:
             Utilisateur currentUser = Session.getCurrentUser();
             if (currentUser != null) {
-                welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur() + " "
-                        + currentUser.getPrenomUtilisateur());
+                welcomeLabel.setText("Bonjour, " + currentUser.getNomUtilisateur());
+                userFullNameLabel.setText(currentUser.getNomUtilisateur() + " " + currentUser.getPrenomUtilisateur());
+                userEmailLabel.setText("Email: " + currentUser.getEmailUtilisateur());
+                userPhoneLabel.setText("Téléphone: " + currentUser.getNumeroTelephoneUtilisateur());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
     @FXML
     private void passerReclamation() {
         try {
-            // Load the admin_dashboard_gu.fxml file
+            // Load the reclamation page
             Parent root = FXMLLoader.load(getClass().getResource("/views/AjouterReclamation.fxml"));
             Stage stage = (Stage) passerReclamationButton.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -82,5 +103,16 @@ public class ProfileController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    
+    @FXML
+    private void reserverMaintenant() {
+        try {
+            // Load the moyTransport.fxml file
+            Parent root = FXMLLoader.load(getClass().getResource("/views/gestion_utilisateur_views/moyTransport.fxml"));
+            Stage stage = (Stage) passerReclamationButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

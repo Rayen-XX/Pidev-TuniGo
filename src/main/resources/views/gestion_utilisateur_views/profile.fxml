@@ -2,50 +2,72 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.ProfileController"
-            minWidth="800" minHeight="600">
+            minWidth="800" minHeight="600"
+            stylesheets="/styles/transport_styles.css">
     <children>
         <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <top>
-                <HBox spacing="50" alignment="CENTER" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label fx:id="welcomeLabel"
-                               style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #333333;"/>
-                        <Label text="Profil"
-                               style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"
-                               BorderPane.alignment="CENTER"/>
-                        <Button text="Modifier Profile" onAction="#handleUpdateProfile"
-                                style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
-                        <Hyperlink fx:id="logoutLink" text="Déconnecter"
-                                   style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
-
-                    </children>
-                </HBox>
+                <VBox>
+                    <!-- Header with logo and welcome message -->
+                    <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-background-color: #B22222; -fx-padding: 10;">
+                        <!-- Temporarily commenting out the logo image 
+                        <ImageView fitHeight="50" fitWidth="50" preserveRatio="true">
+                            <Image url="/images/logo.png"/>
+                        </ImageView>
+                        -->
+                        <Label text="TuniGo" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <HBox HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="welcomeLabel" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Hyperlink fx:id="logoutLink" text="Déconnecter" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    </HBox>
+                    
+                    <!-- Navigation title -->
+                    <HBox alignment="CENTER" style="-fx-padding: 20 0 10 0;">
+                        <Label text="Profil" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #B22222;"/>
+                    </HBox>
+                </VBox>
             </top>
             <center>
-
+                <VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+                    <HBox alignment="CENTER">
+                        <Button text="Modifier Profile" onAction="#handleUpdateProfile"
+                                styleClass="primary-button"/>
+                    </HBox>
+                    
+                    <!-- Profile content will go here -->
+                    <VBox alignment="CENTER" spacing="10" styleClass="profile-container">
+                        <!-- Temporarily commenting out the profile avatar image
+                        <ImageView fitHeight="120" fitWidth="120" preserveRatio="true">
+                            <Image url="/images/profile_avatar.png"/>
+                        </ImageView>
+                        -->
+                        <Label fx:id="userFullNameLabel" styleClass="profile-name"/>
+                        <Label fx:id="userEmailLabel" styleClass="profile-email"/>
+                        <Label fx:id="userPhoneLabel" styleClass="profile-phone"/>
+                    </VBox>
+                </VBox>
             </center>
             <bottom>
-                <HBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
-                    <padding>
-                        <Insets bottom="20"/>
-                    </padding>
-                    <children>
-                        <Button text="Réserver maintenant"
-                                style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"/>
-                        <Button text="Passer une reclamattion"
-                                style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"
-                                onAction="#passerReclamation" fx:id="passerReclamationButton"/>
-                    </children>
-                </HBox>
+                <VBox>
+                    <HBox alignment="CENTER" spacing="30" BorderPane.alignment="CENTER" style="-fx-padding: 20;">
+                        <Button text="Réserver maintenant" onAction="#reserverMaintenant"
+                                styleClass="reservation-button"/>
+                        <Button text="Passer une réclamation" onAction="#passerReclamation"
+                                fx:id="passerReclamationButton" styleClass="reclamation-button"/>
+                    </HBox>
+                </VBox>
             </bottom>
         </BorderPane>
     </children>

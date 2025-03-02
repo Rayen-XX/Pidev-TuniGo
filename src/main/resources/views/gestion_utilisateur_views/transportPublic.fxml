@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.TransportPublicController"
+            minWidth="800" minHeight="600"
+            stylesheets="/styles/transport_styles.css">
+    <children>
+        <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <top>
+                <VBox>
+                    <!-- Header with logo and welcome message -->
+                    <HBox spacing="20" alignment="CENTER_LEFT" styleClass="header">
+                        <padding>
+                            <Insets left="20" right="20"/>
+                        </padding>
+                        <!-- Temporarily commenting out the logo image -->
+                        <!--
+                        <ImageView fitHeight="50" fitWidth="50" preserveRatio="true">
+                            <Image url="/images/logo.png"/>
+                        </ImageView>
+                        -->
+                        <Label text="TuniGo" styleClass="header-label"/>
+                        <HBox HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="welcomeLabel" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Hyperlink fx:id="logoutLink" text="Déconnecter" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                    </HBox>
+                    
+                    <!-- Navigation title -->
+                    <HBox alignment="CENTER" style="-fx-padding: 20 0 10 0;">
+                        <Label text="Transport Public" styleClass="transport-section-title"/>
+                    </HBox>
+                </VBox>
+            </top>
+            
+            <center>
+                <VBox alignment="CENTER" spacing="30" styleClass="transport-section">
+                    <HBox alignment="CENTER" spacing="30">
+                        <!-- Bus Card -->
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToBus">
+                            <VBox styleClass="transport-image-container" alignment="CENTER">
+                                <!-- Temporarily commenting out the bus image -->
+                                <!--
+                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
+                                    <Image url="/images/bus.png"/>
+                                </ImageView>
+                                -->
+                            </VBox>
+                            <Label text="Bus" styleClass="transport-card-title"/>
+                            <Label text="Réservez votre billet de bus pour voyager à travers la Tunisie." styleClass="transport-card-description"/>
+                            <Button text="Choisir" styleClass="card-button" onAction="#navigateToBus"/>
+                        </VBox>
+                        
+                        <!-- Métro Card -->
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToMetro">
+                            <VBox styleClass="transport-image-container" alignment="CENTER">
+                                <!-- Temporarily commenting out the metro image -->
+                                <!--
+                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
+                                    <Image url="/images/metro.png"/>
+                                </ImageView>
+                                -->
+                            </VBox>
+                            <Label text="Métro" styleClass="transport-card-title"/>
+                            <Label text="Réservez votre billet de métro pour vos déplacements urbains." styleClass="transport-card-description"/>
+                            <Button text="Choisir" styleClass="card-button" onAction="#navigateToMetro"/>
+                        </VBox>
+                        
+                        <!-- Train Card -->
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTrain">
+                            <VBox styleClass="transport-image-container" alignment="CENTER">
+                                <!-- Temporarily commenting out the train image -->
+                                <!--
+                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
+                                    <Image url="/images/train.png"/>
+                                </ImageView>
+                                -->
+                            </VBox>
+                            <Label text="Train" styleClass="transport-card-title"/>
+                            <Label text="Réservez votre billet de train pour voyager entre les villes." styleClass="transport-card-description"/>
+                            <Button text="Choisir" styleClass="card-button" onAction="#navigateToTrain"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </center>
+            
+            <bottom>
+                <HBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+                    <Button text="Retour" styleClass="return-button" onAction="#retourMoyTransport"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane> 
