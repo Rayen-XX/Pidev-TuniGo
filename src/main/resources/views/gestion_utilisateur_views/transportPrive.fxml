@@ -49,32 +49,30 @@
                 <VBox alignment="CENTER" spacing="30" styleClass="transport-section">
                     <HBox alignment="CENTER" spacing="50">
                         <!-- Scooter Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToScooter">
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToScooter" alignment="CENTER">
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <!-- Temporarily commenting out the scooter image -->
-                                <!--
-                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
-                                    <Image url="/images/scooter.png"/>
+                                
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/taxiScooter.png"/>
                                 </ImageView>
-                                -->
+                                
                             </VBox>
-                            <Label text="Scooter" styleClass="transport-card-title"/>
-                            <Label text="Louez un scooter pour vous déplacer librement en ville." styleClass="transport-card-description"/>
+                            <Label text="Scooter" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Louez un scooter pour vous déplacer librement en ville." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToScooter"/>
                         </VBox>
                         
                         <!-- Taxi Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTaxi">
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTaxi" alignment="CENTER">
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <!-- Temporarily commenting out the taxi image -->
-                                <!--
-                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
-                                    <Image url="/images/taxi.png"/>
+                               
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/taxi.jpeg"/>
                                 </ImageView>
-                                -->
+                            
                             </VBox>
-                            <Label text="Taxi" styleClass="transport-card-title"/>
-                            <Label text="Réservez un taxi pour un trajet personnalisé et confortable." styleClass="transport-card-description"/>
+                            <Label text="Taxi" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Réservez un taxi pour un trajet personnalisé et confortable." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToTaxi"/>
                         </VBox>
                     </HBox>

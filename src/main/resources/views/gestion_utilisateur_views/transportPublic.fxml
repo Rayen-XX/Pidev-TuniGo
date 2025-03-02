@@ -47,49 +47,46 @@
             
             <center>
                 <VBox alignment="CENTER" spacing="30" styleClass="transport-section">
-                    <HBox alignment="CENTER" spacing="30">
+                    <HBox alignment="CENTER" spacing="50">
                         <!-- Bus Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToBus">
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToBus" alignment="CENTER">
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <!-- Temporarily commenting out the bus image -->
-                                <!--
-                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
-                                    <Image url="/images/bus.png"/>
+                                
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/bus.jpeg"/>
                                 </ImageView>
-                                -->
+                                
                             </VBox>
-                            <Label text="Bus" styleClass="transport-card-title"/>
-                            <Label text="Réservez votre billet de bus pour voyager à travers la Tunisie." styleClass="transport-card-description"/>
+                            <Label text="Bus" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Réservez votre billet de bus pour voyager à travers la Tunisie." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToBus"/>
                         </VBox>
                         
                         <!-- Métro Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToMetro">
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToMetro" alignment="CENTER">
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <!-- Temporarily commenting out the metro image -->
-                                <!--
-                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
-                                    <Image url="/images/metro.png"/>
+                               
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/metro.jpg"/>
                                 </ImageView>
-                                -->
+                                
                             </VBox>
-                            <Label text="Métro" styleClass="transport-card-title"/>
-                            <Label text="Réservez votre billet de métro pour vos déplacements urbains." styleClass="transport-card-description"/>
+                            <Label text="Métro" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Réservez votre billet de métro pour vos déplacements urbains." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToMetro"/>
                         </VBox>
                         
                         <!-- Train Card -->
-                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTrain">
+                        <VBox styleClass="transport-card" onMouseClicked="#navigateToTrain" alignment="CENTER">
                             <VBox styleClass="transport-image-container" alignment="CENTER">
-                                <!-- Temporarily commenting out the train image -->
-                                <!--
-                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true">
-                                    <Image url="/images/train.png"/>
+                                
+                                <ImageView fitHeight="180" fitWidth="280" preserveRatio="false">
+                                    <Image url="@../../Images/gestion_utilisateur_images/train.jpeg"/>
                                 </ImageView>
-                                -->
+                              
                             </VBox>
-                            <Label text="Train" styleClass="transport-card-title"/>
-                            <Label text="Réservez votre billet de train pour voyager entre les villes." styleClass="transport-card-description"/>
+                            <Label text="Train" styleClass="transport-card-title" alignment="CENTER"/>
+                            <Label text="Réservez votre billet de train pour voyager entre les villes." styleClass="transport-card-description" alignment="CENTER" textAlignment="CENTER"/>
                             <Button text="Choisir" styleClass="card-button" onAction="#navigateToTrain"/>
                         </VBox>
                     </HBox>

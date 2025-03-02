@@ -43,54 +43,43 @@
                     
                     <!-- Navigation title -->
                     <HBox alignment="CENTER" style="-fx-padding: 20 0 10 0;">
-                        <Label text="Réservation de Bus" styleClass="transport-section-title"/>
+                        <Label text="Bus" styleClass="transport-section-title"/>
                     </HBox>
                 </VBox>
             </top>
             
             <center>
-                <VBox alignment="CENTER" spacing="20" styleClass="transport-section">
-                    <!-- Bus image -->
-                    <HBox alignment="CENTER">
-                        <!-- Temporarily commenting out the bus image -->
-                        <!--
-                        <ImageView fitHeight="200" fitWidth="300" preserveRatio="true">
-                            <Image url="/images/bus_large.png"/>
-                        </ImageView>
-                        -->
-                    </HBox>
-                    
-                    <!-- Reservation form -->
-                    <VBox styleClass="card" spacing="15">
-                        <padding>
-                            <Insets topRightBottomLeft="30"/>
-                        </padding>
-                        
-                        <Label text="Informations de voyage" styleClass="card-title"/>
+                <VBox alignment="CENTER" spacing="30" styleClass="transport-section">
+                    <VBox maxWidth="600" spacing="15" styleClass="form-container">
+                        <Label text="Réserver votre trajet en bus" styleClass="form-title"/>
                         
                         <HBox spacing="20">
-                            <Label text="Ville de départ:" style="-fx-font-weight: bold;"/>
-                            <ComboBox fx:id="departComboBox" promptText="Sélectionnez une ville" prefWidth="200"/>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Ville de départ" styleClass="form-label"/>
+                                <ComboBox fx:id="departComboBox" promptText="Sélectionner une ville" maxWidth="Infinity"/>
+                            </VBox>
+                            
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Ville d'arrivée" styleClass="form-label"/>
+                                <ComboBox fx:id="arriveeComboBox" promptText="Sélectionner une ville" maxWidth="Infinity"/>
+                            </VBox>
                         </HBox>
                         
                         <HBox spacing="20">
-                            <Label text="Ville d'arrivée:" style="-fx-font-weight: bold;"/>
-                            <ComboBox fx:id="arriveeComboBox" promptText="Sélectionnez une ville" prefWidth="200"/>
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Date de départ" styleClass="form-label"/>
+                                <DatePicker fx:id="dateDepartPicker" promptText="Sélectionner une date" maxWidth="Infinity"/>
+                            </VBox>
+                            
+                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                <Label text="Nombre de passagers" styleClass="form-label"/>
+                                <TextField fx:id="passagersTextField" promptText="Ex: 2" maxWidth="Infinity"/>
+                            </VBox>
                         </HBox>
                         
-                        <HBox spacing="20">
-                            <Label text="Date de départ:" style="-fx-font-weight: bold;"/>
-                            <DatePicker fx:id="dateDepartPicker" promptText="Choisissez une date" prefWidth="200"/>
-                        </HBox>
-                        
-                        <HBox spacing="20">
-                            <Label text="Nombre de passagers:" style="-fx-font-weight: bold;"/>
-                            <TextField fx:id="passagersTextField" promptText="Nombre de passagers" prefWidth="200"/>
-                        </HBox>
-                        
-                        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 15 0 0 0;">
+                        <HBox alignment="CENTER" spacing="20" style="-fx-padding: 20 0 0 0;">
                             <Button text="Vérifier disponibilité" styleClass="primary-button" onAction="#verifierDisponibilite"/>
-                            <Button text="Réserver" styleClass="reservation-button" onAction="#reserverBus"/>
+                            <Button text="Réserver" styleClass="primary-button" onAction="#reserverBus"/>
                         </HBox>
                     </VBox>
                 </VBox>

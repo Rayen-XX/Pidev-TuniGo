@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -6,13 +7,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.ProfileController"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.MetroController"
             minWidth="800" minHeight="600"
             stylesheets="/styles/transport_styles.css">
     <children>
@@ -25,11 +24,6 @@
                         <padding>
                             <Insets left="20" right="20"/>
                         </padding>
-                        <!-- Temporarily commenting out the logo image 
-                        <ImageView fitHeight="50" fitWidth="50" preserveRatio="true">
-                            <Image url="/images/logo.png"/>
-                        </ImageView>
-                        -->
                         <Label text="TuniGo" styleClass="header-label"/>
                         <HBox HBox.hgrow="ALWAYS"/>
                         <Label fx:id="welcomeLabel" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;"/>
@@ -38,27 +32,23 @@
                     
                     <!-- Navigation title -->
                     <HBox alignment="CENTER" style="-fx-padding: 20 0 10 0;">
-                        <Label text="Mon Profil" styleClass="transport-section-title"/>
+                        <Label text="Métro" styleClass="transport-section-title"/>
                     </HBox>
                 </VBox>
             </top>
             
             <center>
-                <!-- Empty middle section as requested -->
+                <!-- Empty middle section -->
                 <VBox alignment="CENTER" spacing="30" styleClass="transport-section">
-                    <!-- This section is intentionally left empty as requested -->
+                    <!-- This section is intentionally left empty -->
                 </VBox>
             </center>
             
             <bottom>
-                <VBox alignment="CENTER" spacing="15" style="-fx-padding: 20;">
-                    <HBox alignment="CENTER" spacing="20">
-                        <Button text="Modifier Profil" styleClass="primary-button" onAction="#openUpdateProfile"/>
-                        <Button text="Transport" styleClass="primary-button" onAction="#navigateToTransport"/>
-                        <Button fx:id="passerReclamationButton" text="Réclamation" styleClass="primary-button" onAction="#passerReclamation"/>
-                    </HBox>
-                </VBox>
+                <HBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+                    <Button text="Retour" styleClass="return-button" onAction="#retourTransportPublic"/>
+                </HBox>
             </bottom>
         </BorderPane>
     </children>
-</AnchorPane>
+</AnchorPane> 
