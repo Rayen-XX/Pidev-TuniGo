@@ -1,0 +1,106 @@
+/* Modern Dashboard Styles */
+
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Header Bar */
+.header-bar {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-padding: 15px 25px;
+    -fx-alignment: center-left;
+}
+
+.title-label {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #B22222;
+    -fx-alignment: center;
+}
+
+.welcome-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-text-alignment: right;
+}
+
+.logout-link {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #727272;
+    -fx-underline: false;
+    -fx-cursor: hand;
+    -fx-text-alignment: right;
+}
+
+.logout-link:hover {
+    -fx-text-fill: #B22222;
+}
+
+.user-info-container {
+    -fx-alignment: center-right;
+    -fx-spacing: 5;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    -fx-padding: 30px;
+    -fx-hgap: 30px;
+    -fx-vgap: 30px;
+    -fx-alignment: center;
+}
+
+/* Card Style */
+.dashboard-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-padding: 15px 0 15px 0;
+    -fx-cursor: hand;
+    -fx-pref-width: 220px;
+    -fx-pref-height: 200px;
+    -fx-alignment: center;
+    -fx-spacing: 15px;
+}
+
+.dashboard-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
+    -fx-translate-y: -2px;
+}
+
+.card-image-view {
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-pref-height: 140px;
+    -fx-alignment: center;
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 15px 10px 5px 10px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.card-button {
+    -fx-background-color: #B22222; 
+    -fx-font-weight: bold; 
+    -fx-text-fill: white; 
+    -fx-font-size: 14px; 
+    -fx-background-radius: 5; 
+    -fx-cursor: hand; 
+    -fx-padding: 8px 0;
+    -fx-pref-width: 180px;
+    -fx-alignment: center;
+    -fx-margin-top: 15px;
+}
+
+.card-button:hover {
+    -fx-background-color: #8B0000;
+} 

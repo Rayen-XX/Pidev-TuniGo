@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane minHeight="600" minWidth="800" prefHeight="650.0" prefWidth="900.0" 
+           stylesheets="@../../css/dashboard.css"
+           xmlns="http://javafx.com/javafx/17.0.2" 
+           xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.AdminDashboardAllController">
+    <children>
+        <!-- Modern Header Bar -->
+        <HBox styleClass="header-bar" prefHeight="80.0" prefWidth="900.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <!-- Left: Logo -->
+            <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                <image>
+                    <Image url="@../../Images/TuniGo_Logo.png" />
+                </image>
+            </ImageView>
+            
+            <!-- Center: Title (with spacer regions) -->
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="Admin Dashboard" styleClass="title-label" />
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Right: User Info and Logout (vertical) -->
+            <VBox styleClass="user-info-container">
+                <Label fx:id="welcomeLabel" styleClass="welcome-label" />
+                <Hyperlink fx:id="logoutLink" text="Déconnecter" styleClass="logout-link" />
+            </VBox>
+        </HBox>
+        
+        <!-- Dashboard Grid with Cards - 3x2 layout -->
+        <GridPane styleClass="dashboard-grid" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <!-- Row 1 -->
+            <!-- Card 1: Gestion Utilisateur -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <StackPane VBox.vgrow="ALWAYS" styleClass="card-image-view">
+                    <ImageView fitWidth="140" fitHeight="120" preserveRatio="true">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/dashboard_user.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <Button fx:id="gestionUtilisateurButton" 
+                        text="Gestion Utilisateur" 
+                        styleClass="card-button"
+                        onAction="#handleGestionUtilisateurButtonClick" />
+            </VBox>
+            
+            <!-- Card 2: Gestion Réclamation -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <StackPane VBox.vgrow="ALWAYS" styleClass="card-image-view">
+                    <ImageView fitWidth="140" fitHeight="120" preserveRatio="true">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/dashboard_reclamation.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <Button fx:id="gestionReclamationButton" 
+                        text="Gestion Réclamation" 
+                        styleClass="card-button"
+                        onAction="#handleGestionReclamationButtonClick" />
+            </VBox>
+            
+            <!-- Card 3: Gestion Moyen de Transport -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <StackPane VBox.vgrow="ALWAYS" styleClass="card-image-view">
+                    <ImageView fitWidth="140" fitHeight="120" preserveRatio="true">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/dashboard_transport.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <Button fx:id="gestionMoyenTransportButton" 
+                        text="Gestion Transport" 
+                        styleClass="card-button"
+                        onAction="#handleGestionMoyenTransportButtonClick" />
+            </VBox>
+            
+            <!-- Row 2 -->
+            <!-- Card 4: Gestion Trajets -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <StackPane VBox.vgrow="ALWAYS" styleClass="card-image-view">
+                    <ImageView fitWidth="140" fitHeight="120" preserveRatio="true">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/dashboard_trajet.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <Button fx:id="gestionTrajetButton" 
+                        text="Gestion Trajets" 
+                        styleClass="card-button"
+                        onAction="#handleGestionTrajetButtonClick" />
+            </VBox>
+            
+            <!-- Card 5: Gestion Parking -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <StackPane VBox.vgrow="ALWAYS" styleClass="card-image-view">
+                    <ImageView fitWidth="140" fitHeight="120" preserveRatio="true">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/dashboard_parking.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <Button fx:id="gestionParkingButton" 
+                        text="Gestion Parking" 
+                        styleClass="card-button"
+                        onAction="#handleGestionParkingButtonClick" />
+            </VBox>
+            
+            <!-- Card 6: Gestion Réservation -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <StackPane VBox.vgrow="ALWAYS" styleClass="card-image-view">
+                    <ImageView fitWidth="140" fitHeight="120" preserveRatio="true">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/dashboard_reservation.png" />
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <Button fx:id="gestionReservationButton" 
+                        text="Gestion Réservation" 
+                        styleClass="card-button"
+                        onAction="#handleGestionReservationButtonClick" />
+            </VBox>
+        </GridPane>
+    </children>
+</AnchorPane>

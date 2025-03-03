@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.AdminDashboardGUController"
+            minWidth="800" minHeight="600" prefHeight="650.0" prefWidth="900.0"
+            stylesheets="@../../css/user_dashboard.css">
+    <children>
+        <!-- Modern Header Bar (copied from admin_dashboard_all.fxml) -->
+        <HBox styleClass="header-bar" prefHeight="80.0" prefWidth="900.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <!-- Left: Logo -->
+            <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                <image>
+                    <Image url="@../../Images/TuniGo_Logo.png" />
+                </image>
+            </ImageView>
+            
+            <!-- Center: Title (with spacer regions) -->
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER">
+                <Label text="Admin Dashboard" styleClass="title-label" />
+                <Label text="Gestion Utilisateur" styleClass="subtitle-label" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Right: User Info and Logout (vertical) -->
+            <VBox styleClass="user-info-container">
+                <Label fx:id="welcomeLabel" styleClass="welcome-label" />
+                <Hyperlink fx:id="logoutLink" text="Déconnecter" styleClass="logout-link" />
+            </VBox>
+        </HBox>
+        
+        <!-- Content Area with Title and Explanation -->
+        <VBox styleClass="content-area" AnchorPane.topAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <Label text="Liste des Utilisateurs" styleClass="section-title" />
+            
+            <!-- Search Bar -->
+            <HBox styleClass="search-bar-container">
+                <!-- ID Search - Smaller width -->
+                <TextField fx:id="idSearchField" promptText="Rechercher par ID..." styleClass="id-search-field" />
+                
+                <!-- Email Search - Larger width -->
+                <TextField fx:id="searchField" promptText="Rechercher par email..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+            </HBox>
+            
+            <!-- User ListView with Modern Styling -->
+            <ListView fx:id="usersList" styleClass="user-list-view" VBox.vgrow="ALWAYS" />
+            
+            <!-- Modern Control Bar with Action Buttons -->
+            <HBox styleClass="control-bar">
+                <Button text="Créer un utilisateur" 
+                        onAction="#handleCreateUser" 
+                        styleClass="action-button" />
+                
+                <Button text="Mettre à jour" 
+                        onAction="#handleUpdateUser" 
+                        styleClass="action-button" />
+                
+                <Button text="Supprimer" 
+                        onAction="#handleDeleteUser" 
+                        styleClass="action-button" />
+                
+                <Button text="Actualiser" 
+                        onAction="#handleRefresh" 
+                        styleClass="action-button" />
+                
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <Button text="Retour" 
+                        onAction="#handleRetour" 
+                        fx:id="retour" 
+                        styleClass="return-button" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

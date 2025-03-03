@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.GestionBus">
+    <children>
+        <fx:include source="SideBar.fxml" />
+
+        <!-- Titre -->
+        <Text layoutX="180.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Bus">
+            <font>
+                <Font size="28.0" />
+            </font>
+        </Text>
+
+        <!-- Champs de saisie -->
+        <Label layoutX="190.0" layoutY="130.0" text="Numéro Bus">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="numeroBusField" layoutX="190.0" layoutY="155.0" prefHeight="40.0" prefWidth="522.0" promptText="Numéro Bus" />
+
+        <!-- Bouton d'ajout aligné à droite -->
+        <Button fx:id="ajouterButton" layoutX="810.0" layoutY="155.0" mnemonicParsing="false" onAction="#ajouterBus" prefHeight="40.0" prefWidth="180.0" text="Ajouter Bus">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+
+        <!-- Séparateur entre formulaire et liste -->
+        <Separator layoutX="190.0" layoutY="220.0" prefWidth="800.0" />
+
+        <!-- Liste des bus -->
+        <Label layoutX="190.0" layoutY="240.0" text="Liste des Bus">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <ListView fx:id="listViewBus" layoutX="190.0" layoutY="265.0" prefHeight="300.0" prefWidth="746.0" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="668.0" prefWidth="1000.0" style="-fx-background-image: url('/images/metro.jpg'); -fx-background-size: cover; -fx-background-position: center center; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 3, 3);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.AjouterReclamation">
+    <children>
+        <AnchorPane fx:id="formAnchorPane" layoutX="222.0" layoutY="59.0" prefHeight="550.0" prefWidth="555.0" style="-fx-background-color: rgba(255, 255, 255, 0.8);                            -fx-background-radius: 15;                            -fx-border-color: #ccc;                            -fx-border-radius: 15;                            -fx-padding: 20;                            -fx-background-position: center center;                            -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 3, 3);">
+            <children>
+                <!-- Label du formulaire -->
+                <Label layoutX="178.0" layoutY="20.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Ajouter une Réclamation" />
+
+                <!-- Nom et Prénom de l'utilisateur -->
+                <Label layoutX="75.0" layoutY="66.0" style="-fx-font-weight: bold;" text="Nom :" />
+                <TextField fx:id="nomField" editable="false" layoutX="77.0" layoutY="94.0" prefHeight="34.0" prefWidth="400.0" style="-fx-border-radius: 10; -fx-background-color: #eaeaea; -fx-padding: 8;" />
+
+                <Label layoutX="75.0" layoutY="139.0" style="-fx-font-weight: bold;" text="Prénom :" />
+                <TextField fx:id="prenomField" editable="false" layoutX="77.0" layoutY="170.0" prefHeight="34.0" prefWidth="400.0" style="-fx-border-radius: 10; -fx-background-color: #eaeaea; -fx-padding: 8;" />
+
+                <!-- Champ de description -->
+                <Label layoutX="75.0" layoutY="310.0" style="-fx-font-weight: bold;" text="Description :" />
+                <TextArea fx:id="descriptionField" layoutX="77.0" layoutY="339.0" prefHeight="80" prefWidth="400" promptText="Décrivez votre problème..." style="-fx-border-radius: 10; -fx-border-color: #888; -fx-padding: 8; -fx-background-radius: 10; -fx-background-color: #f0f0f0;" />
+
+                <!-- ComboBox pour le type de réclamation -->
+                <Label layoutX="77.0" layoutY="217.0" style="-fx-font-weight: bold;" text="Type de réclamation :" />
+                <ComboBox fx:id="cbTypeReclamation" layoutX="77.0" layoutY="258.0" prefWidth="400" style="-fx-border-radius: 10; -fx-padding: 8;" />
+
+                <!-- Bouton de soumission -->
+                <Button fx:id="submitButton" alignment="CENTER" layoutX="178.0" layoutY="438.0" onAction="#ajouterReclamation" prefHeight="36.0" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 20px; -fx-border-radius: 10;" text="Envoyer">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            </children>
+        </AnchorPane>
+      <Button fx:id="retour"
+              style="-fx-background-color: #B22222; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5; -fx-cursor: hand; -fx-padding: 5 20;"
+              layoutX="911.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleRetour" prefHeight="30.0" prefWidth="120" text="Retoure">
+         </Button>
+    </children>
+</AnchorPane>

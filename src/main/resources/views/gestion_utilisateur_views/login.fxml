@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane minHeight="600" minWidth="800"
+            xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.esprit.gu.controller.gestion_utilisateur_controllers.LoginController"
+            stylesheets="@../../css/auth_forms.css">
+    <children>
+        <!-- Split the screen horizontally into two equal parts -->
+        <HBox prefHeight="600" prefWidth="800" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <!-- Left side: Login Form -->
+            <VBox alignment="CENTER" spacing="10" prefWidth="400"
+                  styleClass="auth-container" HBox.hgrow="ALWAYS">
+                <children>
+                    <!-- Header Label -->
+                    <Label text="Se connecter" styleClass="auth-title" />
+
+                    <!-- Email input field -->
+                    <TextField fx:id="emailField" promptText="Email" 
+                              styleClass="auth-input" />
+
+                    <!-- Password Field with Toggle -->
+                    <StackPane maxWidth="300">
+                        <PasswordField fx:id="passwordField" promptText="Mot de passe"
+                                      styleClass="auth-input, auth-password" />
+                        <TextField fx:id="passwordVisibleField" promptText="Mot de passe"
+                                  styleClass="auth-input, auth-password"
+                                  visible="false" managed="false" />
+                        <Button fx:id="togglePasswordButton" text="👁" onAction="#togglePasswordVisibility"
+                               styleClass="eye-button"
+                               StackPane.alignment="CENTER_RIGHT"/>
+                    </StackPane>
+                    
+                    <!-- Forgot password link -->
+                    <Hyperlink text="Mot de passe oublié ?" onAction="#goToForgotPassword"
+                              styleClass="auth-link" />
+
+                    <!-- Global error label for login validation -->
+                    <Label fx:id="globalErrorLabel" styleClass="error-label" visible="false" />
+
+                    <!-- Login button -->
+                    <Button fx:id="loginButton" text="se connecter" onAction="#handleLogin"
+                           styleClass="auth-button" />
+
+                    <!-- Facebook Login button -->
+                    <Button onAction="#handleFacebookLogin" styleClass="facebook-button, social-login-button">
+                        <graphic>
+                            <HBox spacing="10" alignment="CENTER">
+                                <Label text="f" styleClass="facebook-icon" />
+                                <Label text="Se connecter avec Facebook" styleClass="facebook-text" />
+                            </HBox>
+                        </graphic>
+                    </Button>
+                    
+                    <!-- Google Login button -->
+                    <Button onAction="#handleGoogleLogin" styleClass="google-button, social-login-button">
+                        <graphic>
+                            <HBox spacing="10" alignment="CENTER">
+                                <Label text="G" styleClass="google-icon" />
+                                <Label text="Se connecter avec Google" styleClass="google-text" />
+                            </HBox>
+                        </graphic>
+                    </Button>
+                    
+                    <!-- GitHub Login button -->
+                    <Button onAction="#handleGitHubLogin" styleClass="github-button, social-login-button">
+                        <graphic>
+                            <HBox spacing="10" alignment="CENTER">
+                                <Label text="G#" styleClass="github-icon" />
+                                <Label text="Se connecter avec GitHub" styleClass="github-text" />
+                            </HBox>
+                        </graphic>
+                    </Button>
+
+                    <!-- Registration link -->
+                    <Hyperlink text="Vous n'avez pas de compte ? Inscrivez-vous" onAction="#goToRegister"
+                              styleClass="auth-link" />
+                </children>
+            </VBox>
+
+            <!-- Right side: Full-height background image -->
+            <AnchorPane prefWidth="400" style="-fx-background-size: cover; -fx-background-position: center;" HBox.hgrow="ALWAYS">
+                <children>
+                    <ImageView fitHeight="600.0" fitWidth="400.0">
+                        <image>
+                            <Image url="@../../Images/gestion_utilisateur_images/signup.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </AnchorPane>
+        </HBox>
+    </children>
+</AnchorPane>
