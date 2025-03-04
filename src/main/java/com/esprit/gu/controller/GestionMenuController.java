@@ -55,7 +55,7 @@ public class GestionMenuController {
     }
 
     public void goToReclamationuser(ActionEvent event) {
-        this.changerScene(event, "/views/AjouterReclamation.fxml");
+        this.changerScene(event, "/views/GestionMoyTrans/AjouterReclamation.fxml");
     }
     public void handleRetour(ActionEvent event) {
         this.changerScene(event, "/views/gestion_utilisateur_views/admin_dashboard_all.fxml");

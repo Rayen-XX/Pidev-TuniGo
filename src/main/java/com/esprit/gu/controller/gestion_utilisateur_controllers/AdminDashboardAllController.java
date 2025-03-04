@@ -96,7 +96,7 @@ public class AdminDashboardAllController implements Initializable {
     private void handleGestionReclamationButtonClick() {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionReclamation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionMoyTrans/GestionReclamation.fxml"));
             Stage stage = (Stage) gestionReclamationButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -108,7 +108,7 @@ public class AdminDashboardAllController implements Initializable {
     private void handleGestionMoyenTransportButtonClick() {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionBus.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionMoyTrans/GestionBus.fxml"));
             Stage stage = (Stage) gestionMoyenTransportButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

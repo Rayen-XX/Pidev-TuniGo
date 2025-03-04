@@ -72,7 +72,7 @@ public class ProfileController implements Initializable {
     private void passerReclamation() {
         try {
             // Load the reclamation page
-            Parent root = FXMLLoader.load(getClass().getResource("/views/AjouterReclamation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/GestionMoyTrans/AjouterReclamation.fxml"));
             Stage stage = (Stage) passerReclamationButton.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

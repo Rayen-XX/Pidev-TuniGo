@@ -15,13 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.esprit.gu.controller.firebaseconfig.NotificationService;
+
 import com.esprit.gu.entity.Reclamation;
 import com.esprit.gu.util.DBUtil;
 
 public class ServiceReclamation {
     private Connection cnx = DBUtil.getConnection();
-    private NotificationService notificationService = new NotificationService(); // Ajoutez cette ligne
+
 
     public ServiceReclamation() throws Exception {
     }
@@ -84,7 +84,7 @@ public class ServiceReclamation {
                         reclamation.getPrenom_utilisateur() + ": " +
                         reclamation.getDescriptionReclamation();
 
-                NotificationService.envoyerNotification( title, body);
+
             } catch (Throwable var7) {
                 if (pstm != null) {
                     try {
