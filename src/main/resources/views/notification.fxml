@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="200.0" prefWidth="398.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.esprit.gu.controller.NotificationController">
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="398.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.esprit.gu.controller.gestins_moyen_tans_controllers.NotificationController">
     <!-- Label pour afficher le texte de notification détaillée -->
     <Label fx:id="notificationLabel" style="-fx-font-size: 14px; -fx-text-fill: #333;" text="Notification text will appear here" />
 

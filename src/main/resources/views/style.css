@@ -1,0 +1,257 @@
+/************************************************* Sidebar *************************************/
+.anchor-pane {
+    -fx-background-color: #f4f4f4;  /* Couleur de fond claire */
+    -fx-padding: 10;
+}
+
+/* Styles pour la ToolBar verticale */
+.tool-bar {
+    -fx-background-color: #ea2e45;  /* Fond sombre */
+    -fx-padding: 40;
+    -fx-spacing: 10;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+/* Style pour les boutons dans la ToolBar verticale */
+.tool-bar .button {
+    -fx-background-color: #ea2e45;  /* Couleur de fond des boutons */
+    -fx-text-fill: white;  /* Couleur du texte */
+    -fx-font-size: 14px;
+    -fx-pref-width: 130px;
+    -fx-pref-height: 35px;
+    -fx-border-radius: 5px;  /* Coins arrondis */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-border-color: #7f8c8d;  /* Bordure plus claire */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0.5, 2, 2);
+}
+
+/* Style au survol des boutons */
+.tool-bar .button:hover {
+    -fx-background-color: #6a6d72;  /* Changement de couleur au survol */
+    -fx-border-color: #525151;
+}
+
+/* Style pour la ToolBar horizontale (topbar) */
+.tool-bar.horizontal {
+    -fx-background-color: #ecf0f1;  /* Fond plus clair */
+    -fx-spacing: 30;
+    -fx-padding: 15;
+}
+
+/* Icône dans la ToolBar horizontale */
+.tool-bar.horizontal .image-view {
+    -fx-padding: 10;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0.5, 2, 2);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-fit-height: 100px;
+    -fx-fit-width: 100px;
+}
+
+/* Style pour les images dans la topbar */
+.topbar-logo {
+    -fx-fit-width: 200px;
+    -fx-fit-height: 73px;
+    -fx-preserve-ratio: true;
+}
+
+/* Image d'icône pour la ToolBar (remplacer par vos icônes) */
+.tool-bar .button .graphic {
+    -fx-padding: 0 10 0 0;
+}
+
+/* Ajout d'animations au survol des boutons */
+.tool-bar .button:hover {
+    -fx-background-color: #df2c2c;
+    -fx-text-fill: #ecf0f1;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-transition: all 0.3s ease;
+}
+
+
+
+/**************************/
+.list-cell {
+    -fx-padding: 10px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 0 0 1px 0;
+    -fx-font-size: 14px;
+}
+
+.list-view {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #bbbbbb;
+    -fx-border-width: 1px;
+}
+
+
+/* Style de base du bouton */
+.animated-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-color: #3498db; /* Couleur de fond */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+    -fx-transition: all 0.3s ease; /* Animation fluide */
+}
+
+/* Effet au survol */
+.animated-button:hover {
+    -fx-background-color: #2980b9; /* Changement de couleur de fond */
+    -fx-scale-x: 1.1; /* Agrandissement horizontal */
+    -fx-scale-y: 1.1; /* Agrandissement vertical */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2); /* Ombre plus prononcée */
+}
+
+
+/******************************************************************/
+
+/* Carte flottante avec effet 3D */
+.taxi-card {
+
+    width: 300px;
+    -fx-padding: 15px;
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0.3, 0, 5);
+    -fx-transition: all 0.3s;
+    -fx-alignment: right; /* Centrer les éléments */
+}
+
+/* Effet de survol (hover) */
+.taxi-card:hover {
+    -fx-transform: scale(1.1);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 25, 0.5, 0, 10);
+}
+
+/* Espacement entre l'image et le texte */
+.taxi-card Label {
+    -fx-padding: 5px 0;
+    -fx-font-size: 14px;
+}
+
+/* Style du bouton */
+.reserve-button {
+    -fx-background-color: #f33b3b;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-padding: 8px 20px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.3, 0, 2);
+}
+
+/* Effet de survol du bouton */
+.reserve-button:hover {
+    -fx-background-color: #f33b3b;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.4, 0, 4);
+
+}
+.taxi-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.info-container {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+    -fx-padding: 5px 0;
+    width: 100%;
+}
+
+.info-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+    -fx-pref-width: 110px;
+}
+
+.info-content {
+    -fx-text-fill: #333;
+    -fx-wrap-text: true;
+}
+/*************************************************scooter************************/
+.scooter-card {
+    width: 240px;
+    height: 270px;
+    -fx-padding: 15px;
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0.3, 0, 5);
+    -fx-transition: -fx-transform 0.3s, -fx-effect 0.3s;
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+    -fx-margin: 30px 30px;
+}
+
+/* Effet de flottement */
+.scooter-card:hover {
+    -fx-transform: translateY(-10px);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.5, 0, 10);
+}
+
+.info-container {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+    -fx-padding: 5px 0;
+}
+
+.info-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+    -fx-pref-width: 120px;
+}
+
+.info-content {
+    -fx-text-fill: #333;
+    -fx-wrap-text: true;
+}
+
+/* Bouton centré */
+.scooter-card Button {
+    -fx-background-color: #f64e4e;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px 15px;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-transition: -fx-background-color 0.3s;
+    -fx-margin: 10px auto;
+    width: 50;
+}
+
+.scooter-card Button:hover {
+    -fx-background-color: #f64e4e;
+}
+
+
+
+/*****************************************************************/
+
+.header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+.result {
+    -fx-text-fill: #333;
+    -fx-font-size: 14px;
+    -fx-background-color: #f1f1f1;
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+}
