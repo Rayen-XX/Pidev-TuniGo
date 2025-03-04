@@ -4,7 +4,8 @@ package com.esprit.gu.entity;//
 //
 
 
-import com.esprit.gu.entity.gestion_utilisateur_entity.Utilisateur;
+
+import com.esprit.gu.models.gestion_utilisateur_models.Utilisateur;
 
 import java.util.Date;
 

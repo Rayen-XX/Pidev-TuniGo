@@ -41,6 +41,9 @@ public class GestionTaxi {
     private TextField nomChauffeurField;
     @FXML
     private Button ajouterButton;
+
+    @FXML
+    private TextField searchField;
     @FXML
     private ListView<Taxi> listViewTaxi;
     private ServiceTaxi serviceTaxi = new ServiceTaxi();
@@ -118,20 +121,50 @@ public class GestionTaxi {
 
     @FXML
     private void ajouterTaxi(ActionEvent event) {
-        if (!this.numeroTaxiField.getText().isEmpty() && !this.numeroChauffeurField.getText().isEmpty() && !this.prenomChauffeurField.getText().isEmpty() && !this.nomChauffeurField.getText().isEmpty()) {
-            Taxi newTaxi = new Taxi();
-            newTaxi.setNumeroTaxi(this.numeroTaxiField.getText());
-            newTaxi.setNumeroChauffeur(this.numeroChauffeurField.getText());
-            newTaxi.setPrenomChauffeur(this.prenomChauffeurField.getText());
-            newTaxi.setNomChauffeur(this.nomChauffeurField.getText());
-            this.serviceTaxi.ajouter(newTaxi);
-            this.chargerTaxis();
-            this.showAlert(AlertType.INFORMATION, "Succès", "Taxi ajouté avec succès !");
+        String numeroTaxi = this.numeroTaxiField.getText();
+        String numeroChauffeur = this.numeroChauffeurField.getText();
+        String prenomChauffeur = this.prenomChauffeurField.getText();
+        String nomChauffeur = this.nomChauffeurField.getText();
+
+        if (!numeroTaxi.isEmpty() && !numeroChauffeur.isEmpty() && !prenomChauffeur.isEmpty() && !nomChauffeur.isEmpty()) {
+            // Vérifier si le numéro de taxi existe déjà
+            if (isNumeroTaxiUnique(numeroTaxi)) {
+                // Créer un nouvel objet Taxi
+                Taxi newTaxi = new Taxi();
+                newTaxi.setNumeroTaxi(numeroTaxi);
+                newTaxi.setNumeroChauffeur(numeroChauffeur);
+                newTaxi.setPrenomChauffeur(prenomChauffeur);
+                newTaxi.setNomChauffeur(nomChauffeur);
+
+                // Ajouter à la base de données
+                this.serviceTaxi.ajouter(newTaxi);
+
+                // Recharger la liste des taxis
+                this.chargerTaxis();
+
+                // Afficher un message de succès
+                this.showAlert(AlertType.INFORMATION, "Succès", "Taxi ajouté avec succès !");
+            } else {
+                // Afficher un message d'erreur si le numéro de taxi est déjà utilisé
+                this.showAlert(AlertType.ERROR, "Erreur", "Le numéro de taxi est déjà utilisé. Veuillez en choisir un autre.");
+            }
         } else {
+            // Afficher un message d'erreur si les champs ne sont pas remplis
             this.showAlert(AlertType.ERROR, "Erreur", "Tous les champs doivent être remplis !");
         }
-
     }
+
+    // Méthode pour vérifier si le numéro du taxi est unique
+    private boolean isNumeroTaxiUnique(String numeroTaxi) {
+        // Vérifier si le numéro de taxi existe déjà dans la base de données ou la liste
+        for (Taxi taxi : this.serviceTaxi.getAll()) {
+            if (taxi.getNumeroTaxi().equals(numeroTaxi)) {
+                return false; // Si le numéro existe déjà, retourner false
+            }
+        }
+        return true; // Si le numéro est unique, retourner true
+    }
+
 
     private void supprimerTaxi(Taxi taxi) {
         if (taxi != null) {
@@ -143,6 +176,24 @@ public class GestionTaxi {
         }
 
     }
+
+    public void filterTaxiList() {
+        String keyword = searchField.getText().toLowerCase(); // Récupère le texte saisi et le convertit en minuscule
+
+        ObservableList<Taxi> filteredList = FXCollections.observableArrayList();
+
+        for (Taxi taxi : taxiList) {
+            // Recherche par numéro de taxi ou nom de chauffeur
+            if (taxi.getNumeroTaxi().toLowerCase().contains(keyword) ||
+                    taxi.getNomChauffeur().toLowerCase().contains(keyword) ||
+                    taxi.getPrenomChauffeur().toLowerCase().contains(keyword)) {
+                filteredList.add(taxi);
+            }
+        }
+
+        listViewTaxi.setItems(filteredList); // Met à jour la ListView avec les résultats filtrés
+    }
+
 
     private void modifierTaxi(Taxi taxi) {
         if (taxi != null) {

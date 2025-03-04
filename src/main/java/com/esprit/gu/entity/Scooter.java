@@ -1,21 +1,27 @@
-package com.esprit.gu.entity;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
+package com.esprit.gu.entity;
 
 public class Scooter {
     private int idScooter;
     private String numeroScooter;
     private String localisationScooter;
+    private boolean Isdisponible;
 
     public Scooter() {
+        this.idScooter = 0;
     }
 
     public Scooter(int idScooter, String numeroScooter, String localisationScooter) {
         this.idScooter = idScooter;
         this.numeroScooter = numeroScooter;
         this.localisationScooter = localisationScooter;
+    }
+
+    public boolean isIsdisponible() {
+        return Isdisponible;
+    }
+
+    public void setIsdisponible(boolean isdisponible) {
+        Isdisponible = isdisponible;
     }
 
     public int getIdScooter() {
@@ -42,7 +48,13 @@ public class Scooter {
         this.localisationScooter = localisationScooter;
     }
 
+    @Override
     public String toString() {
-        return "Scooter{idScooter=" + this.idScooter + ", numeroScooter='" + this.numeroScooter + "', localisationScooter='" + this.localisationScooter + "'}";
+        return "Scooter{" +
+                "idScooter=" + idScooter +
+                ", numeroScooter='" + numeroScooter + '\'' +
+                ", localisationScooter='" + localisationScooter + '\'' +
+                ", Isdisponible=" + Isdisponible +
+                '}';
     }
 }

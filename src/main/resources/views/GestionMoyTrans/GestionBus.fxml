@@ -6,16 +6,15 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.GestionBus">
+<AnchorPane prefHeight="600" prefWidth="1001.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.gu.controller.GestionBus">
     <children>
         <fx:include source="SideBar.fxml" />
 
         <!-- Titre -->
-        <Text layoutX="180.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Bus">
+        <Text layoutX="182.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des Bus">
             <font>
                 <Font size="28.0" />
             </font>
@@ -30,7 +29,7 @@
         <TextField fx:id="numeroBusField" layoutX="190.0" layoutY="155.0" prefHeight="40.0" prefWidth="522.0" promptText="Numéro Bus" />
 
         <!-- Bouton d'ajout aligné à droite -->
-        <Button fx:id="ajouterButton" layoutX="810.0" layoutY="155.0" mnemonicParsing="false" onAction="#ajouterBus" prefHeight="40.0" prefWidth="180.0" text="Ajouter Bus">
+        <Button fx:id="ajouterButton" layoutX="769.0" layoutY="155.0" mnemonicParsing="false" onAction="#ajouterBus" prefHeight="40.0" prefWidth="181.0" text="Ajouter Bus">
             <font>
                 <Font size="16.0" />
             </font>

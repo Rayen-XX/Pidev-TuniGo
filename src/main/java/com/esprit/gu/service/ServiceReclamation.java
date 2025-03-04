@@ -11,17 +11,57 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.esprit.gu.controller.firebaseconfig.NotificationService;
 import com.esprit.gu.entity.Reclamation;
 import com.esprit.gu.util.DBUtil;
 
 public class ServiceReclamation {
     private Connection cnx = DBUtil.getConnection();
+    private NotificationService notificationService = new NotificationService(); // Ajoutez cette ligne
 
     public ServiceReclamation() throws Exception {
     }
+    /*
+        public void ajouter(Reclamation reclamation) {
+            String req = "INSERT INTO `reclamation`(`nom_utilisateur`, `prenom_utilisateur`, `typeReclamation`, `descriptionReclamation`, `statutReclamation`, `dateReclamation`) VALUES (?, ?, ?, ?, ?, ?)";
 
+            try {
+                PreparedStatement pstm = this.cnx.prepareStatement(req);
+
+                try {
+                    pstm.setString(1, reclamation.getNom_utilisateur());
+                    pstm.setString(2, reclamation.getPrenom_utilisateur());
+                    pstm.setString(3, reclamation.getTypeReclamation());
+                    pstm.setString(4, reclamation.getDescriptionReclamation());
+                    pstm.setString(5, reclamation.getStatutReclamation());
+                    pstm.setDate(6, new Date(reclamation.getDateReclamation().getTime()));
+                    pstm.executeUpdate();
+                } catch (Throwable var7) {
+                    if (pstm != null) {
+                        try {
+                            pstm.close();
+                        } catch (Throwable var6) {
+                            var7.addSuppressed(var6);
+                        }
+                    }
+
+                    throw var7;
+                }
+
+                if (pstm != null) {
+                    pstm.close();
+                }
+            } catch (SQLException var8) {
+                SQLException ex = var8;
+                System.out.println("Erreur lors de l'ajout de la réclamation : " + ex.getMessage());
+            }
+
+        }
+    */
     public void ajouter(Reclamation reclamation) {
         String req = "INSERT INTO `reclamation`(`nom_utilisateur`, `prenom_utilisateur`, `typeReclamation`, `descriptionReclamation`, `statutReclamation`, `dateReclamation`) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -36,6 +76,15 @@ public class ServiceReclamation {
                 pstm.setString(5, reclamation.getStatutReclamation());
                 pstm.setDate(6, new Date(reclamation.getDateReclamation().getTime()));
                 pstm.executeUpdate();
+
+                String token = "admin_device_token"; // Remplacez par le token FCM de l'admin
+                String title = "Nouvelle Réclamation";
+                String body = "Une nouvelle réclamation a été soumise par " +
+                        reclamation.getNom_utilisateur() + " " +
+                        reclamation.getPrenom_utilisateur() + ": " +
+                        reclamation.getDescriptionReclamation();
+
+                NotificationService.envoyerNotification( title, body);
             } catch (Throwable var7) {
                 if (pstm != null) {
                     try {
@@ -44,7 +93,6 @@ public class ServiceReclamation {
                         var7.addSuppressed(var6);
                     }
                 }
-
                 throw var7;
             }
 
@@ -55,9 +103,7 @@ public class ServiceReclamation {
             SQLException ex = var8;
             System.out.println("Erreur lors de l'ajout de la réclamation : " + ex.getMessage());
         }
-
     }
-
     public void modifier(Reclamation reclamation) {
         String req = "UPDATE `reclamation` SET `nom_utilisateur` = ?, `prenom_utilisateur` = ?, `typeReclamation` = ?, `descriptionReclamation` = ?, `statutReclamation` = ?, `dateReclamation` = ? WHERE `idReclamation` = ?";
 
@@ -227,5 +273,24 @@ public class ServiceReclamation {
         }
 
         return reclamations;
+    }
+
+    public Map<String, Integer> getReclamationsCountByType() {
+        Map<String, Integer> reclamationsCount = new HashMap<>();
+        String query = "SELECT typeReclamation, COUNT(*) AS count FROM reclamation GROUP BY typeReclamation";
+
+        try (Statement stmt = cnx.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                String typeReclamation = rs.getString("typeReclamation");
+                int count = rs.getInt("count");
+                reclamationsCount.put(typeReclamation, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reclamationsCount;
     }
 }
