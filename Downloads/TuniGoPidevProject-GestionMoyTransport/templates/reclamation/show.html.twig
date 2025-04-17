@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails Réclamation - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+
+    <!-- Optionnel: Style pour masquer les sous-menus au départ -->
+    <style>
+        .sidebar-submenu {
+            display: none;
+            margin-left: 20px;
+        }
+        .active-submenu {
+            display: block;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Détails de la Réclamation</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_reclamation_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+               
+            </div>
+        </div>
+
+        <div class="card-admin-body">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="user-info">
+                    <h3>Reclamation ID: {{ reclamation.idReclamation }} - Type: {{ reclamation.typeReclamation }}</h3>
+                </div>
+            </div>
+
+            <!-- Tableau des informations de la Réclamation -->
+            <div class="info-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="info-label">Détails</th>
+                            <th class="info-value">Informations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="info-label">ID Réclamation</td>
+                            <td class="info-value">{{ reclamation.idReclamation }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Type de Réclamation</td>
+                            <td class="info-value">{{ reclamation.typeReclamation }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Description</td>
+                            <td class="info-value">{{ reclamation.descriptionReclamation }}</td>
+                        </tr>
+                        <tr>
+
+
+                        <tr>
+                            <td class="info-label">Statut</td>
+                            <td class="info-value">{{ reclamation.statutReclamation }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Date de Réclamation</td>
+                            <td class="info-value">{{ reclamation.dateReclamation ? reclamation.dateReclamation|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Nom Utilisateur</td>
+                            <td class="info-value">{{ reclamation.nomUtilisateur }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Prénom Utilisateur</td>
+                            <td class="info-value">{{ reclamation.prenomUtilisateur }}</td>
+                        </tr>
+                            <td class="info-label">Image</td>
+<tr>
+    <td class="info-label">Image</td>
+    <td class="info-value">
+        {% if reclamation.image %}
+            <img src="{{ asset('uploads/images/' ~ reclamation.image) }}"
+                 alt="Image Réclamation"
+                 style="max-width: 350px; height: auto; border-radius: 10px; cursor: pointer;"
+                 onclick="openModal('{{ asset('uploads/images/' ~ reclamation.image) }}')">
+        {% else %}
+            <span>Aucune image fournie.</span>
+        {% endif %}
+    </td>
+</tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+          
+        </div>
+    </div>
+</div>
+<div id="imageModal" style="display:none; position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+    <span onclick="closeModal()" style="position:absolute; top:20px; right:30px; font-size:30px; color:white; cursor:pointer;">&times;</span>
+    <img id="modalImage" src="" alt="Image Agrandie" style="max-width:90%; max-height:90%; border-radius:10px;">
+</div>
+
+<script>
+    function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+</script>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // Fonction pour gérer l'affichage du sous-menu transport
+        document.getElementById("toggle-transport").addEventListener("click", function() {
+            var submenu = document.getElementById("submenu-transport");
+            var arrow = document.getElementById("transport-arrow");
+            submenu.classList.toggle("active-submenu");
+            arrow.classList.toggle("fa-chevron-up");
+            arrow.classList.toggle("fa-chevron-down");
+        });
+    </script>
+{% endblock %}

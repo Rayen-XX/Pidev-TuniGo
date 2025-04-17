@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+       {% include 'admin/sidebar.html.twig' %}
+
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Tableau de Bord</h1>
+            <div class="page-actions">
+                <span class="welcome-message">Bienvenue, {{ app.user.nomUtilisateur }} {{ app.user.prenomUtilisateur }}</span>
+            </div>
+        </div>
+        
+        <!-- Empty content area (removed statistics and other content) -->
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Tableau de bord</h5>
+            </div>
+            <div class="card-admin-body">
+ <div class="card-admin-body">
+    {% include 'admin/_reclam_stats_component.html.twig' %}
+</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %} 

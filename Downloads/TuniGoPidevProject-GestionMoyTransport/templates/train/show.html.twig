@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Train{% endblock %}
+
+{% block body %}
+    <h1>Train</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdTrain</th>
+                <td>{{ train.idTrain }}</td>
+            </tr>
+            <tr>
+                <th>NumeroTrain</th>
+                <td>{{ train.numeroTrain }}</td>
+            </tr>
+            <tr>
+                <th>IdTrajetTrain</th>
+                <td>{{ train.idTrajetTrain }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_train_index') }}">back to list</a>
+
+    <a href="{{ path('app_train_edit', {'idTrain': train.idTrain}) }}">edit</a>
+
+    {{ include('train/_delete_form.html.twig') }}
+{% endblock %}

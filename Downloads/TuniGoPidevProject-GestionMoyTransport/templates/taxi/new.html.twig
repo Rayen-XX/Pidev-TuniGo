@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Taxi{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Créer un Nouveau Taxi</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_taxi_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Formulaire d'ajout de Taxi</h5>
+            </div>
+            <div class="card-admin-body">
+                {{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroTaxi, 'Numéro du Taxi') }}
+                            {{ form_widget(form.numeroTaxi, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le numéro du taxi'}}) }}
+                            {{ form_errors(form.numeroTaxi) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroChauffeur, 'Numéro du Chauffeur') }}
+                            {{ form_widget(form.numeroChauffeur, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le numéro du chauffeur'}}) }}
+                            {{ form_errors(form.numeroChauffeur) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.prenomChauffeur, 'Prénom Chauffeur') }}
+                            {{ form_widget(form.prenomChauffeur, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le prénom du chauffeur'}}) }}
+                            {{ form_errors(form.prenomChauffeur) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.nomChauffeur, 'Nom Chauffeur') }}
+                            {{ form_widget(form.nomChauffeur, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom du chauffeur'}}) }}
+                            {{ form_errors(form.nomChauffeur) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.idReservation, 'ID Réservation') }}
+                            {{ form_widget(form.idReservation, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'ID de la réservation'}}) }}
+                            {{ form_errors(form.idReservation) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.Isdisponible, 'Disponible') }}
+                            {{ form_widget(form.Isdisponible, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.Isdisponible) }}
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-admin btn-primary-admin">
+                            <i class="fas fa-save"></i> Créer le Taxi
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

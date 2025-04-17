@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TrainTrajet{% endblock %}
+
+{% block body %}
+    <h1>TrainTrajet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ train_trajet.id }}</td>
+            </tr>
+            <tr>
+                <th>Gare_depart</th>
+                <td>{{ train_trajet.gareDepart }}</td>
+            </tr>
+            <tr>
+                <th>Gare_arrivee</th>
+                <td>{{ train_trajet.gareArrivee }}</td>
+            </tr>
+            <tr>
+                <th>Heure_depart</th>
+                <td>{{ train_trajet.heureDepart }}</td>
+            </tr>
+            <tr>
+                <th>Heure_arrivee</th>
+                <td>{{ train_trajet.heureArrivee }}</td>
+            </tr>
+            <tr>
+                <th>Numero_train</th>
+                <td>{{ train_trajet.numeroTrain }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_train_trajet_index') }}">back to list</a>
+
+    <a href="{{ path('app_train_trajet_edit', {'id': train_trajet.id}) }}">edit</a>
+
+    {{ include('train_trajet/_delete_form.html.twig') }}
+{% endblock %}

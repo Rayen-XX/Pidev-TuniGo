@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Trajetbus{% endblock %}
+
+{% block body %}
+    <h1>Edit Trajetbus</h1>
+
+    {{ include('trajetbus/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_trajetbus_index') }}">back to list</a>
+
+    {{ include('trajetbus/_delete_form.html.twig') }}
+{% endblock %}

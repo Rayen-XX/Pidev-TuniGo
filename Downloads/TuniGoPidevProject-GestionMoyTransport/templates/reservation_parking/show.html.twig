@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation Details{% endblock %}
+
+{% block body %}
+    {% include 'admin/sidebar.html.twig' %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+
+                <div class="card border-0 shadow rounded-4">
+                    <div class="card-header text-white p-4"
+                         style="background: linear-gradient(135deg, rgb(119, 3, 3), rgb(151, 19, 19));
+                                border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+                        <h3 class="mb-0 d-flex align-items-center gap-2">
+                            <i class="bi bi-info-circle"></i> Reservation Information
+                        </h3>
+                    </div>
+
+                    <div class="card-body px-5 py-4">
+
+                        <ul class="list-group list-group-flush fs-6">
+                            <li class="list-group-item"><strong>ID:</strong> {{ reservation_parking.idReservation }}</li>
+                            <li class="list-group-item"><strong>Date:</strong>
+                                {{ reservation_parking.dateReservation ? reservation_parking.dateReservation|date('Y-m-d H:i') : 'N/A' }}
+                            </li>
+                            <li class="list-group-item"><strong>User ID:</strong> {{ reservation_parking.utilisateur.idUtilisateur }}</li>
+                            <li class="list-group-item"><strong>Parking ID:</strong> {{ reservation_parking.parking.idParking }}</li>
+                        </ul>
+
+                       </div>
+
+                    <div class="card-footer d-flex justify-content-between bg-light px-4 py-3 rounded-bottom">
+                        <a href="{{ path('app_reservation_parking_index') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to list
+                        </a>
+                        <div>
+                            <a href="{{ path('app_reservation_parking_edit', {'idReservation': reservation_parking.idReservation}) }}"
+                               class="btn btn-outline-primary me-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            {{ include('reservation_parking/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

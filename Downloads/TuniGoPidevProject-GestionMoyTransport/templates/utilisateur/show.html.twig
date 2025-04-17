@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails Utilisateur - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Détails de l'Utilisateur</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_utilisateur_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+                <a href="{{ path('app_utilisateur_edit', {'idUtilisateur': utilisateur.idUtilisateur}) }}" class="btn-admin btn-primary-admin">
+                    <i class="fas fa-edit"></i> Modifier
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Informations de l'utilisateur</h5>
+            </div>
+            <div class="card-admin-body">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>{{ utilisateur.nomUtilisateur }} {{ utilisateur.prenomUtilisateur }}</h3>
+                        <p class="user-role">
+                            {% if utilisateur.roleUtilisateur == 'admin' %}
+                                <span class="status-badge status-active">Admin</span>
+                            {% else %}
+                                <span class="status-badge status-pending">Utilisateur</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">ID Utilisateur</span>
+                        <span class="info-value">{{ utilisateur.idUtilisateur }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Nom</span>
+                        <span class="info-value">{{ utilisateur.nomUtilisateur }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Prénom</span>
+                        <span class="info-value">{{ utilisateur.prenomUtilisateur }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value">{{ utilisateur.emailUtilisateur }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Téléphone</span>
+                        <span class="info-value">{{ utilisateur.numeroTelephoneUtilisateur }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Rôle</span>
+                        <span class="info-value">{{ utilisateur.roleUtilisateur }}</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="info-label">Question de sécurité</span>
+                        <span class="info-value">{{ utilisateur.questionSecurite }}</span>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    {{ include('utilisateur/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

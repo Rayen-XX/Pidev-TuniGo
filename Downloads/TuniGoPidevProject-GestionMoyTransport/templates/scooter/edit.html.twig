@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Scooter{% endblock %}
+
+{% block body %}
+    <h1>Edit Scooter</h1>
+
+    {{ include('scooter/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_scooter_index') }}">back to list</a>
+
+    {{ include('scooter/_delete_form.html.twig') }}
+{% endblock %}

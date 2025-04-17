@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MetroTrajet{% endblock %}
+
+{% block body %}
+    <h1>Create new MetroTrajet</h1>
+
+    {{ include('metro_trajet/_form.html.twig') }}
+
+    <a href="{{ path('app_metro_trajet_index') }}">back to list</a>
+{% endblock %}

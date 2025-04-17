@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MetroTrajet{% endblock %}
+
+{% block body %}
+    <h1>Edit MetroTrajet</h1>
+
+    {{ include('metro_trajet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_metro_trajet_index') }}">back to list</a>
+
+    {{ include('metro_trajet/_delete_form.html.twig') }}
+{% endblock %}

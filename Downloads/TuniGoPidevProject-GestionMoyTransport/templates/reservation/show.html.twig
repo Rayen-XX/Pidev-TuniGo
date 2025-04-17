@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdRes</th>
+                <td>{{ reservation.idRes }}</td>
+            </tr>
+            <tr>
+                <th>NomUser</th>
+                <td>{{ reservation.nomUser }}</td>
+            </tr>
+            <tr>
+                <th>Moyen</th>
+                <td>{{ reservation.moyen }}</td>
+            </tr>
+            <tr>
+                <th>DateRes</th>
+                <td>{{ reservation.dateRes ? reservation.dateRes|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MoyenPaiement</th>
+                <td>{{ reservation.moyenPaiement }}</td>
+            </tr>
+            <tr>
+                <th>ConfirmationCode</th>
+                <td>{{ reservation.confirmationCode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservation_index') }}">back to list</a>
+
+    <a href="{{ path('app_reservation_edit', {'idRes': reservation.idRes}) }}">edit</a>
+
+    {{ include('reservation/_delete_form.html.twig') }}
+{% endblock %}

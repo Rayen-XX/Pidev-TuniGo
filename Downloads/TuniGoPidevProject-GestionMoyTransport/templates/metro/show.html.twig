@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Metro{% endblock %}
+
+{% block body %}
+    <h1>Metro</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdMetro</th>
+                <td>{{ metro.idMetro }}</td>
+            </tr>
+            <tr>
+                <th>NumeroMetro</th>
+                <td>{{ metro.numeroMetro }}</td>
+            </tr>
+            <tr>
+                <th>IdTrajetMetro</th>
+                <td>{{ metro.idTrajetMetro }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_metro_index') }}">back to list</a>
+
+    <a href="{{ path('app_metro_edit', {'idMetro': metro.idMetro}) }}">edit</a>
+
+    {{ include('metro/_delete_form.html.twig') }}
+{% endblock %}

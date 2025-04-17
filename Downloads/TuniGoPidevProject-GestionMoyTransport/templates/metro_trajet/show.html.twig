@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MetroTrajet{% endblock %}
+
+{% block body %}
+    <h1>MetroTrajet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ metro_trajet.id }}</td>
+            </tr>
+            <tr>
+                <th>GareDepart</th>
+                <td>{{ metro_trajet.gareDepart }}</td>
+            </tr>
+            <tr>
+                <th>GareArrivee</th>
+                <td>{{ metro_trajet.gareArrivee }}</td>
+            </tr>
+            <tr>
+                <th>HeureDepart</th>
+                <td>{{ metro_trajet.heureDepart ? metro_trajet.heureDepart|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HeureArrivee</th>
+                <td>{{ metro_trajet.heureArrivee ? metro_trajet.heureArrivee|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_metro_trajet_index') }}">back to list</a>
+
+    <a href="{{ path('app_metro_trajet_edit', {'id': metro_trajet.id}) }}">edit</a>
+
+    {{ include('metro_trajet/_delete_form.html.twig') }}
+{% endblock %}

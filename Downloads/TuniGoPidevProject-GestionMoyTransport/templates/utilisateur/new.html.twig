@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Utilisateur - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Créer un Nouvel Utilisateur</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_utilisateur_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Formulaire d'ajout</h5>
+            </div>
+            <div class="card-admin-body">
+                {{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.nomUtilisateur, 'Nom') }}
+                            {{ form_widget(form.nomUtilisateur, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom'}}) }}
+                            {{ form_errors(form.nomUtilisateur) }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.prenomUtilisateur, 'Prénom') }}
+                            {{ form_widget(form.prenomUtilisateur, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le prénom'}}) }}
+                            {{ form_errors(form.prenomUtilisateur) }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.emailUtilisateur, 'Email') }}
+                            {{ form_widget(form.emailUtilisateur, {'attr': {'class': 'form-control', 'placeholder': 'exemple@email.com'}}) }}
+                            {{ form_errors(form.emailUtilisateur) }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroTelephoneUtilisateur, 'Téléphone') }}
+                            {{ form_widget(form.numeroTelephoneUtilisateur, {'attr': {'class': 'form-control', 'placeholder': '+216 XX XXX XXX'}}) }}
+                            {{ form_errors(form.numeroTelephoneUtilisateur) }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.roleUtilisateur, 'Rôle') }}
+                            {{ form_widget(form.roleUtilisateur, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.roleUtilisateur) }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.motDePasseUtilisateur, 'Mot de passe') }}
+                            {{ form_widget(form.motDePasseUtilisateur, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+                            {{ form_errors(form.motDePasseUtilisateur) }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.questionSecurite, 'Question de sécurité') }}
+                            {{ form_widget(form.questionSecurite, {'attr': {'class': 'form-control', 'placeholder': 'Question de sécurité'}}) }}
+                            {{ form_errors(form.questionSecurite) }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.reponseSecurite, 'Réponse de sécurité') }}
+                            {{ form_widget(form.reponseSecurite, {'attr': {'class': 'form-control', 'placeholder': 'Réponse à la question de sécurité'}}) }}
+                            {{ form_errors(form.reponseSecurite) }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button class="btn-admin btn-primary-admin">
+                            <i class="fas fa-save"></i> Créer
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

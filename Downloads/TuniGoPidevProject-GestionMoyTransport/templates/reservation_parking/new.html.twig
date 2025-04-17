@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservation{% endblock %}
+
+{% block body %}
+    {% include 'admin/sidebar.html.twig' %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+
+                <div class="card border-0 shadow rounded-4">
+                    <div class="card-header text-white p-4"
+                         style="background: linear-gradient(135deg, rgb(119, 3, 3), rgb(151, 19, 19));
+                                border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+                        <h3 class="mb-0 d-flex align-items-center gap-2">
+                            <i class="bi bi-calendar-plus"></i> Create New Reservation
+                        </h3>
+                    </div>
+
+                    <div class="card-body px-5 py-4">
+                        {{ include('reservation_parking/_form.html.twig', {'button_label': 'Create'}) }}
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end bg-light px-4 py-3 rounded-bottom">
+                        <a href="{{ path('app_reservation_parking_index') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to list
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

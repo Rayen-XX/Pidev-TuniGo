@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('styles/login.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="login-header">
+        <i class="fas fa-bus logo-icon"></i>
+        <h1>Bienvenue sur TuniGo</h1>
+        <p>Connectez-vous pour accéder à votre compte</p>
+    </div>
+    
+    <div class="login-body">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <div class="floating-form">
+            <h2>Connexion</h2>
+            
+            <form action="{{ path('app_login') }}" method="post">
+                <div class="floating-input-container">
+                    <input type="email" id="email" name="email" value="{{ last_username }}" class="floating-input" placeholder=" " required autofocus>
+                    <label for="email" class="floating-label">Email</label>
+                </div>
+
+                <div class="floating-input-container">
+                    <div class="password-field">
+                        <input type="password" id="password" name="password" class="floating-input" placeholder=" " required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility(this)">
+                            <i class="fas fa-eye-slash"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+                
+                <div class="forgot-password">
+                    <a href="{{ path('app_forgot_password') }}">Mot de passe oublié ?</a>
+                </div>
+            </form>
+
+            <div class="register-link">
+                <p>Vous n'avez pas de compte ? <a href="{{ path('app_register') }}">Créer un compte</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+<script>
+function togglePasswordVisibility(element) {
+    const passwordField = element.parentElement.querySelector('input');
+    const eyeIcon = element.querySelector('i');
+    
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+    } else {
+        passwordField.type = 'password';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+    }
+}
+</script>
+{% endblock %}
+{% endblock %} 

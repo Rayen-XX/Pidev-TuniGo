@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trajetbus{% endblock %}
+
+{% block body %}
+    <h1>Trajetbus</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdTrajetBus</th>
+                <td>{{ trajetbu.idTrajetBus }}</td>
+            </tr>
+            <tr>
+                <th>DepartTrajetbus</th>
+                <td>{{ trajetbu.departTrajetbus }}</td>
+            </tr>
+            <tr>
+                <th>ArriveTrajetBus</th>
+                <td>{{ trajetbu.arriveTrajetBus }}</td>
+            </tr>
+            <tr>
+                <th>HeurDepartBus</th>
+                <td>{{ trajetbu.heurDepartBus }}</td>
+            </tr>
+            <tr>
+                <th>HeurArriveBus</th>
+                <td>{{ trajetbu.heurArriveBus }}</td>
+            </tr>
+            <tr>
+                <th>PrixTicketBus</th>
+                <td>{{ trajetbu.prixTicketBus }}</td>
+            </tr>
+            <tr>
+                <th>IdBus</th>
+                <td>{{ trajetbu.idBus }}</td>
+            </tr>
+            <tr>
+                <th>IdReservation</th>
+                <td>{{ trajetbu.idReservation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trajetbus_index') }}">back to list</a>
+
+    <a href="{{ path('app_trajetbus_edit', {'idTrajetBus': trajetbu.idTrajetBus}) }}">edit</a>
+
+    {{ include('trajetbus/_delete_form.html.twig') }}
+{% endblock %}

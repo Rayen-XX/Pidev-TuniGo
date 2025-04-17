@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Bus{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Créer un Nouveau Bus</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_bus_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Formulaire d'ajout de Bus</h5>
+            </div>
+            <div class="card-admin-body">
+                {{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroBus, 'Numéro du Bus') }}
+                            {{ form_widget(form.numeroBus, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le numéro du bus'}}) }}
+                            {{ form_errors(form.numeroBus) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.idTrajetBus, 'ID du Trajet') }}
+                            {{ form_widget(form.idTrajetBus, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'ID du trajet du bus'}}) }}
+                            {{ form_errors(form.idTrajetBus) }}
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-admin btn-primary-admin">
+                            <i class="fas fa-save"></i> Créer le Bus
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

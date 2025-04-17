@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails Scooter - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+
+    <!-- Optionnel: Style pour masquer les sous-menus au départ -->
+    <style>
+        .sidebar-submenu {
+            display: none;
+            margin-left: 20px;
+        }
+        .active-submenu {
+            display: block;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Détails du Scooter</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_scooter_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+               
+            </div>
+        </div>
+
+        <div class="card-admin-body">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-scooter"></i>
+                </div>
+                <div class="user-info">
+                    <h3>{{ scooter.numeroScooter }} - Localisation: {{ scooter.localisationScooter }}</h3>
+                </div>
+            </div>
+
+            <!-- Tableau des informations du Scooter -->
+            <div class="info-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="info-label">Détails</th>
+                            <th class="info-value">Informations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="info-label">ID Scooter</td>
+                            <td class="info-value">{{ scooter.idScooter }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Numéro Scooter</td>
+                            <td class="info-value">{{ scooter.numeroScooter }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Localisation Scooter</td>
+                            <td class="info-value">{{ scooter.localisationScooter }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">ID Réservation</td>
+                            <td class="info-value">{{ scooter.idReservation }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Disponible</td>
+                            <td class="info-value">{{ scooter.Isdisponible ? 'Oui' : 'Non' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Temps de Réservation</td>
+                            <td class="info-value">{{ scooter.tempsReservation ? scooter.tempsReservation|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">Temps d'Arrivée</td>
+                            <td class="info-value">{{ scooter.tempsArrivee ? scooter.tempsArrivee|date('Y-m-d H:i:s') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4">
+                {{ include('scooter/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // Fonction pour gérer l'affichage du sous-menu transport
+        document.getElementById("toggle-transport").addEventListener("click", function() {
+            var submenu = document.getElementById("submenu-transport");
+            var arrow = document.getElementById("transport-arrow");
+            submenu.classList.toggle("active-submenu");
+            arrow.classList.toggle("fa-chevron-up");
+            arrow.classList.toggle("fa-chevron-down");
+        });
+    </script>
+{% endblock %}

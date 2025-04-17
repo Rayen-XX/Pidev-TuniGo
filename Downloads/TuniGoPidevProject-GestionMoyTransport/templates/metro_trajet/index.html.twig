@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MetroTrajet index{% endblock %}
+
+{% block body %}
+    <h1>MetroTrajet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>GareDepart</th>
+                <th>GareArrivee</th>
+                <th>HeureDepart</th>
+                <th>HeureArrivee</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for metro_trajet in metro_trajets %}
+            <tr>
+                <td>{{ metro_trajet.id }}</td>
+                <td>{{ metro_trajet.gareDepart }}</td>
+                <td>{{ metro_trajet.gareArrivee }}</td>
+                <td>{{ metro_trajet.heureDepart ? metro_trajet.heureDepart|date('H:i:s') : '' }}</td>
+                <td>{{ metro_trajet.heureArrivee ? metro_trajet.heureArrivee|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_metro_trajet_show', {'id': metro_trajet.id}) }}">show</a>
+                    <a href="{{ path('app_metro_trajet_edit', {'id': metro_trajet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_metro_trajet_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New TraitementReclamation{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        :root {
+            --primary-color: #B22222;
+            --primary-color-dark: #8B0000;
+            --primary-color-light: #cd5c5c;
+            --primary-color-lighter: rgba(178, 34, 34, 0.05);
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --transition-speed: 0.3s;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --input-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            background: linear-gradient(to right, var(--primary-color-light), var(--primary-color));
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            max-width: 600px;
+            margin: 3rem auto;
+            animation: float-in 0.8s ease forwards;
+            transform: perspective(800px) rotateX(5deg);
+            transition: transform var(--transition-speed);
+        }
+
+        .form-container:hover {
+            transform: perspective(800px) rotateX(0deg);
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--primary-color-dark);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            box-shadow: var(--input-shadow);
+            transition: border-color var(--transition-speed);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .button-group {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+
+        button:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        .cancel-button {
+            background-color: var(--gray-500);
+        }
+
+        .cancel-button:hover {
+            background-color: var(--gray-700);
+        }
+
+        @keyframes float-in {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="form-container">
+    <h1>Create New Traitement Reclamation</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.statut_traitement) }}
+        {{ form_row(form.traitement_description) }}
+
+        <div class="button-group">
+            <button type="submit">Valider</button>
+            <a href="{{ path('app_reclamation_index') }}">
+                <button type="button" class="cancel-button">Annuler</button>
+            </a>
+        </div>
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

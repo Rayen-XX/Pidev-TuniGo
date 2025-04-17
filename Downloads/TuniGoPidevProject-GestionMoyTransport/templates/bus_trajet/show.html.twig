@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BusTrajet{% endblock %}
+
+{% block body %}
+    <h1>BusTrajet</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bus_trajet.id }}</td>
+            </tr>
+            <tr>
+                <th>StationDepart</th>
+                <td>{{ bus_trajet.stationDepart }}</td>
+            </tr>
+            <tr>
+                <th>StationArrivee</th>
+                <td>{{ bus_trajet.stationArrivee }}</td>
+            </tr>
+            <tr>
+                <th>HeureDepart</th>
+                <td>{{ bus_trajet.heureDepart }}</td>
+            </tr>
+            <tr>
+                <th>HeureArrivee</th>
+                <td>{{ bus_trajet.heureArrivee }}</td>
+            </tr>
+            <tr>
+                <th>NumeroBus</th>
+                <td>{{ bus_trajet.numeroBus }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bus_trajet_index') }}">back to list</a>
+
+    <a href="{{ path('app_bus_trajet_edit', {'id': bus_trajet.id}) }}">edit</a>
+
+    {{ include('bus_trajet/_delete_form.html.twig') }}
+{% endblock %}

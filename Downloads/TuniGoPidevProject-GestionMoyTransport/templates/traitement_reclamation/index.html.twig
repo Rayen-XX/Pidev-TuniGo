@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TraitementReclamation index{% endblock %}
+
+{% block body %}
+    <h1>TraitementReclamation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Statut_traitement</th>
+                <th>Date_traitement</th>
+                <th>Traitement_description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for traitement_reclamation in traitement_reclamations %}
+            <tr>
+                <td>{{ traitement_reclamation.id }}</td>
+                <td>{{ traitement_reclamation.statutTraitement }}</td>
+                <td>{{ traitement_reclamation.dateTraitement ? traitement_reclamation.dateTraitement|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ traitement_reclamation.traitementDescription }}</td>
+                <td>
+                    <a href="{{ path('app_traitement_reclamation_show', {'id': traitement_reclamation.id}) }}">show</a>
+                    <a href="{{ path('app_traitement_reclamation_edit', {'id': traitement_reclamation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_traitement_reclamation_new') }}">Create new</a>
+{% endblock %}

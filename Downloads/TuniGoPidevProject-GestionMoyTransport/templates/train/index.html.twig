@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Trains - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Gestion des Trains</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_train_new') }}" class="btn-admin btn-primary-admin">
+                    <i class="fas fa-plus"></i> Ajouter un train
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header d-flex justify-content-between align-items-center">
+                <h5 class="card-admin-title">Liste des Trains</h5>
+                <div class="d-flex gap-2">
+                    <input type="text" id="searchInput" placeholder="Rechercher par numéro..." class="form-control form-control-sm" style="width: 550px;" />
+                    <button class="btn-admin btn-outline-admin btn-sm-admin" onclick="sortTableById(true)">
+                        <i class="fas fa-sort-amount-down"></i> Plus récent
+                    </button>
+                    <button class="btn-admin btn-outline-admin btn-sm-admin" onclick="sortTableById(false)">
+                        <i class="fas fa-sort-amount-up"></i> Plus ancien
+                    </button>
+                    <button class="btn-admin btn-outline-admin btn-sm-admin" onclick="exportToExcel()">
+                        <i class="fas fa-file-excel"></i> Exporter Excel
+                    </button>
+                </div>
+            </div>
+            <div class="card-admin-body">
+                <div class="table-responsive">
+                    <table class="table-admin" id="trainTable">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Numéro du Train</th>
+                                <th>ID Trajet</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    {% for train in trains %}
+        <tr>
+            <td>{{ train.idTrain }}</td>
+            <td class="numeroTrainCell">{{ train.numeroTrain }}</td> <!-- Ajout de la classe numeroTrainCell ici -->
+            <td>{{ train.idTrajetTrain }}</td>
+            <td>
+                <!-- Modal Trigger: Edit Button -->
+                <button class="btn-action btn-edit" data-bs-toggle="modal" data-bs-target="#editTrainModal" 
+                        data-id="{{ train.idTrain }}" data-numero="{{ train.numeroTrain }}" data-trajet="{{ train.idTrajetTrain }}" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-action btn-delete" title="Supprimer" 
+                       onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce train?')) { 
+                           document.getElementById('delete-form-{{ train.idTrain }}').submit(); 
+                       }">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <form id="delete-form-{{ train.idTrain }}" action="{{ path('app_train_delete', {'idTrain': train.idTrain}) }}" method="post" style="display: none;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ train.idTrain) }}">
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4" class="text-center">Aucun train trouvé</td>
+        </tr>
+    {% endfor %}
+</tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Edit Train -->
+<div class="modal fade" id="editTrainModal" tabindex="-1" aria-labelledby="editTrainModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTrainModalLabel">Modifier un Train</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form for editing a train -->
+                <form id="edit-train-form" action="{{ path('app_train_edit', {'idTrain': 0}) }}" method="post">
+                    <div class="form-group">
+                        <label for="numeroTrain">Numéro du Train</label>
+                        <input type="text" class="form-control" id="numeroTrain" name="numeroTrain" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idTrajetTrain">ID Trajet</label>
+                        <input type="number" class="form-control" id="idTrajetTrain" name="idTrajetTrain" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Fonction de tri
+        function sortTableById(descending = true) {
+            const table = document.getElementById("trainTable");
+            const tbody = table.tBodies[0];
+            const rows = Array.from(tbody.rows);
+
+            rows.sort((a, b) => {
+                const idA = parseInt(a.cells[0].textContent);
+                const idB = parseInt(b.cells[0].textContent);
+                return descending ? idB - idA : idA - idB;
+            });
+
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+
+// Recherche par numéro de train (ou bus)
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll("#trainTable tbody tr"); 
+    rows.forEach(row => {
+        const numeroTrain = row.querySelector(".numeroTrainCell").textContent.toLowerCase(); // Changez la classe en fonction de la cellule du train
+        row.style.display = numeroTrain.includes(filter) ? "" : "none"; // Affiche ou masque la ligne selon la recherche
+    });
+});
+
+
+        // Fonction d'exportation en Excel
+        function exportToExcel() {
+            const table = document.getElementById("trainTable");
+            let html = table.outerHTML;
+            let uri = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+            let link = document.createElement("a");
+            link.href = uri;
+            link.download = 'train_list.xls';
+            link.click();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var editModal = document.getElementById('editTrainModal');
+            editModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget;
+                var idTrain = button.getAttribute('data-id');
+                var numeroTrain = button.getAttribute('data-numero');
+                var trajetTrain = button.getAttribute('data-trajet');
+                
+                var modalForm = editModal.querySelector('form');
+                modalForm.setAttribute('action', '/train/' + idTrain + '/edit');
+                modalForm.querySelector('#numeroTrain').value = numeroTrain;
+                modalForm.querySelector('#idTrajetTrain').value = trajetTrain;
+            });
+
+            var form = document.getElementById('edit-train-form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                
+                var formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Train mis à jour avec succès!");
+                        var modal = bootstrap.Modal.getInstance(editModal);
+                        modal.hide();
+                    } else {
+                        alert("Une erreur est survenue, veuillez réessayer.");
+                    }
+                })
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Train - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Créer un Nouveau Train</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_train_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Formulaire d'ajout de Train</h5>
+            </div>
+            <div class="card-admin-body">
+                {{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroTrain, 'Numéro du Train') }}
+                            {{ form_widget(form.numeroTrain, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le numéro du train'}}) }}
+                            {{ form_errors(form.numeroTrain) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.idTrajetTrain, ' Id Trajet Train') }}
+                            {{ form_widget(form.idTrajetTrain, {'attr': {'class': 'form-control', 'placeholder': 'Entrez id de trajet '}}) }}
+                            {{ form_errors(form.idTrajetTrain) }}
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-admin btn-primary-admin">
+                            <i class="fas fa-save"></i> Créer le Train
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

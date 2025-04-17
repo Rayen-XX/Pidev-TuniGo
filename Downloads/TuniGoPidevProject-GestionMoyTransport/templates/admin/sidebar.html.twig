@@ -1,0 +1,172 @@
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">
+            <i class="fas fa-bus"></i>
+            <span>TuniGo Admin</span>
+        </div>
+    </div>
+    
+    <ul class="sidebar-menu">
+        <!-- Tableau de bord -->
+        <li class="sidebar-item">
+            <a href="{{ path('app_admin_dashboard') }}" class="sidebar-link {% if app.request.get('_route') == 'app_admin_dashboard' %}active{% endif %}">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Tableau de bord</span>
+            </a>
+        </li>
+        
+        <div class="sidebar-divider"></div>
+        
+        <!-- Gestion Utilisateurs -->
+        <li class="sidebar-item">
+            <a href="{{ path('app_utilisateur_index') }}" class="sidebar-link {% if app.request.get('_route') starts with 'app_utilisateur_' %}active{% endif %}">
+                <i class="fas fa-users"></i>
+                <span>Gestion Utilisateurs</span>
+            </a>
+        </li>
+        
+<!-- Gestion Transport (Collapsible) -->
+<li class="sidebar-item">
+    <a href="#" class="sidebar-link" id="transport-toggle">
+        <i class="fas fa-subway"></i>
+        <span>Gestion Transport</span>
+        <i class="fas fa-chevron-down" id="transport-icon"></i>
+    </a>
+    <ul class="sidebar-submenu" id="transport-menu" style="display: none;">
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_taxi_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_taxi_index' %}active{% endif %}">
+                <i class="fas fa-taxi"></i>
+                <span>Gestion Taxi</span>
+            </a>
+        </li>
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_bus_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_bus_index' %}active{% endif %}">
+                <i class="fas fa-bus"></i>
+                <span>Gestion Bus</span>
+            </a>
+        </li>
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_scooter_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_scooter_index' %}active{% endif %}">
+                <i class="fas fa-motorcycle"></i>
+                <span>Gestion Scooter</span>
+            </a>
+        </li>
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_train_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_train_index' %}active{% endif %}">
+                <i class="fas fa-train"></i>
+                <span>Gestion Train</span>
+            </a>
+        </li>
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_metro_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_metro_index' %}active{% endif %}">
+                <i class="fas fa-subway"></i>
+                <span>Gestion Metro</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<!-- Gestion Trajets (Collapsible) -->
+<li class="sidebar-item">
+    <a href="#" class="sidebar-link" id="trajet-toggle">
+        <i class="fas fa-route"></i>
+        <span>Gestion Trajet</span>
+        <i class="fas fa-chevron-down" id="trajet-icon"></i>
+    </a>
+    <ul class="sidebar-submenu" id="trajet-menu" style="display: none;">
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_trajetbus_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_trajetbus_index' %}active{% endif %}">
+                <i class="fas fa-bus"></i>
+                <span>Gestion Trajet Bus</span>
+            </a>
+        </li>
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_train_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_train_index' %}active{% endif %}">
+                <i class="fas fa-train"></i>
+                <span>Gestion Trajet Train</span>
+            </a>
+        </li>
+        <li class="sidebar-subitem">
+            <a href="{{ path('app_trajetmetro_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_trajetmetro_index' %}active{% endif %}">
+                <i class="fas fa-subway"></i>
+                <span>Gestion Trajet Metro</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+        
+        <!-- Gestion Réservations -->
+        <li class="sidebar-item">
+            <a href="{{path('app_reservation_parking_index')}}" class="sidebar-link {% if app.request.get('_route') == 'app_reservation_index' %}active{% endif %}">
+                <i class="fas fa-calendar-check"></i>
+                <span>Gestion Réservations</span>
+            </a>
+        </li>
+        
+        <!-- Gestion Réclamations -->
+        <li class="sidebar-item">
+            <a href="{{ path('app_reclamation_index') }}" class="sidebar-link {% if app.request.get('_route') == 'app_reclamation_index' %}active{% endif %}">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Gestion Réclamations</span>
+            </a>
+        </li>
+        
+        <!-- Gestion Parking -->
+        <li class="sidebar-item">
+            <a href="{{path('app_parking_index')}}" class="sidebar-link {% if app.request.get('_route') == 'app_parking_index' %}active{% endif %}">
+                <i class="fas fa-parking"></i>
+                <span>Gestion Parking</span>
+            </a>
+        </li>
+        
+        <div class="sidebar-divider"></div>
+        
+
+        <div class="sidebar-divider"></div>
+        
+        <!-- Déconnexion -->
+        <li class="sidebar-item">
+            <a href="{{ path('app_logout') }}" class="sidebar-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Se déconnecter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function setupCollapsible(toggleId, menuId, iconId) {
+            const toggle = document.getElementById(toggleId);
+            const menu = document.getElementById(menuId);
+            const icon = document.getElementById(iconId);
+            const activeLink = menu.querySelector('.active');
+
+            if (activeLink) {
+                menu.style.display = 'block';
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            }
+
+            toggle.addEventListener("click", function(e) {
+                e.preventDefault();
+                if (menu.style.display === "none") {
+                    menu.style.display = "block";
+                    icon.classList.replace("fa-chevron-down", "fa-chevron-up");
+                } else {
+                    menu.style.display = "none";
+                    icon.classList.replace("fa-chevron-up", "fa-chevron-down");
+                }
+            });
+        }
+
+        setupCollapsible("transport-toggle", "transport-menu", "transport-icon");
+        setupCollapsible("trajet-toggle", "trajet-menu", "trajet-icon");
+    });
+</script>

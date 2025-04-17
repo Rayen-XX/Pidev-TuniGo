@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Réclamations{% endblock %}
+
+{% block body %}
+    <h1>📬 Mes réclamations</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sujet</th>
+                <th>Statut</th>
+                <th>Ma réclamation</th>
+                <th>Réponse de l'admin</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reclamation in reclamations %}
+                <tr>
+                    <td>{{ reclamation.sujet }}</td>
+                    <td>{{ reclamation.statutReclamation }}</td>
+                    <td>{{ reclamation.description }}</td>
+                    <td>
+                        {% if reclamation.traitementReclamation %}
+                            {{ reclamation.traitementReclamation.traitementDescription }}
+                        {% else %}
+                            <em>En attente...</em>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune réclamation enregistrée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trajetbus index{% endblock %}
+
+{% block body %}
+    <h1>Trajetbus index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdTrajetBus</th>
+                <th>DepartTrajetbus</th>
+                <th>ArriveTrajetBus</th>
+                <th>HeurDepartBus</th>
+                <th>HeurArriveBus</th>
+                <th>PrixTicketBus</th>
+                <th>IdBus</th>
+                <th>IdReservation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trajetbu in trajetbuses %}
+            <tr>
+                <td>{{ trajetbu.idTrajetBus }}</td>
+                <td>{{ trajetbu.departTrajetbus }}</td>
+                <td>{{ trajetbu.arriveTrajetBus }}</td>
+                <td>{{ trajetbu.heurDepartBus }}</td>
+                <td>{{ trajetbu.heurArriveBus }}</td>
+                <td>{{ trajetbu.prixTicketBus }}</td>
+                <td>{{ trajetbu.idBus }}</td>
+                <td>{{ trajetbu.idReservation }}</td>
+                <td>
+                    <a href="{{ path('app_trajetbus_show', {'idTrajetBus': trajetbu.idTrajetBus}) }}">show</a>
+                    <a href="{{ path('app_trajetbus_edit', {'idTrajetBus': trajetbu.idTrajetBus}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trajetbus_new') }}">Create new</a>
+{% endblock %}

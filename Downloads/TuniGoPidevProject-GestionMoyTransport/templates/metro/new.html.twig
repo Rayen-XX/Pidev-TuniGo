@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Metro{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Créer un Nouveau Metro</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_metro_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Formulaire d'ajout de Metro</h5>
+            </div>
+            <div class="card-admin-body">
+                {{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroMetro, 'Numéro du Metro') }}
+                            {{ form_widget(form.numeroMetro, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le numéro du metro'}}) }}
+                            {{ form_errors(form.numeroMetro) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.idTrajetMetro, 'Id Trajet Metro') }}
+                            {{ form_widget(form.idTrajetMetro, {'attr': {'class': 'form-control', 'placeholder': 'Entrez id de trajet'}}) }}
+                            {{ form_errors(form.idTrajetMetro) }}
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-admin btn-primary-admin">
+                            <i class="fas fa-save"></i> Créer le Metro
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

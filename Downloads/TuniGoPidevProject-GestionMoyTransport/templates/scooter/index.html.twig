@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Scooters - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Gestion des Scooters</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_scooter_new') }}" class="btn-admin btn-primary-admin">
+                    <i class="fas fa-plus"></i> Ajouter un scooter
+                </a>
+            </div>
+        </div>
+
+        <div class="card-admin">
+<div class="card-admin-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h5 class="card-admin-title" style="margin: 0;">Liste des Taxis</h5>
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <input type="text" id="searchInput" placeholder="Rechercher par nom, prénom, numéro..." 
+               class="form-control form-control-sm" style="width: 600px;" />
+        <div style="display: flex; gap: 8px;">
+            <button class="btn-admin btn-outline-admin btn-sm-admin" onclick="sortTableById(true)">
+                <i class="fas fa-sort-amount-down"></i> Plus récent
+            </button>
+            <button class="btn-admin btn-outline-admin btn-sm-admin" onclick="sortTableById(false)">
+                <i class="fas fa-sort-amount-up"></i> Plus ancien
+            </button>
+            <button class="btn-admin btn-outline-admin btn-sm-admin" onclick="exportToExcel()">
+                <i class="fas fa-file-excel"></i> Exporter
+            </button>
+        </div>
+    </div>
+</div>
+            <div class="card-admin-body">
+                <div class="table-responsive">
+                    <table class="table-admin" id="scooterTable">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Numéro du Scooter</th>
+                                <th>Localisation</th>
+                                <th>ID Réservation</th>
+                                <th>Disponible</th>
+                                <th>Temps de Réservation</th>
+                                <th>Temps d'Arrivée</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for scooter in scooters %}
+                            <tr class="scooter-row">
+                                <td>{{ scooter.idScooter }}</td>
+                                <td>{{ scooter.numeroScooter }}</td>
+                                <td>{{ scooter.localisationScooter }}</td>
+                                <td>{{ scooter.idReservation ? scooter.idReservation : '' }}</td>
+                                <td>{{ scooter.isDisponible ? 'Oui' : 'Non' }}</td>
+                                <td>{{ scooter.tempsReservation ? scooter.tempsReservation|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ scooter.tempsArrivee ? scooter.tempsArrivee|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_scooter_show', {'idScooter': scooter.idScooter}) }}" class="btn-action btn-view" title="Voir">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ path('app_scooter_edit', {'idScooter': scooter.idScooter}) }}" class="btn-action btn-edit" title="Modifier" data-bs-toggle="modal" data-bs-target="#editScooterModal" data-id="{{ scooter.idScooter }}" data-numero="{{ scooter.numeroScooter }}" data-localisation="{{ scooter.localisationScooter }}" data-reservation="{{ scooter.idReservation }}" data-disponible="{{ scooter.isDisponible ? '1' : '0' }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button class="btn-action btn-delete" title="Supprimer" 
+                                           onclick="if(confirm('Êtes-vous sûr de vouloir supprimer ce scooter?')) { 
+                                               document.getElementById('delete-form-{{ scooter.idScooter }}').submit(); 
+                                           }">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <form id="delete-form-{{ scooter.idScooter }}" action="{{ path('app_scooter_delete', {'idScooter': scooter.idScooter}) }}" method="post" style="display: none;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ scooter.idScooter) }}">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8" class="text-center">Aucun scooter trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Edit Scooter -->
+<div class="modal fade" id="editScooterModal" tabindex="-1" aria-labelledby="editScooterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editScooterModalLabel">Modifier un Scooter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form for editing a scooter -->
+                <form id="edit-scooter-form" action="{{ path('app_scooter_edit', {'idScooter': 0}) }}" method="post">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="_token" value="{{ csrf_token('edit') }}">
+                    <div class="form-group">
+                        <label for="numeroScooter">Numéro du Scooter</label>
+                        <input type="text" class="form-control" id="numeroScooter" name="numeroScooter" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="localisationScooter">Localisation</label>
+                        <input type="text" class="form-control" id="localisationScooter" name="localisationScooter" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idReservation">ID Réservation</label>
+                        <input type="text" class="form-control" id="idReservation" name="idReservation">
+                    </div>
+                    <div class="form-group">
+                        <label for="isDisponible">Disponible</label>
+                        <select class="form-control" id="isDisponible" name="isDisponible">
+                            <option value="1">Oui</option>
+                            <option value="0">Non</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal edit handling
+            var editModal = document.getElementById('editScooterModal');
+            if (editModal) {
+                editModal.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget;
+                    var idScooter = button.getAttribute('data-id');
+                    var numeroScooter = button.getAttribute('data-numero');
+                    var localisationScooter = button.getAttribute('data-localisation');
+                    var idReservation = button.getAttribute('data-reservation');
+                    var disponible = button.getAttribute('data-disponible');
+                    
+                    var modalForm = editModal.querySelector('form');
+                    modalForm.setAttribute('action', '/scooter/' + idScooter + '/edit');
+                    modalForm.querySelector('#numeroScooter').value = numeroScooter;
+                    modalForm.querySelector('#localisationScooter').value = localisationScooter;
+                    modalForm.querySelector('#idReservation').value = idReservation || '';
+                    modalForm.querySelector('#isDisponible').value = disponible;
+                });
+            }
+
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                let searchValue = e.target.value.toLowerCase();
+                let rows = document.querySelectorAll('.scooter-row');
+
+                rows.forEach(row => {
+                    let shouldShow = false;
+                    // Check each cell except actions
+                    for (let i = 0; i < row.cells.length - 1; i++) {
+                        if (row.cells[i].textContent.toLowerCase().includes(searchValue)) {
+                            shouldShow = true;
+                            break;
+                        }
+                    }
+                    row.style.display = shouldShow ? '' : 'none';
+                });
+            });
+        });
+
+        // Sorting functions
+        function sortTableById(isDescending) {
+            let tbody = document.querySelector('#scooterTable tbody');
+            let rows = Array.from(tbody.querySelectorAll('tr.scooter-row'));
+            
+            rows.sort((a, b) => {
+                let idA = parseInt(a.cells[0].textContent);
+                let idB = parseInt(b.cells[0].textContent);
+                return isDescending ? idB - idA : idA - idB;
+            });
+
+            // Clear and re-append rows
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+
+
+        function exportToExcel() {
+            // Select the table
+            const table = document.getElementById('scooterTable');
+            
+            // Clone the table to avoid modifying the original
+            const clone = table.cloneNode(true);
+            
+            // Remove action buttons from the clone
+            const actionCells = clone.querySelectorAll('td:last-child');
+            actionCells.forEach(cell => {
+                cell.innerHTML = ''; // Clear actions column
+            });
+            
+            // Create workbook
+            const workbook = XLSX.utils.table_to_book(clone, {sheet: "Scooters"});
+            
+            // Export the file
+            XLSX.writeFile(workbook, 'scooters.xlsx');
+        }
+    </script>
+{% endblock %}

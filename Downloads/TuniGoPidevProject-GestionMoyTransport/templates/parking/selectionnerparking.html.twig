@@ -1,0 +1,48 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Nos Parkings{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Nos Parkings Disponibles</h2>
+
+    <form method="get" class="mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <label class="form-label fw-bold">Choisissez une localisation</label>
+                <select name="localisationParking" class="form-select" onchange="this.form.submit()">
+                    <option value="">-- Choisir une localisation --</option>
+                    {% for loc in localisations %}
+                        <option value="{{ loc }}"
+                            {% if loc == selected_localisation %}selected{% endif %}>
+                            {{ loc }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
+
+    {% if selected_localisation %}
+        <h4 class="text-center mb-4 text-danger">Parkings à {{ selected_localisation }}</h4>
+        <div class="row g-4">
+            {% for parking in parkings %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 border-danger">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">{{ parking.nomParking }}</h5>
+                            <p class="card-text mb-2"><i class="bi bi-geo-alt-fill text-dark"></i> {{ parking.localisationParking }}</p>
+                            <p class="card-text"><i class="bi bi-car-front-fill text-dark"></i> {{ parking.place }} places disponibles</p>
+                            <a href="{{ path('app_reservation_parking_book', {'localisationParking': parking.localisationParking}) }}" class="btn btn-danger w-100 mt-3 rounded-pill">
+                                Réserver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% elseif parkings is empty %}
+        <div class="text-center text-muted mt-4">Veuillez sélectionner une localisation pour voir les parkings disponibles.</div>
+    {% endif %}
+</div>
+{% endblock %}

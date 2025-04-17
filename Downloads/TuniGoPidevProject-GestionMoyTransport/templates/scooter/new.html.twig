@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Scooter{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('styles/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <!-- Sidebar -->
+    {% include 'admin/sidebar.html.twig' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Créer un Nouveau Scooter</h1>
+            <div class="page-actions">
+                <a href="{{ path('app_scooter_index') }}" class="btn-admin btn-outline-admin">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-admin">
+            <div class="card-admin-header">
+                <h5 class="card-admin-title">Formulaire d'ajout de Scooter</h5>
+            </div>
+            <div class="card-admin-body">
+                {{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.numeroScooter, 'Numéro du Scooter') }}
+                            {{ form_widget(form.numeroScooter, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le numéro du scooter'}}) }}
+                            {{ form_errors(form.numeroScooter) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.localisationScooter, 'Localisation du Scooter') }}
+                            {{ form_widget(form.localisationScooter, {'attr': {'class': 'form-control', 'placeholder': 'Entrez la localisation'}}) }}
+                            {{ form_errors(form.localisationScooter) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.idReservation, 'ID de Réservation') }}
+                            {{ form_widget(form.idReservation, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'ID de réservation'}}) }}
+                            {{ form_errors(form.idReservation) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.Isdisponible, 'Disponibilité') }}
+                            {{ form_widget(form.Isdisponible, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.Isdisponible) }}
+                        </div>
+                    </div>
+
+                    <!-- Ajouter les champs pour tempsReservation et tempsArrivee -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.tempsReservation, 'Temps de Réservation') }}
+                            {{ form_widget(form.tempsReservation, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.tempsReservation) }}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ form_label(form.tempsArrivee, 'Temps d\'Arrivée') }}
+                            {{ form_widget(form.tempsArrivee, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.tempsArrivee) }}
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-admin btn-primary-admin">
+                            <i class="fas fa-save"></i> Créer le Scooter
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

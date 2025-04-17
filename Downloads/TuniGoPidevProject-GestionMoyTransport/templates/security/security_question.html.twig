@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question de sécurité - TuniGo{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('styles/login.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <div class="login-header">
+        <i class="fas fa-bus logo-icon"></i>
+        <h1>Vérification de sécurité</h1>
+        <p>Répondez à votre question de sécurité</p>
+    </div>
+    
+    <div class="login-body">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="floating-form">
+            <h2>Question de sécurité</h2>
+            
+            <div class="security-question-display">
+                {{ question }}
+            </div>
+            
+            <form action="{{ path('app_security_question') }}" method="post">
+                <div class="floating-input-container">
+                    <input type="text" id="security_answer" name="security_answer" class="floating-input" placeholder=" " required autofocus>
+                    <label for="security_answer" class="floating-label">Votre réponse</label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-check"></i> Vérifier ma réponse
+                </button>
+            </form>
+
+            <div class="login-link">
+                <p><a href="{{ path('app_forgot_password') }}">Retour à l'étape précédente</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

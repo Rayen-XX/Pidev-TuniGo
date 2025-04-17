@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+
+
+<div class="row justify-content-center">
+    <style>
+        .chart-small {
+            width: 400px !important;
+            height: 300px !important;
+        }
+    </style>
+
+    <!-- 🥧 Pie chart -->
+    <div class="col-md-6 d-flex flex-column align-items-center">
+        <h5 class="text-center mb-3">Répartition par type</h5>
+        <canvas id="reclamPieChart" class="chart-small"></canvas>
+    </div>
+
+    <!-- 📊 Bar chart -->
+    <div class="col-md-6 d-flex flex-column align-items-center">
+        <h5 class="text-center mb-3">Réclamations par mois</h5>
+        <canvas id="reclamBarChart" class="chart-small"></canvas>
+    </div>
+</div>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Pie chart
+        const pieCtx = document.getElementById('reclamPieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: {{ types|json_encode|raw }},
+                datasets: [{
+                    label: 'Réclamations par type',
+                    data: {{ typeCounts|json_encode|raw }},
+                    backgroundColor: [
+                        '#A60727FF', '#EB445BFF', '#CB070EFF', '#dc3545', '#f48c06', '#6a994e'
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let value = context.parsed;
+                                let percentage = (value * 100 / {{ total }}).toFixed(2);
+                                return `${context.label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Bar chart mensuel
+        const barCtx = document.getElementById('reclamBarChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ months|json_encode|raw }},
+                datasets: [{
+                    label: 'Réclamations par mois',
+                    data: {{ monthlyCounts|json_encode|raw }},
+                    backgroundColor: '#B50C31FF',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

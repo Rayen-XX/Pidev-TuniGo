@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trajettrain{% endblock %}
+
+{% block body %}
+    <h1>Trajettrain</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdTrajetTrain</th>
+                <td>{{ trajettrain.idTrajetTrain }}</td>
+            </tr>
+            <tr>
+                <th>DepartTrajetTrain</th>
+                <td>{{ trajettrain.departTrajetTrain }}</td>
+            </tr>
+            <tr>
+                <th>ArriveTrajetTrain</th>
+                <td>{{ trajettrain.arriveTrajetTrain }}</td>
+            </tr>
+            <tr>
+                <th>HeurDepartTrain</th>
+                <td>{{ trajettrain.heurDepartTrain }}</td>
+            </tr>
+            <tr>
+                <th>HeurArriveTrain</th>
+                <td>{{ trajettrain.heurArriveTrain }}</td>
+            </tr>
+            <tr>
+                <th>PrixTicketTrain</th>
+                <td>{{ trajettrain.prixTicketTrain }}</td>
+            </tr>
+            <tr>
+                <th>IdTrain</th>
+                <td>{{ trajettrain.idTrain }}</td>
+            </tr>
+            <tr>
+                <th>IdReservation</th>
+                <td>{{ trajettrain.idReservation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trajettrain_index') }}">back to list</a>
+
+    <a href="{{ path('app_trajettrain_edit', {'idTrajetTrain': trajettrain.idTrajetTrain}) }}">edit</a>
+
+    {{ include('trajettrain/_delete_form.html.twig') }}
+{% endblock %}
